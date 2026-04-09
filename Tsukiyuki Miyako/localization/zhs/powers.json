@@ -1,0 +1,10 @@
+{
+    "TSUKIYUKIMIYAKO-ENDURANCE_POWER.title": "长线作战",
+    "TSUKIYUKIMIYAKO-ENDURANCE_POWER.description": "每回合开始时获得{Stars:starIcons()}",
+    "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.title": "能量凝胶",
+    "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.description": "每回合开始时获得{Energy:energyIcons()}。",
+    "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.title": "省着点用",
+    "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.description": "每当有一张牌被[gold]消耗[/gold]时，\n抽1张牌",
+    "TSUKIYUKIMIYAKO-SENSEI_POWER.title": "师生羁绊",
+    "TSUKIYUKIMIYAKO-SENSEI_POWER.description": "每层[gold]师生羁绊[/gold]使从卡牌中获得的格挡+1,\n[gold]集中[/gold]+1"
+}

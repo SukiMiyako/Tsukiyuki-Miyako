@@ -1,0 +1,17 @@
+{
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.aromaPrinciple": "[pink]嗯？这香气……令人怀念。[/pink]",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.banter.alive.endTurnPing": "……任务还在继续。",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.banter.dead.endTurnPing": "呜……只是暂时休整……",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.cardsModifierDescription": "宫子的卡牌现在会出现在奖励和商店中。",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.cardsModifierTitle": "宫子卡牌",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.description": "SRT特殊学园 RABBIT小队的一员。\n沉默而温柔，始终安静地守护着同伴。",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.eventDeathPrevention": "不行……我还不能在这里倒下。",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.goldMonologue": "金币……可以用来补给小队的物资。",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.possessiveAdjective": "她的",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.pronounObject": "她",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.pronounPossessive": "她的",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.pronounSubject": "她",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.title": "月雪宫子",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.titleObject": "月雪宫子",
+  "TSUKIYUKI_MIYAKO-MIYAKO_MOD.unlockText": "使用[pink]{Prerequisite}[/pink]完成一局游戏，解锁月雪宫子。"
+}

@@ -1,0 +1,13 @@
+{
+    "id": "Tsukiyuki Miyako",
+    "name": "Tsukiyuki Miyako",
+    "author": "羽丘第一板载人高松灯",
+    "description": "SRT的正义，永远不会动摇",
+    "version": "1.0",
+    "has_pck": true,
+    "has_dll": true,
+    "dependencies": [
+        "BaseLib"
+    ],
+    "affects_gameplay": true
+}
