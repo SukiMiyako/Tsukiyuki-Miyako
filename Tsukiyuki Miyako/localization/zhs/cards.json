@@ -74,5 +74,7 @@
   "TSUKIYUKIMIYAKO-DRONE_DEPLOY.title": "闪光无人机出动",
   "TSUKIYUKIMIYAKO-DRONE_DEPLOY.description": "对所有敌人造成{Damage:diff()}点伤害,\n获得闪光无人机。",
   "TSUKIYUKIMIYAKO-DRONE_ASSAULT.title": "无人机突袭",
-  "TSUKIYUKIMIYAKO-DRONE_ASSAULT.description": "激发闪光无人机2次。"
+  "TSUKIYUKIMIYAKO-DRONE_ASSAULT.description": "激发闪光无人机2次。",
+  "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.title": "无人机校准",
+  "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.description": "对一名敌人,立即触发闪光无人机的被动效果3次。"
 }
