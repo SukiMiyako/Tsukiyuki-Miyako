@@ -70,5 +70,9 @@
   "TSUKIYUKIMIYAKO-TEAM_PREPARE.title": "小队整备",
   "TSUKIYUKIMIYAKO-TEAM_PREPARE.description": "获得{Block:diff()}点格挡\n获得1层[blue]师生羁绊[/blue]",
   "TSUKIYUKIMIYAKO-REST.title": "小憩",
-  "TSUKIYUKIMIYAKO-REST.description": "结束你的回合，获得{Block:diff()}点格挡\n下回合获得2点力量。"
+  "TSUKIYUKIMIYAKO-REST.description": "结束你的回合，获得{Block:diff()}点格挡\n下回合获得2点力量。",
+  "TSUKIYUKIMIYAKO-DRONE_DEPLOY.title": "闪光无人机出动",
+  "TSUKIYUKIMIYAKO-DRONE_DEPLOY.description": "对所有敌人造成{Damage:diff()}点伤害,\n获得闪光无人机。",
+  "TSUKIYUKIMIYAKO-DRONE_ASSAULT.title": "无人机突袭",
+  "TSUKIYUKIMIYAKO-DRONE_ASSAULT.description": "激发闪光无人机2次。"
 }
