@@ -15,7 +15,7 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class Bandage : CustomCardModel
 {
-    private const int energyCost = 0;
+    private const int energyCost = 1;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Token;
     private const TargetType targetType = TargetType.Self;
@@ -24,6 +24,7 @@ public sealed class Bandage : CustomCardModel
     // 回血2点（对标你的回血变量）
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new EnergyVar(1),
         new HealVar(2m)
     ];
 
@@ -38,12 +39,12 @@ public sealed class Bandage : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.IntValue);
     }
 
     // 升级：回血+2 → 2→4
     protected override void OnUpgrade()
     {
-        DynamicVars.Heal.UpgradeValueBy(2m);
     }
 }

@@ -82,5 +82,5 @@
   "TSUKIYUKIMIYAKO-COMBAT_MEDIC.title": "战地医疗处理",
   "TSUKIYUKIMIYAKO-COMBAT_MEDIC.description": "将手牌中所有状态牌转化为[gold]绷带[/gold]。",
   "TSUKIYUKIMIYAKO-BANDAGE.title": "绷带",
-  "TSUKIYUKIMIYAKO-BANDAGE.description": "恢复2点生命。"
+  "TSUKIYUKIMIYAKO-BANDAGE.description": "恢复2点生命,\n获得{Energy:energyIcons()}"
 }
