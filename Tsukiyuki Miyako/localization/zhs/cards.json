@@ -68,5 +68,7 @@
   "TSUKIYUKIMIYAKO-CLAYMORE_MINE.title": "阔剑地雷",
   "TSUKIYUKIMIYAKO-CLAYMORE_MINE.description": "造成{Damage:diff()}点伤害。\n如果敌人的意图是攻击,则伤害翻倍。",
   "TSUKIYUKIMIYAKO-TEAM_PREPARE.title": "小队整备",
-  "TSUKIYUKIMIYAKO-TEAM_PREPARE.description": "获得{Block:diff()}点格挡\n获得1层[blue]师生羁绊[/blue]"
+  "TSUKIYUKIMIYAKO-TEAM_PREPARE.description": "获得{Block:diff()}点格挡\n获得1层[blue]师生羁绊[/blue]",
+  "TSUKIYUKIMIYAKO-REST.title": "小憩",
+  "TSUKIYUKIMIYAKO-REST.description": "结束你的回合，获得{Block:diff()}点格挡\n下回合获得2点力量。"
 }
