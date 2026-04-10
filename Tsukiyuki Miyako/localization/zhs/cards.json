@@ -76,11 +76,13 @@
   "TSUKIYUKIMIYAKO-DRONE_ASSAULT.title": "无人机突袭",
   "TSUKIYUKIMIYAKO-DRONE_ASSAULT.description": "激发[gold]闪光无人机[/gold]2次。",
   "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.title": "无人机校准",
-  "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.description": "对一名敌人,立即触发[gold]闪光无人机[/gold]的被动效果3次。",
+  "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.description": "对一名敌人立即触发[gold]闪光无人机[/gold]的被动效果3次。",
   "TSUKIYUKIMIYAKO-HIGH_ALTITUDE_ASSAULT.title": "高空突袭",
   "TSUKIYUKIMIYAKO-HIGH_ALTITUDE_ASSAULT.description": "对全体敌人造成{Damage:diff()}点伤害。若击杀敌人,获得3点能量。",
   "TSUKIYUKIMIYAKO-COMBAT_MEDIC.title": "战地医疗处理",
   "TSUKIYUKIMIYAKO-COMBAT_MEDIC.description": "将手牌中所有状态牌转化为[gold]绷带[/gold]。",
   "TSUKIYUKIMIYAKO-BANDAGE.title": "绷带",
-  "TSUKIYUKIMIYAKO-BANDAGE.description": "恢复2点生命,\n获得{Energy:energyIcons()}"
+  "TSUKIYUKIMIYAKO-BANDAGE.description": "恢复2点生命,\n获得{Energy:energyIcons()}",
+  "TSUKIYUKIMIYAKO-REASSURING_TOUCH.title": "这份触摸，令人安心",
+  "TSUKIYUKIMIYAKO-REASSURING_TOUCH.description": "获得{Block:diff()}点格挡。获得1层[gold]师生羁绊[/gold]。下回合获得同等数值的格挡。"
 }

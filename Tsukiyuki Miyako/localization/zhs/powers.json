@@ -10,5 +10,7 @@
     "TSUKIYUKIMIYAKO-SAKI_POWER.title": "小队支援：咲",
     "TSUKIYUKIMIYAKO-SAKI_POWER.description": "在本回合失去{StrengthLoss:diff()}点[gold]力量[/gold]",
     "TSUKIYUKIMIYAKO-REST_POWER.title": "小憩",
-    "TSUKIYUKIMIYAKO-REST_POWER.description": "下回合获得2点力量。"
+    "TSUKIYUKIMIYAKO-REST_POWER.description": "下回合获得2点力量。",
+    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.title": "安心之触",
+    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block}点格挡。"
 }
