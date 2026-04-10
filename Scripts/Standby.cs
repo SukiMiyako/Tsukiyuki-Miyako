@@ -29,7 +29,7 @@ public class Standby : CustomCardModel
     private const bool shouldShowInCardLibrary = true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(5m, ValueProp.Move),
+        new BlockVar(8m, ValueProp.Move),
         new EnergyVar(1),
         new StarsVar(1)
         ];

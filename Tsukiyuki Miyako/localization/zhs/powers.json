@@ -12,5 +12,7 @@
     "TSUKIYUKIMIYAKO-REST_POWER.title": "小憩",
     "TSUKIYUKIMIYAKO-REST_POWER.description": "下回合获得2点力量。",
     "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.title": "安心之触",
-    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block}点格挡。"
+    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block}点格挡。",
+    "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.title": "星空奇迹",
+    "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.description": "你每打出1张能力牌,获得1层师生羁绊。"
 }
