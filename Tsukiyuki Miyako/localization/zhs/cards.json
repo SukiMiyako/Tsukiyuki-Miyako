@@ -76,5 +76,7 @@
   "TSUKIYUKIMIYAKO-DRONE_ASSAULT.title": "无人机突袭",
   "TSUKIYUKIMIYAKO-DRONE_ASSAULT.description": "激发闪光无人机2次。",
   "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.title": "无人机校准",
-  "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.description": "对一名敌人,立即触发闪光无人机的被动效果3次。"
+  "TSUKIYUKIMIYAKO-DRONE_CALIBRATE.description": "对一名敌人,立即触发闪光无人机的被动效果3次。",
+  "TSUKIYUKIMIYAKO-HIGH_ALTITUDE_ASSAULT.title": "高空突袭",
+  "TSUKIYUKIMIYAKO-HIGH_ALTITUDE_ASSAULT.description": "对全体敌人造成{Damage:diff()}点伤害。若击杀敌人，获得3点能量。"
 }
