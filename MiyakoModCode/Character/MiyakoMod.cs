@@ -54,5 +54,11 @@ public class MiyakoMod : PlaceholderCharacterModel
     public override string CustomCharacterSelectLockedIconPath => "res://Tsukiyuki Miyako/images/charui/char_select_char_name.png";
     //public override string CustomMapMarkerPath => "res://Tsukiyuki Miyako/images/charui/character_icon_char_name.png";
     public override string CustomCharacterSelectBg => "res://Tsukiyuki Miyako/images/charui/char_select_bg.tscn";
-    
+    public override List<string> GetArchitectAttackVfx() => [
+        "vfx/vfx_attack_blunt",
+        "vfx/vfx_heavy_blunt",
+        "vfx/vfx_attack_slash",
+        "vfx/vfx_bloody_impact",
+        "vfx/vfx_rock_shatter"
+    ];
 }
