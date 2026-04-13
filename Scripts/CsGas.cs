@@ -74,6 +74,6 @@ public class CsGas : CustomCardModel
     // 升级后的效果逻辑
     protected override void OnUpgrade()
     {// 升级后增加3点伤害
-        base.DynamicVars["Power"].UpgradeValueBy(2m);
+        base.DynamicVars["Power"].UpgradeValueBy(1m);
     }
 }

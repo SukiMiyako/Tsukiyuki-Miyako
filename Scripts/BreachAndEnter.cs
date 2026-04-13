@@ -29,7 +29,7 @@ public class BreachAndEnter : CustomCardModel
 
     // 卡牌的基础属性（例如这里是5点格挡）
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(8m, ValueProp.Move)
+        new DamageVar(10m, ValueProp.Move)
         ];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
@@ -44,12 +44,12 @@ public class BreachAndEnter : CustomCardModel
             .FromCard(this) // 伤害来源于这张卡牌
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
-        await CardPileCmd.Draw(choiceContext, 1, base.Owner);
+        await CardPileCmd.Draw(choiceContext, 2, base.Owner);
     }
     // 升级后的效果逻辑
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2); // 升级后增加3点伤害
+        DynamicVars.Damage.UpgradeValueBy(3); // 升级后增加3点伤害
 
     }
 }
