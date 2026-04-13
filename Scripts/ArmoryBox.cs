@@ -26,7 +26,6 @@ public sealed class ArmoryBox : CustomCardModel
         new CardsVar(2)                      // 生成卡牌数量：3张
     };
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
 
     public ArmoryBox()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)

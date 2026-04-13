@@ -30,7 +30,7 @@ public class RopeDrop : CustomCardModel
     // 卡牌的基础属性（例如这里是5点格挡）
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(8m, ValueProp.Move),
-        new CardsVar(2),
+        new CardsVar(1),
         ];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
@@ -48,6 +48,6 @@ public class RopeDrop : CustomCardModel
     // 升级后的效果逻辑
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
+        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

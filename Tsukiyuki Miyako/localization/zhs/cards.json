@@ -54,9 +54,9 @@
   "TSUKIYUKIMIYAKO-PRECISE_RAID.title": "精准突袭",
   "TSUKIYUKIMIYAKO-PRECISE_RAID.description": "造成{Damage:diff()}点伤害\n给予1层[gold]易伤[/gold]",
   "TSUKIYUKIMIYAKO-FIRE_STORM.title": "火力倾泻",
-  "TSUKIYUKIMIYAKO-FIRE_STORM.description": "随机对敌人造成{Damage:diff()}点伤害X*3次",
+  "TSUKIYUKIMIYAKO-FIRE_STORM.description": "随机对敌人造成{Damage:diff()}点伤害X*2次",
   "TSUKIYUKIMIYAKO-STRAT_TRADE.title": "战略取舍",
-  "TSUKIYUKIMIYAKO-STRAT_TRADE.description": "抽{Cards:diff()}张牌\n弃1张牌",
+  "TSUKIYUKIMIYAKO-STRAT_TRADE.description": "抽{Cards:diff()}张牌",
   "TSUKIYUKIMIYAKO-ECONOMIZE.title": "省着点用",
   "TSUKIYUKIMIYAKO-ECONOMIZE.description": "每当有一张牌被[gold]消耗[/gold]时，\n抽1张牌。",
   "TSUKIYUKIMIYAKO-SUPPORT_MIYU.title": "小队支援：美游",
@@ -88,5 +88,7 @@
   "TSUKIYUKIMIYAKO-STARRY_MIRACLE.title": "那片星空，名为奇迹",
   "TSUKIYUKIMIYAKO-STARRY_MIRACLE.description": "你每打出1张能力牌\n获得1层师生羁绊。",
   "TSUKIYUKIMIYAKO-RAINY_STAND.title": "雨中的坚守",
-  "TSUKIYUKIMIYAKO-RAINY_STAND.description": "每回合开始时,将一张随机能力牌添加到手牌中。"
+  "TSUKIYUKIMIYAKO-RAINY_STAND.description": "每回合开始时,将一张随机能力牌添加到手牌中。",
+  "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.title": "为了基沃托斯的和平",
+  "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.description": "获得{StrengthPower:diff()}点力量。"
 }

@@ -28,7 +28,7 @@ public class FireStorm : CustomCardModel
     private const bool shouldShowInCardLibrary = true;
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(3m, ValueProp.Move),
     };
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
@@ -42,7 +42,7 @@ public class FireStorm : CustomCardModel
     {
         // 核心攻击：3点伤害 × X*5次连击，随机敌人
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(ResolveStarXValue() * 3) // 连击次数
+            .WithHitCount(ResolveStarXValue() * 2) // 连击次数
             .FromCard(this)
             .TargetingRandomOpponents(base.CombatState!)
             .Execute(choiceContext);
