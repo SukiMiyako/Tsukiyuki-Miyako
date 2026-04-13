@@ -86,5 +86,7 @@
   "TSUKIYUKIMIYAKO-REASSURING_TOUCH.title": "这份触摸，令人安心",
   "TSUKIYUKIMIYAKO-REASSURING_TOUCH.description": "获得{Block:diff()}点格挡。获得1层[gold]师生羁绊[/gold]。下回合获得同等数值的格挡。",
   "TSUKIYUKIMIYAKO-STARRY_MIRACLE.title": "那片星空，名为奇迹",
-  "TSUKIYUKIMIYAKO-STARRY_MIRACLE.description": "你每打出1张能力牌\n获得1层师生羁绊。"
+  "TSUKIYUKIMIYAKO-STARRY_MIRACLE.description": "你每打出1张能力牌\n获得1层师生羁绊。",
+  "TSUKIYUKIMIYAKO-RAINY_STAND.title": "雨中的坚守",
+  "TSUKIYUKIMIYAKO-RAINY_STAND.description": "每回合开始时,将一张随机能力牌添加到手牌中。"
 }
