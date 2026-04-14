@@ -39,7 +39,7 @@ public class SuppressingFire : CustomCardModel
     // 卡牌的基础属性（例如这里是12点伤害）
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(4m, ValueProp.Move),
-        new RepeatVar(4),
+        new RepeatVar(3),
         new DynamicVar("Power", 1m)
         ];
 

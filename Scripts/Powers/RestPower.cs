@@ -20,9 +20,10 @@ public sealed class RestPower : CustomPowerModel
         if (side == base.Owner.Side)
         {
             // 施加力量（层数=力量值，2层=2力量）
-            await PowerCmd.Apply<StrengthPower>(base.Owner, base.Amount, base.Owner, null);
-            // 触发后立即移除自身（和暗影步逻辑完全一致）
+            await PowerCmd.Apply<TemporaryPower>(base.Owner, base.Amount, base.Owner, null);
+            await PlayerCmd.GainEnergy(1, base.Owner.Player!);
             await PowerCmd.Remove(this);
         }
     }
+
 }

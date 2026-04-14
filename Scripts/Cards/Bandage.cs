@@ -24,7 +24,8 @@ public sealed class Bandage : CustomCardModel
     // 回血2点（对标你的回血变量）
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HealVar(2m)
+        new HealVar(4m),
+        new CardsVar(1)
     ];
 
     // 消耗关键词（和Fuel一致）
@@ -39,6 +40,7 @@ public sealed class Bandage : CustomCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.IntValue);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
 
     // 升级：回血+2 → 2→4

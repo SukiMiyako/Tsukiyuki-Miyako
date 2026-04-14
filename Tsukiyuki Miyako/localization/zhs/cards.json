@@ -40,7 +40,7 @@
   "TSUKIYUKIMIYAKO-ROPE_DROP.title": "绳降",
   "TSUKIYUKIMIYAKO-ROPE_DROP.description": "获得{Block:diff()}点格挡\n抽{Cards:diff()}张牌",
   "TSUKIYUKIMIYAKO-PART_TIME.title": "兼职",
-  "TSUKIYUKIMIYAKO-PART_TIME.description": "获得{Energy:energyIcons()}",
+  "TSUKIYUKIMIYAKO-PART_TIME.description": "获得{Energy:diff()}点能量。将1张「劳累」加入你的手牌。",
   "TSUKIYUKIMIYAKO-BREACH_AND_ENTER.title": "破门而入",
   "TSUKIYUKIMIYAKO-BREACH_AND_ENTER.description": "对敌方全体造成{Damage:diff()}点伤害\n抽1张牌",
   "TSUKIYUKIMIYAKO-SWAP_OVER_RELOAD.title": "换枪永远比换弹快",
@@ -82,7 +82,7 @@
   "TSUKIYUKIMIYAKO-COMBAT_MEDIC.title": "战地医疗处理",
   "TSUKIYUKIMIYAKO-COMBAT_MEDIC.description": "将手牌中所有状态牌转化为[gold]绷带[/gold]。",
   "TSUKIYUKIMIYAKO-BANDAGE.title": "绷带",
-  "TSUKIYUKIMIYAKO-BANDAGE.description": "恢复2点生命,\n获得{Energy:energyIcons()}",
+  "TSUKIYUKIMIYAKO-BANDAGE.description": "恢复4点生命,抽1张牌。",
   "TSUKIYUKIMIYAKO-REASSURING_TOUCH.title": "这份触摸，令人安心",
   "TSUKIYUKIMIYAKO-REASSURING_TOUCH.description": "获得{Block:diff()}点格挡。获得1层[gold]师生羁绊[/gold]。下回合获得同等数值的格挡。",
   "TSUKIYUKIMIYAKO-STARRY_MIRACLE.title": "那片星空，名为奇迹",
@@ -90,5 +90,7 @@
   "TSUKIYUKIMIYAKO-RAINY_STAND.title": "雨中的坚守",
   "TSUKIYUKIMIYAKO-RAINY_STAND.description": "每回合开始时,将一张随机能力牌添加到手牌中。",
   "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.title": "为了基沃托斯的和平",
-  "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.description": "获得{StrengthPower:diff()}点力量。"
+  "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.description": "获得{StrengthPower:diff()}点力量。",
+  "TSUKIYUKIMIYAKO-FATIGUE.title": "劳累",
+  "TSUKIYUKIMIYAKO-FATIGUE.description": "当此牌留在手牌中时,不可打超过8张牌"
 }
