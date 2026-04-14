@@ -17,7 +17,7 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 public class Grenade : CustomCardModel
 {
     // 基础耗能
-    private const int energyCost = 0;
+    private const int energyCost = 1;
     // 卡牌类型
     private const CardType type = CardType.Attack;
     // 卡牌稀有度

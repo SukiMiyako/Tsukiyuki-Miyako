@@ -38,7 +38,7 @@ public sealed class ArmorPierceDamage : CustomCardModel
     }
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
-    public ArmorPierceDamage() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ArmorPierceDamage() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 

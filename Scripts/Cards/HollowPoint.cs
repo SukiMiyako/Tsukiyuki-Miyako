@@ -48,7 +48,7 @@ public sealed class HollowPoint : CustomCardModel
 
     // 构造：0费 / 攻击牌 / 稀有度Uncommon / 任意敌人
     public HollowPoint()
-        : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+        : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";

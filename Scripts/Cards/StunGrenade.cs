@@ -18,7 +18,7 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 public class StunGrenade : CustomCardModel
 {
     // 基础耗能
-    private const int energyCost = 0;
+    private const int energyCost = 2;
     // 卡牌类型
     private const CardType type = CardType.Skill;
     // 卡牌稀有度

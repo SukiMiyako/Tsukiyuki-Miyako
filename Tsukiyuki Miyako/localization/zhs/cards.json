@@ -30,7 +30,7 @@
   "TSUKIYUKIMIYAKO-ENERGY_GAL.title": "能量凝胶",
   "TSUKIYUKIMIYAKO-ENERGY_GAL.description": "每回合开始时获得{Energy:energyIcons()}",
   "TSUKIYUKIMIYAKO-ARMORY_BOX.title": "配备箱",
-  "TSUKIYUKIMIYAKO-ARMORY_BOX.description": "将{Cards:diff()}张随机{IfUpgraded:show:[gold]升级过[/gold]的}0{energyPrefix:energyIcons(1)}的牌加入你的[gold]手牌[/gold]。",
+  "TSUKIYUKIMIYAKO-ARMORY_BOX.description": "将{Cards:diff()}张随机{IfUpgraded:show:[gold]升级过[/gold]的}[gold]配备[/gold]牌加入你的[gold]手牌[/gold]，它们本回合免费打出。",
   "TSUKIYUKIMIYAKO-C4.title": "C4",
   "TSUKIYUKIMIYAKO-C4.description": "投掷威力强大C4炸药",
   "TSUKIYUKIMIYAKO-EXPOLUTED.title": "引爆",
