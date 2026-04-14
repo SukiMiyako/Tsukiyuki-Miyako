@@ -57,7 +57,7 @@ public sealed class ArmorPierceDamage : CustomCardModel
         }
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue) // 造成伤害，数值来源于卡牌的基础伤害属性
             .FromCard(this) // 伤害来源于这张卡牌
-            .TargetingAllOpponents(base.CombatState!)
+            .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
     }
 

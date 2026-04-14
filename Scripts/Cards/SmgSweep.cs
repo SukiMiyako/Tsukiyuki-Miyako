@@ -28,8 +28,8 @@ public class SmgSweep : CustomCardModel
     public override int CanonicalStarCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
-        new RepeatVar(5)
+        new DamageVar(2m, ValueProp.Move),
+        new RepeatVar(4)
     };
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";

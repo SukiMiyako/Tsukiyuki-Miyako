@@ -38,8 +38,8 @@ public class SupportSaki : CustomCardModel
 
     // 卡牌的基础属性（例如这里是12点伤害）
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(2m, ValueProp.Move),
-        new RepeatVar(5),
+        new DamageVar(5m, ValueProp.Move),
+        new RepeatVar(2),
         new DynamicVar("StrengthLoss", 3m)
         ];
 
@@ -67,6 +67,6 @@ public class SupportSaki : CustomCardModel
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars["StrengthLoss"].UpgradeValueBy(1m); // 升级后增加1层虚弱
+        DynamicVars["StrengthLoss"].UpgradeValueBy(2m); // 升级后增加1层虚弱
     }
 }

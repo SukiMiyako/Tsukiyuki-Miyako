@@ -44,7 +44,7 @@ public class BreachAndEnter : CustomCardModel
             .FromCard(this) // 伤害来源于这张卡牌
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
-        await CardPileCmd.Draw(choiceContext, 2, base.Owner);
+        await CardPileCmd.Draw(choiceContext, 1, base.Owner);
     }
     // 升级后的效果逻辑
     protected override void OnUpgrade()
