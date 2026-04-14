@@ -28,6 +28,7 @@ public class C4 : CustomCardModel
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
         CardKeyword.Exhaust,
+        MyKeywords.Equipment
     };
 
 

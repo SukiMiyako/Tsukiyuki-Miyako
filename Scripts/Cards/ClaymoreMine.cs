@@ -38,13 +38,11 @@ public sealed class ClaymoreMine : CustomCardModel
         }
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
-        get
-        {
-            yield return CardKeyword.Exhaust;
-        }
-    }
+        CardKeyword.Exhaust,
+        MyKeywords.Equipment
+    };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     public ClaymoreMine()
         : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)

@@ -46,7 +46,11 @@ public class CsGas : CustomCardModel
     {
         HoverTipFactory.FromPower<VulnerablePower>(),
     };
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        CardKeyword.Exhaust,
+        MyKeywords.Equipment
+    };
     /// <summary>
     /// //
     /// </summary>

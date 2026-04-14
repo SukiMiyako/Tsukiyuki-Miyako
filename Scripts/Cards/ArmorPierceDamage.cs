@@ -22,13 +22,11 @@ public sealed class ArmorPierceDamage : CustomCardModel
         new DamageVar(3m, ValueProp.Move)
     ];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
-        get
-        {
-            yield return CardKeyword.Exhaust;
-        }
-    }
+        CardKeyword.Exhaust,
+        MyKeywords.Equipment
+    };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips
     {

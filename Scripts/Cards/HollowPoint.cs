@@ -32,13 +32,11 @@ public sealed class HollowPoint : CustomCardModel
     }
 
     // 卡牌关键词：消耗 + 易伤提示
-    public override IEnumerable<CardKeyword> CanonicalKeywords
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
-        get
-        {
-            yield return CardKeyword.Exhaust; // 核心：消耗
-        }
-    }
+        CardKeyword.Exhaust,
+        MyKeywords.Equipment
+    };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips
     {

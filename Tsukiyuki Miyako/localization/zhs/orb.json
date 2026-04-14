@@ -1,5 +1,5 @@
 {
     "TSUKIYUKIMIYAKO-FLASH_SCOUT_DRONE.description": "充能球：造成伤害和获得格挡",
-    "TSUKIYUKIMIYAKO-FLASH_SCOUT_DRONE.smartDescription": "[gold]被动：[/gold]回合结束时，造成{Passive}点伤害。\n[gold]激发：[/gold]对全体敌方造成[blue]{Evoke}[/blue]点伤害。",
+    "TSUKIYUKIMIYAKO-FLASH_SCOUT_DRONE.smartDescription": "[gold]被动：[/gold]回合结束时,造成3点伤害,获得2点格挡。\n[gold]激发：[/gold]对全体敌方造成[blue]{Evoke}[/blue]点伤害。",
     "TSUKIYUKIMIYAKO-FLASH_SCOUT_DRONE.title": "闪光无人机"
 }

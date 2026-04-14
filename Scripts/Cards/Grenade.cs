@@ -24,7 +24,11 @@ public class Grenade : CustomCardModel
     private const CardRarity rarity = CardRarity.Common;
     // 目标类型（AnyEnemy表示任意敌人）
     private const TargetType targetType = TargetType.AllEnemies;
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        CardKeyword.Exhaust,
+        MyKeywords.Equipment
+    };
     // 是否在卡牌图鉴中显示
     private const bool shouldShowInCardLibrary = true;
 
