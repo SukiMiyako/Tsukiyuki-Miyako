@@ -93,6 +93,6 @@
   "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.description": "获得{StrengthPower:diff()}点力量。",
   "TSUKIYUKIMIYAKO-FATIGUE.title": "劳累",
   "TSUKIYUKIMIYAKO-FATIGUE.description": "当此牌留在手牌中时,不可打超过8张牌",
-  "TSUKIYUKIMIYAKO_DRONE_SYNC_NAME": "无人机同频",
-  "TSUKIYUKIMIYAKO_DRONE_SYNC_DESC": "每次打出攻击牌时，触发一次无人机被动。"
+  "TSUKIYUKIMIYAKO-DRONE_SYNC.title": "无人机同频",
+  "TSUKIYUKIMIYAKO-DRONE_SYNC.description": "每当你打出攻击牌时，触发一次无人机被动。"
 }

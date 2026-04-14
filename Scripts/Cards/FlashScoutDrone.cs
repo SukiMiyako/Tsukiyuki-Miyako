@@ -2,8 +2,10 @@ using BaseLib.Abstracts;
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using System;
 using System.Collections.Generic;
@@ -16,9 +18,12 @@ public class FlashScoutDrone : CustomOrbModel
 {
     //基础数值
     public override decimal PassiveVal => ModifyOrbValue(3m);
-    public override decimal EvokeVal => ModifyOrbValue(6m);
+    public override decimal EvokeVal => ModifyOrbValue(_evokeVal);
     //格挡数值（吃集中）
     private decimal BlockVal => ModifyOrbValue(2m);
+
+    // 黑暗球成长数值（初始6，每次被动+3）
+    private decimal _evokeVal = 6m;
 
     public override Color DarkenedColor => new(0.1f, 0.2f, 0.5f);
     public override string? CustomIconPath => "res://icon.svg";
@@ -34,12 +39,15 @@ public class FlashScoutDrone : CustomOrbModel
         await Passive(choiceContext, null);
     }
 
-    //被动：随机单体伤害 + 格挡（冰球格式）
+    // ==============================
+    // 【完整保留】原被动：随机伤害+格挡
+    // 【额外添加】黑暗球成长机制
+    // ==============================
     public override async Task Passive(PlayerChoiceContext choiceContext, Creature? target)
     {
         Trigger();
 
-        //单体伤害（官方逻辑）
+        // 1. 【原功能保留】随机单体伤害
         List<Creature> enemies = CombatState.HittableEnemies.Where(e => e.IsHittable).ToList();
         if (enemies.Any())
         {
@@ -47,20 +55,28 @@ public class FlashScoutDrone : CustomOrbModel
             await CreatureCmd.Damage(choiceContext, new[] { randomTarget }, PassiveVal, ValueProp.Unpowered, Owner.Creature);
         }
 
-        //格挡 → 完全照搬 FrostOrb
+        // 2. 【原功能保留】格挡
         await CreatureCmd.GainBlock(Owner.Creature, BlockVal, ValueProp.Unpowered, null);
+
+        // 3. 【新增】黑暗球被动：成长激发伤害（每次+3）
+        _evokeVal += PassiveVal;
+        NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.OrbManager?.UpdateVisuals(OrbEvokeType.None);
     }
 
-    //激发：全体伤害 → 完全照搬 GlassOrb
+    // ==============================
+    // 【替换】激发：黑暗球逻辑（打最低血量敌人）
+    // 删掉了原全体伤害，仅改目标
+    // ==============================
     public override async Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext choiceContext)
     {
-        List<Creature> enemies = CombatState.HittableEnemies.Where(e => e.IsHittable).ToList();
+        IReadOnlyList<Creature> enemies = CombatState.HittableEnemies;
+        if (enemies.Count == 0)
+            return Array.Empty<Creature>();
 
-        if (enemies.Any())
-        {
-            await CreatureCmd.Damage(choiceContext, enemies, EvokeVal, ValueProp.Unpowered, Owner.Creature);
-        }
+        // 黑暗球逻辑：攻击血量最低的敌人
+        Creature weakestEnemy = enemies.MinBy(c => c.CurrentHp)!;
+        await CreatureCmd.Damage(choiceContext, weakestEnemy, EvokeVal, ValueProp.Unpowered, Owner.Creature);
 
-        return enemies;
+        return new[] { weakestEnemy };
     }
 }
