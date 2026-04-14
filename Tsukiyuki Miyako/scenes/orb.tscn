@@ -61,6 +61,7 @@ modulate = Color(1, 1, 1, 0.470588)
 material = SubResource("ShaderMaterial_fk8os")
 emitting = false
 amount = 2
+texture = ExtResource("1_x461k")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.7

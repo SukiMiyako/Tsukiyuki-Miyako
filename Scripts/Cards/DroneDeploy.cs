@@ -7,13 +7,15 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
 [Pool(typeof(MiyakoCardPool))]
 public class DroneDeploy : CustomCardModel
 {
-    private const int energyCost = 2;
+    // 核心修改：2费 → 1费
+    private const int energyCost = 1;
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Rare;
     private const TargetType targetType = TargetType.AllEnemies;
@@ -27,23 +29,30 @@ public class DroneDeploy : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 全体群攻伤害
+        // 全体群攻伤害（保留原伤害）
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .TargetingAllOpponents(base.CombatState!)
+            .TargetingAllOpponents(CombatState!)
             .Execute(choiceContext);
 
-        // 获得闪光无人机
-        await OrbCmd.Channel<FlashScoutDrone>(choiceContext, base.Owner);
+        // 获得闪光无人机（保留）
+        await OrbCmd.Channel<FlashScoutDrone>(choiceContext, Owner);
 
-        // 生成无人机突袭（同步升级）
-        var droneCard = CombatState!.CreateCard<DroneAssault>(Owner);
-        if (IsUpgraded) CardCmd.Upgrade(droneCard);
-        await CardPileCmd.AddGeneratedCardToCombat(droneCard, PileType.Draw, true);
+        // 生成【无人机突袭】（同步升级）
+        var assaultCard = CombatState!.CreateCard<DroneAssault>(Owner);
+        if (IsUpgraded) CardCmd.Upgrade(assaultCard);
+        await CardPileCmd.AddGeneratedCardToCombat(assaultCard, PileType.Hand, true);
+
+        // 新增：生成【无人机同频】（同步升级）到手牌
+        var syncCard = CombatState!.CreateCard<DroneSync>(Owner);
+        if (IsUpgraded) CardCmd.Upgrade(syncCard);
+        await CardPileCmd.AddGeneratedCardToCombat(syncCard, PileType.Hand, true);
     }
 
     protected override void OnUpgrade()
     {
+        // 原伤害升级
         DynamicVars.Damage.UpgradeValueBy(2m);
+        AddKeyword(CardKeyword.Innate);
     }
 }

@@ -12,8 +12,8 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class DroneAssault : CustomCardModel
 {
-    // 配置：1费 技能 代币牌 自身目标 不进图鉴
-    private const int energyCost = 1;
+    // 配置：0费 技能 代币牌 自身目标 不进图鉴
+    private const int energyCost = 0;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Token;
     private const TargetType targetType = TargetType.Self;
@@ -24,7 +24,7 @@ public sealed class DroneAssault : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Evoke)];
 
     // 消耗关键词
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
