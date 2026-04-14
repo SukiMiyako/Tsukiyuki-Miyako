@@ -16,7 +16,7 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 public class SupportMiyu : CustomCardModel
 {
     // 基础耗能
-    private const int energyCost = 2;
+    private const int energyCost = 1;
     // 卡牌类型
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Uncommon;

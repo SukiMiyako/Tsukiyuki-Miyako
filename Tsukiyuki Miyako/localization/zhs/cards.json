@@ -94,5 +94,11 @@
   "TSUKIYUKIMIYAKO-FATIGUE.title": "劳累",
   "TSUKIYUKIMIYAKO-FATIGUE.description": "当此牌留在手牌中时,不可打超过8张牌",
   "TSUKIYUKIMIYAKO-DRONE_SYNC.title": "无人机同频",
-  "TSUKIYUKIMIYAKO-DRONE_SYNC.description": "每当你打出攻击牌时，触发一次无人机被动。"
+  "TSUKIYUKIMIYAKO-DRONE_SYNC.description": "每当你打出攻击牌时，触发一次无人机被动。",
+  "TSUKIYUKIMIYAKO-SNEAK_START.title": "偷跑开始",
+  "TSUKIYUKIMIYAKO-SNEAK_START.description": "抽{Cards:diff()}张牌。\n[gold]消耗[/gold]1张牌。\n获得{SenseiPower:diff()}层[blue]师生羁绊[/blue]",
+  "TSUKIYUKIMIYAKO-CLAIM_OWNERSHIP.title": "主张所有权",
+  "TSUKIYUKIMIYAKO-CLAIM_OWNERSHIP.description": "获得2层师生羁绊。",
+  "TSUKIYUKIMIYAKO-OPEN_PEEK.title": "光明正大的偷看",
+  "TSUKIYUKIMIYAKO-OPEN_PEEK.description": "消耗1层师生羁绊。获得2点能量。"
 }
