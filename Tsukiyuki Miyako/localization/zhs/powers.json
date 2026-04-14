@@ -18,5 +18,7 @@
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.title": "雨中的坚守",
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.description": "每回合将一张随机能力牌放到手牌中。",
     "TSUKIYUKIMIYAKO-TEMPORARY_POWER.title": "临时力量",
-    "TSUKIYUKIMIYAKO-TEMPORARY_POWER.description": "获得{Strength:diff()}点临时力量。"
+    "TSUKIYUKIMIYAKO-TEMPORARY_POWER.description": "获得{Strength:diff()}点临时力量。",
+    "POWER_DRONE_SYNC_POWER_NAME": "无人机同频",
+    "POWER_DRONE_SYNC_POWER_DESC": "每次打出攻击牌，触发无人机被动一次。"
 }
