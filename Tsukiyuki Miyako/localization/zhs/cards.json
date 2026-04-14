@@ -40,7 +40,7 @@
   "TSUKIYUKIMIYAKO-ROPE_DROP.title": "绳降",
   "TSUKIYUKIMIYAKO-ROPE_DROP.description": "获得{Block:diff()}点格挡\n抽{Cards:diff()}张牌",
   "TSUKIYUKIMIYAKO-PART_TIME.title": "兼职",
-  "TSUKIYUKIMIYAKO-PART_TIME.description": "获得{Energy:diff()}点能量。将1张「劳累」加入你的手牌。",
+  "TSUKIYUKIMIYAKO-PART_TIME.description": "获得{Energy:energyIcons()}。将1张[gold]劳累[/gold]加入你的手牌。",
   "TSUKIYUKIMIYAKO-BREACH_AND_ENTER.title": "破门而入",
   "TSUKIYUKIMIYAKO-BREACH_AND_ENTER.description": "对敌方全体造成{Damage:diff()}点伤害\n抽1张牌",
   "TSUKIYUKIMIYAKO-SWAP_OVER_RELOAD.title": "换枪永远比换弹快",
@@ -100,5 +100,13 @@
   "TSUKIYUKIMIYAKO-CLAIM_OWNERSHIP.title": "主张所有权",
   "TSUKIYUKIMIYAKO-CLAIM_OWNERSHIP.description": "获得2层师生羁绊。",
   "TSUKIYUKIMIYAKO-OPEN_PEEK.title": "光明正大的偷看",
-  "TSUKIYUKIMIYAKO-OPEN_PEEK.description": "消耗1层师生羁绊。获得2点能量。"
+  "TSUKIYUKIMIYAKO-OPEN_PEEK.description": "消耗1层[blue]师生羁绊[/blue],获得2点能量。",
+  "TSUKIYUKIMIYAKO-SHORT_BURST.title": "短点射",
+  "TSUKIYUKIMIYAKO-SHORT_BURST.description": "对单体敌人造成2*3点伤害。",
+  "TSUKIYUKIMIYAKO-POINT_BLANK_SHOT.title": "抵近射击",
+  "TSUKIYUKIMIYAKO-POINT_BLANK_SHOT.description": "对单体敌人造成3*6点伤害,施加1层易伤。",
+  "TSUKIYUKIMIYAKO-COVER_RELOAD.title": "换弹隐蔽",
+  "TSUKIYUKIMIYAKO-COVER_RELOAD.description": "获得3点格挡,获得{Stars:starIcons(1)}。",
+  "TSUKIYUKIMIYAKO-RABBIT31_DRUM.title": "Rabbit31大弹鼓",
+  "TSUKIYUKIMIYAKO-RABBIT31_DRUM.description": "获得{Stars:starIcons()}。"
 }
