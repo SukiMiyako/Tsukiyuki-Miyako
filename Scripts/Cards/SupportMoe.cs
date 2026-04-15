@@ -37,9 +37,14 @@ public class SupportMoe : CustomCardModel
 
     // 卡牌的基础属性（例如这里是12点伤害）
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(10m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
         new RepeatVar(4)
         ];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        MyKeywords.Support,
+        CardKeyword.Exhaust
+    };
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     public SupportMoe() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
@@ -59,6 +64,6 @@ public class SupportMoe : CustomCardModel
     // 升级后的效果逻辑
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5); // 升级后增加3点伤害
+        DynamicVars.Damage.UpgradeValueBy(3); // 升级后增加3点伤害
     }
 }

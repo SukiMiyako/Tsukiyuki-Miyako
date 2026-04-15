@@ -20,7 +20,7 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 public class Expoluted : CustomCardModel
 {
     // 基础耗能
-    private const int energyCost = 3;
+    private const int energyCost = 2;
     // 卡牌类型
     private const CardType type = CardType.Attack;
     // 卡牌稀有度
@@ -31,7 +31,7 @@ public class Expoluted : CustomCardModel
     private const bool shouldShowInCardLibrary = true;
 
     // 卡牌的基础属性（例如这里是12点伤害）
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(20, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(25, ValueProp.Move)];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
@@ -91,7 +91,7 @@ public class Expoluted : CustomCardModel
     // 升级后的效果逻辑
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4); // 升级后增加5点伤害
+        DynamicVars.Damage.UpgradeValueBy(5); // 升级后增加5点伤害
         AddKeyword(CardKeyword.Retain);// 升级后保留
     }
 

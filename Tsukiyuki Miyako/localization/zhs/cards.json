@@ -108,5 +108,7 @@
   "TSUKIYUKIMIYAKO-COVER_RELOAD.title": "换弹隐蔽",
   "TSUKIYUKIMIYAKO-COVER_RELOAD.description": "获得3点格挡,获得{Stars:starIcons(1)}。",
   "TSUKIYUKIMIYAKO-RABBIT31_DRUM.title": "Rabbit31大弹鼓",
-  "TSUKIYUKIMIYAKO-RABBIT31_DRUM.description": "获得{Stars:starIcons()}。"
+  "TSUKIYUKIMIYAKO-RABBIT31_DRUM.description": "获得{Stars:starIcons()}。",
+  "TSUKIYUKIMIYAKO-RABBIT_SQUAD_ASSEMBLE.title": "RABBIT小队,集结!",
+  "TSUKIYUKIMIYAKO-RABBIT_SQUAD_ASSEMBLE.description": "将一张[gold]小队支援[/gold]加入手牌并免费打出。"
 }

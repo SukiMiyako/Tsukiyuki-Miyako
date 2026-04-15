@@ -1,4 +1,6 @@
 {
     "TSUKIYUKIMIYAKO-EQUIPMENT.description": "若是被军备箱生成的,则免费打出",
-    "TSUKIYUKIMIYAKO-EQUIPMENT.title": "配备"
+    "TSUKIYUKIMIYAKO-EQUIPMENT.title": "配备",
+    "TSUKIYUKIMIYAKO-SUPPORT.description": "若是由[gold]Rabbit小队,集结![/gold]获得的,则免费打出",
+    "TSUKIYUKIMIYAKO-SUPPORT.title": "小队支援"
 }

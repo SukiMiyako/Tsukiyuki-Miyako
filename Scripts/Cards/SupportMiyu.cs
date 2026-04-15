@@ -25,6 +25,11 @@ public class SupportMiyu : CustomCardModel
     private const bool shouldShowInCardLibrary = true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12m, ValueProp.Move | ValueProp.Unblockable)];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        MyKeywords.Support,
+        CardKeyword.Exhaust
+    };
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     public SupportMiyu() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)

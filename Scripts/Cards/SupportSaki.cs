@@ -43,6 +43,11 @@ public class SupportSaki : CustomCardModel
         new DynamicVar("StrengthLoss", 3m)
         ];
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        MyKeywords.Support,
+        CardKeyword.Exhaust
+    };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     public SupportSaki() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {

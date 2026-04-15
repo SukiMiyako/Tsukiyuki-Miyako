@@ -32,7 +32,7 @@ public sealed class PeaceForKivotos : CustomCardModel
     // 卡牌基础配置：1费 | 能力牌 | 蓝卡(Uncommon) | 自身目标
     private const int energyCost = 1;
     private const CardType type = CardType.Power;
-    private const CardRarity rarity = CardRarity.Uncommon;
+    private const CardRarity rarity = CardRarity.Rare;
     private const TargetType targetType = TargetType.Self;
     private const bool shouldShowInCardLibrary = true;
 
