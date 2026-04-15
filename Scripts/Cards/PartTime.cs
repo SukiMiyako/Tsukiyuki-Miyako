@@ -45,9 +45,10 @@ public sealed class PartTime : CustomCardModel
         // 获得能量
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-        // 创建【劳累】状态牌 并加入手牌（复刻内核加速逻辑）
+        // 创建【劳累】状态牌 并加入抽牌堆（复刻内核加速动画逻辑）
         CardModel fatigueCard = CombatState!.CreateCard<Fatigue>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(fatigueCard, PileType.Draw, addedByPlayer: true);
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(fatigueCard, PileType.Draw, addedByPlayer: true));
+        await Cmd.Wait(0.5f);
     }
 
     // 升级：3能量 → 4能量

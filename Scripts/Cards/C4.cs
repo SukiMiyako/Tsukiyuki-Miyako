@@ -31,8 +31,6 @@ public class C4 : CustomCardModel
         MyKeywords.Equipment
     };
 
-
-
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public C4() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
@@ -40,12 +38,6 @@ public class C4 : CustomCardModel
     }
 
     // 打出时的效果逻辑
-
-
-    // 升级后的效果逻辑
-    protected override void OnUpgrade()
-    {
-    }
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         CustomCardModel Expoluted = CombatState!.CreateCard<Expoluted>(Owner);
@@ -53,9 +45,14 @@ public class C4 : CustomCardModel
         {
             CardCmd.Upgrade(Expoluted);
         }
-        // 加入手牌
-        await CardPileCmd.AddGeneratedCardToCombat(Expoluted, PileType.Draw, true);
 
+        // 【仅添加内核加速同款动画，无其他修改】
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Expoluted, PileType.Draw, true));
+        await Cmd.Wait(0.5f);
     }
 
+    // 升级后的效果逻辑
+    protected override void OnUpgrade()
+    {
+    }
 }
