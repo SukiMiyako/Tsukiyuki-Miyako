@@ -122,5 +122,9 @@
   "TSUKIYUKIMIYAKO-RABBIT31_SMG.title": "RABBIT-31 式冲锋枪",
   "TSUKIYUKIMIYAKO-RABBIT31_SMG.description": "所有带有SMG牌造成的伤害+1。",
   "TSUKIYUKIMIYAKO-READY_OR_NOT.title": "严阵以待",
-  "TSUKIYUKIMIYAKO-READY_OR_NOT.description": "每回合开始时，将一张[gold]配备[/gold]牌放入手牌，本回合免费打出。"
+  "TSUKIYUKIMIYAKO-READY_OR_NOT.description": "每回合开始时，将一张[gold]配备[/gold]牌放入手牌，本回合免费打出。",
+  "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU.title": "与你共赏夜景",
+  "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU.description": "每当你获得师生羁绊时,抽{NightViewWithYouPower:diff()}张牌。",
+  "TSUKIYUKIMIYAKO-LASER_POINTER.title": "激光镭指",
+  "TSUKIYUKIMIYAKO-LASER_POINTER.description": "下{LaserPointerPower:diff()}张SMG牌额外打出一次。"
 }

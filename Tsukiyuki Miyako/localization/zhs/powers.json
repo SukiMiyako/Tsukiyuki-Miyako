@@ -1,8 +1,8 @@
 {
     "TSUKIYUKIMIYAKO-ENDURANCE_POWER.title": "长线作战",
-    "TSUKIYUKIMIYAKO-ENDURANCE_POWER.description": "每回合开始时获得{Stars:starIcons()}",
+    "TSUKIYUKIMIYAKO-ENDURANCE_POWER.description": "每回合开始时获得{Amount:starIcons()}",
     "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.title": "能量凝胶",
-    "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.description": "每回合开始时获得{Energy:energyIcons()}。",
+    "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.description": "每回合开始时获得{Amount:energyIcons()}。",
     "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.title": "省着点用",
     "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.description": "每当有一张牌被[gold]消耗[/gold]时，\n抽1张牌",
     "TSUKIYUKIMIYAKO-SENSEI_POWER.title": "师生羁绊",
@@ -26,5 +26,10 @@
     "TSUKIYUKIMIYAKO-RABBIT_31_SMG_POWER.title": "RABBIT-31冲锋枪",
     "TSUKIYUKIMIYAKO-RABBIT_31_SMG_POWER.description": "所有SMG卡牌造成的伤害+1。",
     "TSUKIYUKIMIYAKO-READY_OR_NOT_POWER.title": "严阵以待",
-    "TSUKIYUKIMIYAKO-READY_OR_NOT_POWER.description": "每回合获得一张[gold]配备[/gold]牌,该牌本回合免费打出。"
+    "TSUKIYUKIMIYAKO-READY_OR_NOT_POWER.description": "每回合获得一张[gold]配备[/gold]牌,该牌本回合免费打出。",
+    "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.title": "夜景相伴",
+    "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.description": "获得[blue]师生羁绊[/blue]时,抽[blue]1[/blue]张牌。",
+    "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.smartdescription": "获得[blue]师生羁绊[/blue]时,抽[blue]{Amount}[/blue]张牌。",
+    "TSUKIYUKIMIYAKO-LASER_POINTER_POWER.title": "激光镭指",
+    "TSUKIYUKIMIYAKO-LASER_POINTER_POWER.description": "本回合内,下1张SMG牌额外打出一次。"
 }
