@@ -116,5 +116,7 @@
   "TSUKIYUKIMIYAKO-PLEASE_STAY_LONGER.title": "请再多陪我一会吧",
   "TSUKIYUKIMIYAKO-PLEASE_STAY_LONGER.description": "在这个回合,你打出的下{SkillPlays:diff()}张技能牌额外触发1次。",
   "TSUKIYUKIMIYAKO-SENSEI_ENTRUST.title": "老师的嘱托",
-  "TSUKIYUKIMIYAKO-SENSEI_ENTRUST.description": "获得{SenseiPower:diff()}层师生羁绊,抽2张牌。"
+  "TSUKIYUKIMIYAKO-SENSEI_ENTRUST.description": "获得{SenseiPower:diff()}层师生羁绊,抽2张牌。",
+  "TSUKIYUKIMIYAKO-FRAGILE_BULLET.title": "易碎弹",
+  "TSUKIYUKIMIYAKO-FRAGILE_BULLET.description": "造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层易伤。"
 }
