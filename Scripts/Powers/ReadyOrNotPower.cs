@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Tsukiyuki_Miyako.MiyakoModCode.Character;
 
 namespace TsukiyukiMiyako.Scripts.Powers;
 
@@ -27,7 +28,7 @@ public sealed class ReadyOrNotPower : CustomPowerModel
         for (int i = 0; i < base.Amount; i++)
         {
             CardModel cardModel = CardFactory.GetDistinctForCombat(player, from c in player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-                                                                           where c.Type == CardType.Skill
+                                                                           where c.CanonicalKeywords.Contains(MyKeywords.Equipment)
                                                                            select c, 1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault()!;
             if (cardModel != null)
             {
