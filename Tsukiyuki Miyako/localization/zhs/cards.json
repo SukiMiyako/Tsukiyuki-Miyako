@@ -120,5 +120,7 @@
   "TSUKIYUKIMIYAKO-FRAGILE_BULLET.title": "易碎弹",
   "TSUKIYUKIMIYAKO-FRAGILE_BULLET.description": "造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层易伤。",
   "TSUKIYUKIMIYAKO-RABBIT31_SMG.title": "RABBIT-31 式冲锋枪",
-  "TSUKIYUKIMIYAKO-RABBIT31_SMG.description": "所有带有SMG牌造成的伤害+1。"
+  "TSUKIYUKIMIYAKO-RABBIT31_SMG.description": "所有带有SMG牌造成的伤害+1。",
+  "TSUKIYUKIMIYAKO-READY_OR_NOT.title": "严阵以待",
+  "TSUKIYUKIMIYAKO-READY_OR_NOT.description": "每回合开始时，将一张技能牌放入手牌，本回合免费打出。"
 }

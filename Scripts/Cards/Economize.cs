@@ -18,7 +18,7 @@ public sealed class Economize : CustomCardModel
    new[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) };
 
     public Economize()
-        : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
