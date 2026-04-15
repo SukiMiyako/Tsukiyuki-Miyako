@@ -23,7 +23,7 @@ public class FlashScoutDrone : CustomOrbModel
     private decimal BlockVal => ModifyOrbValue(2m);
 
     // 黑暗球成长数值（初始6，每次被动+3）
-    private decimal _evokeVal = 6m;
+    private decimal _evokeVal = 3m;
 
     public override Color DarkenedColor => new(0.1f, 0.2f, 0.5f);
     public override string? CustomIconPath => "res://icon.svg";
@@ -59,7 +59,7 @@ public class FlashScoutDrone : CustomOrbModel
         await CreatureCmd.GainBlock(Owner.Creature, BlockVal, ValueProp.Unpowered, null);
 
         // 3. 【新增】黑暗球被动：成长激发伤害（每次+3）
-        _evokeVal += PassiveVal;
+        _evokeVal += 3;
         NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.OrbManager?.UpdateVisuals(OrbEvokeType.None);
     }
 
