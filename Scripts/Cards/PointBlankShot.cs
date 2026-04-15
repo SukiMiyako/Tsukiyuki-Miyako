@@ -36,7 +36,7 @@ public class PointBlankShot : CustomCardModel
         new DamageVar(3m, ValueProp.Move),
         new RepeatVar(6)
     };
-
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public PointBlankShot() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)

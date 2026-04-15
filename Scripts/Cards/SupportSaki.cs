@@ -45,8 +45,7 @@ public class SupportSaki : CustomCardModel
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
-        MyKeywords.Support,
-        CardKeyword.Exhaust
+        MyKeywords.Support
     };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     public SupportSaki() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)

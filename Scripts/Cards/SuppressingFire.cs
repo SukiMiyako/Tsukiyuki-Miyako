@@ -47,7 +47,7 @@ public class SuppressingFire : CustomCardModel
     public SuppressingFire() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
     }
-
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
     // 打出时的效果逻辑
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

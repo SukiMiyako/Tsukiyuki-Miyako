@@ -27,8 +27,7 @@ public class SupportMiyu : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12m, ValueProp.Move | ValueProp.Unblockable)];
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
-        MyKeywords.Support,
-        CardKeyword.Exhaust
+        MyKeywords.Support
     };
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";

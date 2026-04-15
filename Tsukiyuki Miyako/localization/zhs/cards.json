@@ -118,5 +118,7 @@
   "TSUKIYUKIMIYAKO-SENSEI_ENTRUST.title": "老师的嘱托",
   "TSUKIYUKIMIYAKO-SENSEI_ENTRUST.description": "获得{SenseiPower:diff()}层师生羁绊,抽2张牌。",
   "TSUKIYUKIMIYAKO-FRAGILE_BULLET.title": "易碎弹",
-  "TSUKIYUKIMIYAKO-FRAGILE_BULLET.description": "造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层易伤。"
+  "TSUKIYUKIMIYAKO-FRAGILE_BULLET.description": "造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层易伤。",
+  "TSUKIYUKIMIYAKO-RABBIT31_SMG.title": "RABBIT-31 式冲锋枪",
+  "TSUKIYUKIMIYAKO-RABBIT31_SMG.description": "所有带有SMG牌造成的伤害+1。"
 }

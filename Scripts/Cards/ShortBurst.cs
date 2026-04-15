@@ -24,7 +24,7 @@ public class ShortBurst : CustomCardModel
     private const TargetType targetType = TargetType.AnyEnemy;
     // 图鉴显示
     private const bool shouldShowInCardLibrary = true;
-
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
     // 1星费用
     public override int CanonicalStarCost => 1;
 

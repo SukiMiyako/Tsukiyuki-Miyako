@@ -31,7 +31,7 @@ public class SmgSweep : CustomCardModel
         new DamageVar(2m, ValueProp.Move),
         new RepeatVar(4)
     };
-
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public SmgSweep() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)

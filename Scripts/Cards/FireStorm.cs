@@ -30,6 +30,7 @@ public class FireStorm : CustomCardModel
     {
         new DamageVar(3m, ValueProp.Move),
     };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 

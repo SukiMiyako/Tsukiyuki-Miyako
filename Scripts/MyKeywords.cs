@@ -11,4 +11,7 @@ public class MyKeywords
     [CustomEnum("SUPPORT")]
     [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Support;
+    [CustomEnum("SMG")]
+    [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword Smg;
 }
