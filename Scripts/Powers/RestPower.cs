@@ -12,6 +12,8 @@ public sealed class RestPower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
+    public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
     // 完全照搬暗影步的方法名 + 参数（官方原生支持，无报错）
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)

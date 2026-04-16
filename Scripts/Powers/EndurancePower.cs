@@ -9,8 +9,8 @@ namespace TsukiyukiMiyako.Scripts;
 
 public sealed class EndurancePower : CustomPowerModel
 {
-    public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/{Id.Entry.ToLowerInvariant()}.png";
-    public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/{Id.Entry.ToLowerInvariant()}.png";
+    public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
+    public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;

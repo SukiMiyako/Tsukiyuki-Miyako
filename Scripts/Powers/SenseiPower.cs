@@ -21,17 +21,9 @@ public sealed class SenseiPower : CustomPowerModel
     // 基础属性（标准配置）
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    public override bool AllowNegative => true;
+    public override bool AllowNegative => false;
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
-
-    // 清理乱码，删除无用悬浮提示（极简干净）
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => null!;
-
-    // ==============================
-    // 效果1：格挡加成（复用你原版存在的方法，100%不报错）
-    // 每层提供额外格挡，仅对自身生效
-    // ==============================
     public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
     {
         // 只对玩家自身生效

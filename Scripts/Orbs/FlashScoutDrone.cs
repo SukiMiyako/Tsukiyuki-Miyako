@@ -20,13 +20,13 @@ public class FlashScoutDrone : CustomOrbModel
     public override decimal PassiveVal => ModifyOrbValue(3m);
     public override decimal EvokeVal => ModifyOrbValue(_evokeVal);
     //格挡数值（吃集中）
-    private decimal BlockVal => ModifyOrbValue(2m);
+    private decimal BlockVal => 2m;
 
-    // 黑暗球成长数值（初始6，每次被动+3）
+    // 黑暗球成长数值（初始3，每次被动+3）
     private decimal _evokeVal = 3m;
 
     public override Color DarkenedColor => new(0.1f, 0.2f, 0.5f);
-    public override string? CustomIconPath => "res://icon.svg";
+    public override string? CustomIconPath => "res://flashscoutdrone.svg";
 
     public override Node2D? CreateCustomSprite()
     {

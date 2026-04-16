@@ -16,6 +16,8 @@ public sealed class RainyStandPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
+    public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
     // 核心：抽牌前触发，获得随机能力牌（完全复刻CreativeAi）
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)

@@ -15,6 +15,8 @@ public sealed class ReassuringTouchPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
+    public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new List<IHoverTip>() { HoverTipFactory.Static(StaticHoverTip.Block) };
     public override bool IsInstanced => true;
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar>() { new BlockVar(0m, ValueProp.Unpowered) };
