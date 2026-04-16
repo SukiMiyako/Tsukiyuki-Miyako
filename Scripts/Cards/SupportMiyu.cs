@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using TsukiyukiMiyako.Scripts;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -24,7 +25,11 @@ public class SupportMiyu : CustomCardModel
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInCardLibrary = true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12m, ValueProp.Move | ValueProp.Unblockable)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DamageVar(12m, ValueProp.Move | ValueProp.Unblockable),
+        new PowerVar<VulnerablePower>(1m)
+        ];
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
         MyKeywords.Support
@@ -46,6 +51,7 @@ public class SupportMiyu : CustomCardModel
             ValueProp.Move | ValueProp.Unblockable, // 真实生效：无视护盾/格挡
             this
         );
+        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target!, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }
 
     // 升级效果（保留：+3伤害）

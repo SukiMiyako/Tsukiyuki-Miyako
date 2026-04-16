@@ -18,18 +18,19 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class Fatigue : CustomCardModel
 {
-    // 每回合最大出牌限制：8张
-    private const int MaxCardsPerTurn = 8;
+    // 每回合最大出牌限制：5张
+    private const int MaxCardsPerTurn = 5;
     private const string CalculatedCardsKey = "CalculatedCards";
 
     // 超出限制时红色高亮
     protected override bool ShouldGlowRedInternal => ShouldPreventCardPlay;
 
-    // 核心逻辑：本回合打出≥8张牌时，禁止继续出牌
+    // 核心逻辑：本回合打出≥5张牌时，禁止继续出牌
     private bool ShouldPreventCardPlay => CardsPlayedThisTurn >= MaxCardsPerTurn;
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        CardKeyword.Unplayable
+        CardKeyword.Unplayable,
+        CardKeyword.Ethereal
     ];
 
     // 状态牌无升级
