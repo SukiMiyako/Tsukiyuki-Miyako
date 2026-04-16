@@ -134,5 +134,7 @@
   "TSUKIYUKIMIYAKO-MOST_RELIABLE_CAPTAIN.title": "最可靠的队长",
   "TSUKIYUKIMIYAKO-MOST_RELIABLE_CAPTAIN.description": "每打出3张[gold]配备[/gold]牌,获得{MostReliableCaptainPower:starIcons()}。",
   "TSUKIYUKIMIYAKO-AMMO_SURPLUS.title": "弹药管够",
-  "TSUKIYUKIMIYAKO-AMMO_SURPLUS.description": "每当你花费5个弹夹,获得1个弹夹。"
+  "TSUKIYUKIMIYAKO-AMMO_SURPLUS.description": "每当你花费5个弹夹,获得1个弹夹。",
+  "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM.title": "最厉害的特种小队",
+  "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM.description": "每回合临时获得随机小队支援牌，本回合免费打出。"
 }
