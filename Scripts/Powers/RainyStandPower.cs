@@ -1,14 +1,11 @@
-using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -19,24 +16,15 @@ public sealed class RainyStandPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // 核心：抽牌前触发，获得随机能力牌（完全复刻CreativeAi）
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    // 监听抽牌事件（完全复刻 IterationPower）
+    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (player != base.Owner.Player)
+        // 判定：自己抽到状态牌
+        if (card.Owner.Creature == base.Owner && card.Type == CardType.Status)
         {
-            return;
-        }
-
-        // 每层获得1张能力牌
-        for (int i = 0; i < base.Amount; i++)
-        {
-            CardModel cardModel = CardFactory.GetDistinctForCombat(player, from c in player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-                                                                           where c.Type == CardType.Power
-                                                                           select c, 1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault()!;
-            if (cardModel != null)
-            {
-                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
-            }
+            Flash();
+            // 【严格使用你提供的官方原版格挡代码】
+            await CreatureCmd.GainBlock(base.Owner, base.Amount, ValueProp.Unpowered, null);
         }
     }
 }

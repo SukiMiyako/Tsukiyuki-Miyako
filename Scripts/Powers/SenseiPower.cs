@@ -26,13 +26,21 @@ public sealed class SenseiPower : CustomPowerModel
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
     public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
     {
-        // 只对玩家自身生效
-        if (target.IsMonster || target != base.Owner)
+        if (cardSource != null)
         {
-            return block;
+            if (cardSource.Owner.Creature != base.Owner)
+            {
+                return 0m;
+            }
         }
-
-        // 核心：每层 + 1 格挡（常驻加成，无消耗逻辑）
+        else if (base.Owner != target)
+        {
+            return 0m;
+        }
+        if (!props.IsPoweredCardOrMonsterMoveBlock())
+        {
+            return 0m;
+        }
         return base.Amount;
     }
 

@@ -88,7 +88,7 @@
   "TSUKIYUKIMIYAKO-STARRY_MIRACLE.title": "那片星空，名为奇迹",
   "TSUKIYUKIMIYAKO-STARRY_MIRACLE.description": "你每打出1张能力牌\n获得1层师生羁绊。",
   "TSUKIYUKIMIYAKO-RAINY_STAND.title": "雨中的坚守",
-  "TSUKIYUKIMIYAKO-RAINY_STAND.description": "每回合开始时,将一张随机能力牌添加到手牌中。",
+  "TSUKIYUKIMIYAKO-RAINY_STAND.description": "每当你抽到状态牌时,获得{RainyStandPower:diff()}点格挡。",
   "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.title": "为了基沃托斯的和平",
   "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS.description": "获得{StrengthPower:diff()}点力量。",
   "TSUKIYUKIMIYAKO-FATIGUE.title": "劳累",
