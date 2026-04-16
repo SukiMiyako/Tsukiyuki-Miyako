@@ -130,5 +130,7 @@
   "TSUKIYUKIMIYAKO-DOUBT.title": "动摇",
   "TSUKIYUKIMIYAKO-DOUBT.description": "若回合结束时留在手牌中,则下回合失去2点能量。",
   "TSUKIYUKIMIYAKO-BROKEN_RAIN_FAITH.title": "碎在雨中的信念",
-  "TSUKIYUKIMIYAKO-BROKEN_RAIN_FAITH.description": "每回合的前{BrokenRainFaithPower:diff()}张牌免费打出。每3回合,将一张动摇放入你的抽牌堆。"
+  "TSUKIYUKIMIYAKO-BROKEN_RAIN_FAITH.description": "每回合的前{BrokenRainFaithPower:diff()}张牌免费打出。每3回合,将一张动摇放入你的抽牌堆。",
+  "TSUKIYUKIMIYAKO-MOST_RELIABLE_CAPTAIN.title": "最可靠的队长",
+  "TSUKIYUKIMIYAKO-MOST_RELIABLE_CAPTAIN.description": "每打出3张[gold]配备[/gold]牌,获得{MostReliableCaptainPower:starIcons()}。"
 }
