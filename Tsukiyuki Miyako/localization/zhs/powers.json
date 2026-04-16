@@ -16,7 +16,7 @@
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.title": "星空奇迹",
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.description": "你每打出1张能力牌,获得1层师生羁绊。",
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.title": "雨中的坚守",
-    "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.description": "每当你抽到状态牌时，获得{Amount}点格挡。",
+    "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.description": "每当你抽到状态牌时,获得5点格挡。",
     "TSUKIYUKIMIYAKO-TEMPORARY_POWER.title": "临时力量",
     "TSUKIYUKIMIYAKO-TEMPORARY_POWER.description": "获得{Strength:diff()}点临时力量。",
     "TSUKIYUKIMIYAKO-DRONE_SYNC_POWER.title": "无人机同频",
