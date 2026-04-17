@@ -130,7 +130,7 @@
   "TSUKIYUKIMIYAKO-DOUBT.title": "动摇",
   "TSUKIYUKIMIYAKO-DOUBT.description": "若回合结束时留在手牌中,则下回合失去2点能量。",
   "TSUKIYUKIMIYAKO-BROKEN_RAIN_FAITH.title": "碎在雨中的信念",
-  "TSUKIYUKIMIYAKO-BROKEN_RAIN_FAITH.description": "每回合的前{BrokenRainFaithPower:diff()}张牌免费打出。每3回合,将一张动摇放入你的抽牌堆。",
+  "TSUKIYUKIMIYAKO-BROKEN_RAIN_FAITH.description": "每回合的前{BrokenRainFaithPower:diff()}张牌免费打出。\n每回合将一张[gold]动摇[/gold]加入你的抽牌堆。",
   "TSUKIYUKIMIYAKO-MOST_RELIABLE_CAPTAIN.title": "最可靠的队长",
   "TSUKIYUKIMIYAKO-MOST_RELIABLE_CAPTAIN.description": "每打出3张[gold]配备[/gold]牌,获得{MostReliableCaptainPower:starIcons()}。",
   "TSUKIYUKIMIYAKO-AMMO_SURPLUS.title": "弹药管够",
@@ -140,5 +140,9 @@
   "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE.title": "温柔依赖症",
   "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE.description": "每当你获得师生羁绊时,获得1点能量。",
   "TSUKIYUKIMIYAKO-SHINING_RABBIT.title": "眼里闪着光的兔子",
-  "TSUKIYUKIMIYAKO-SHINING_RABBIT.description": "每回合打出的第{ShiningRabbitPower:diff()}张牌将会升级。"
+  "TSUKIYUKIMIYAKO-SHINING_RABBIT.description": "每回合打出的第{ShiningRabbitPower:diff()}张牌将会升级。",
+  "TSUKIYUKIMIYAKO-WE_ARE_RABBITS.title": "We are Rabbits!",
+  "TSUKIYUKIMIYAKO-WE_ARE_RABBITS.description": "所有能力牌的费用-1。",
+  "TSUKIYUKIMIYAKO-SRT_JUSTICE.title": "SRT的正义",
+  "TSUKIYUKIMIYAKO-SRT_JUSTICE.description": "获得1点能量。抽1张牌。消耗。"
 }
