@@ -12,7 +12,7 @@
     "TSUKIYUKIMIYAKO-REST_POWER.title": "小憩",
     "TSUKIYUKIMIYAKO-REST_POWER.description": "下回合获得2点力量。",
     "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.title": "安心之触",
-    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block}点格挡。",
+    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block:diff()}点格挡。",
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.title": "星空奇迹",
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.description": "你每打出1张能力牌,获得1层师生羁绊。",
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.title": "雨中的坚守",
@@ -43,5 +43,7 @@
     "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM_POWER.title": "最厉害的特种小队",
     "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM_POWER.description": "每回合获得随机小队支援牌，本回合免费打出，回合结束移除。",
     "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE_POWER.title": "温柔依赖症",
-    "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE_POWER.description": "每当获得师生羁绊时,获得1点能量。"
+    "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE_POWER.description": "每当获得师生羁绊时,获得1点能量。",
+    "TSUKIYUKIMIYAKO-SHINING_RABBIT_POWER.title": "眼里闪着光的兔子",
+    "TSUKIYUKIMIYAKO-SHINING_RABBIT_POWER.description": "每回合打出的前{Amount:diff()}张牌会升级。"
 }
