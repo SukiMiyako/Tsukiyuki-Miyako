@@ -150,5 +150,9 @@
   "TSUKIYUKIMIYAKO-WILD_SHOOT.title": "狂野射击",
   "TSUKIYUKIMIYAKO-WILD_SHOOT.description": "造成{Damage:diff()}点伤害{Repeat}次。\n将1张[gold]伤口[/gold]置入你的弃牌堆。",
   "TSUKIYUKIMIYAKO-IRRESISTIBLE_OFFER.title": "无法拒绝的条件",
-  "TSUKIYUKIMIYAKO-IRRESISTIBLE_OFFER.description": "抽{Cards:diff()}张牌。将1张[gold]动摇[/gold]置入你的弃牌堆。"
+  "TSUKIYUKIMIYAKO-IRRESISTIBLE_OFFER.description": "抽{Cards:diff()}张牌。将1张[gold]动摇[/gold]置入你的弃牌堆。",
+  "TSUKIYUKIMIYAKO-WAVES_LONGING.title": "浪间牵念",
+  "TSUKIYUKIMIYAKO-WAVES_LONGING.description": "消耗1层师生羁绊。抽{Cards:diff()}张牌。",
+  "TSUKIYUKIMIYAKO-DUAL_PORT_RECOIL_COMPENSATOR.title": "双孔制退器",
+  "TSUKIYUKIMIYAKO-DUAL_PORT_RECOIL_COMPENSATOR.description": "下一张SMG牌费用变为0。消耗。"
 }

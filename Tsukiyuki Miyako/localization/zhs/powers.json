@@ -49,5 +49,7 @@
     "TSUKIYUKIMIYAKO-WE_ARE_RABBITS_POWER.title": "We are Rabbits",
     "TSUKIYUKIMIYAKO-WE_ARE_RABBITS_POWER.description": "所有能力牌的费用-1。",
     "TSUKIYUKIMIYAKO-JUSTICE_FOR_YOU_POWER.title": "因你而存在的正义",
-    "TSUKIYUKIMIYAKO-JUSTICE_FOR_YOU_POWER.description": "当抽到状态牌时,若当前[blue]师生羁绊[/blue]大于5点,将其转换为[gold]SRT的正义[/gold]。"
+    "TSUKIYUKIMIYAKO-JUSTICE_FOR_YOU_POWER.description": "当抽到状态牌时,若当前[blue]师生羁绊[/blue]大于5点,将其转换为[gold]SRT的正义[/gold]。",
+    "TSUKIYUKIMIYAKO-FREE_SMG_POWER.title": "双孔制退器",
+    "TSUKIYUKIMIYAKO-FREE_SMG_POWER.description": "你的下一张SMG牌费用变为0。"
 }
