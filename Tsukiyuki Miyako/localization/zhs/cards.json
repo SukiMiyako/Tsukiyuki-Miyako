@@ -136,5 +136,7 @@
   "TSUKIYUKIMIYAKO-AMMO_SURPLUS.title": "弹药管够",
   "TSUKIYUKIMIYAKO-AMMO_SURPLUS.description": "每当你花费5个弹夹,获得1个弹夹。",
   "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM.title": "最厉害的特种小队",
-  "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM.description": "每回合临时获得随机小队支援牌，本回合免费打出。"
+  "TSUKIYUKIMIYAKO-MOST_SPECIAL_TEAM.description": "每回合临时获得随机小队支援牌，本回合免费打出。",
+  "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE.title": "温柔依赖症",
+  "TSUKIYUKIMIYAKO-GENTLE_DEPENDENCE.description": "每当你获得师生羁绊时,获得1点能量。"
 }

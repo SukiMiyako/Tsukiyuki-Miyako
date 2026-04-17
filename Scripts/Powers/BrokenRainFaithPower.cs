@@ -77,7 +77,7 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         var data = GetInternalData<Data>();
         data.TurnsCounter++;
 
-        if (data.TurnsCounter >= 3)
+        if (data.TurnsCounter >= 1)
         {
             data.TurnsCounter = 0;
             Flash();
