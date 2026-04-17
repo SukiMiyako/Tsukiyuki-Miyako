@@ -47,5 +47,7 @@
     "TSUKIYUKIMIYAKO-SHINING_RABBIT_POWER.title": "眼里闪着光的兔子",
     "TSUKIYUKIMIYAKO-SHINING_RABBIT_POWER.description": "每回合打出的前{Amount:diff()}张牌会升级。",
     "TSUKIYUKIMIYAKO-WE_ARE_RABBITS_POWER.title": "We are Rabbits",
-    "TSUKIYUKIMIYAKO-WE_ARE_RABBITS_POWER.description": "所有能力牌的费用-1。"
+    "TSUKIYUKIMIYAKO-WE_ARE_RABBITS_POWER.description": "所有能力牌的费用-1。",
+    "TSUKIYUKIMIYAKO-JUSTICE_FOR_YOU_POWER.title": "因你而存在的正义",
+    "TSUKIYUKIMIYAKO-JUSTICE_FOR_YOU_POWER.description": "当抽到状态牌时,若当前[blue]师生羁绊[/blue]大于5点,将其转换为[gold]SRT的正义[/gold]。"
 }
