@@ -110,7 +110,7 @@
   "TSUKIYUKIMIYAKO-RABBIT_SQUAD_ASSEMBLE.title": "RABBIT小队,集结!",
   "TSUKIYUKIMIYAKO-RABBIT_SQUAD_ASSEMBLE.description": "将一张[gold]小队支援[/gold]加入手牌并免费打出。",
   "TSUKIYUKIMIYAKO-LIGHT_LOAD.title": "轻装上阵",
-  "TSUKIYUKIMIYAKO-LIGHT_LOAD.description": "获得1点能量。",
+  "TSUKIYUKIMIYAKO-LIGHT_LOAD.description": "获得{Energy:diff()}点能量。",
   "TSUKIYUKIMIYAKO-PLEASE_STAY_LONGER.title": "请再多陪我一会吧",
   "TSUKIYUKIMIYAKO-PLEASE_STAY_LONGER.description": "在这个回合,你打出的下{SkillPlays:diff()}张技能牌额外触发1次。",
   "TSUKIYUKIMIYAKO-SENSEI_ENTRUST.title": "老师的嘱托",
