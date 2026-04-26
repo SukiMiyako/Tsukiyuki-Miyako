@@ -29,7 +29,13 @@ public sealed class AmmoSurplus : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<AmmoSurplusPower>(Owner.Creature, DynamicVars["AmmoSurplusPower"].BaseValue, Owner.Creature, this);
+        // 🔥 唯一修复：补全官方强制的 PlayerChoiceContext 参数（照搬所有官方卡牌写法）
+        await PowerCmd.Apply<AmmoSurplusPower>(
+            new BlockingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars["AmmoSurplusPower"].BaseValue,
+            Owner.Creature,
+            this);
     }
 
     // 升级：添加【固有】关键词

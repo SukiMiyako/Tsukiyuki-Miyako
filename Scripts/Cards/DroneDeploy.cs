@@ -45,12 +45,14 @@ public class DroneDeploy : CustomCardModel
         // 生成【无人机突袭】（同步升级）
         var assaultCard = CombatState!.CreateCard<DroneAssault>(Owner);
         if (IsUpgraded) CardCmd.Upgrade(assaultCard);
-        await CardPileCmd.AddGeneratedCardToCombat(assaultCard, PileType.Hand, true);
+        // 🔥 仅修复：替换旧参数为官方原版写法
+        await CardPileCmd.AddGeneratedCardToCombat(assaultCard, PileType.Hand, Owner, CardPilePosition.Random);
 
         // 新增：生成【无人机同频】（同步升级）到手牌
         var syncCard = CombatState!.CreateCard<DroneSync>(Owner);
         if (IsUpgraded) CardCmd.Upgrade(syncCard);
-        await CardPileCmd.AddGeneratedCardToCombat(syncCard, PileType.Hand, true);
+        // 🔥 仅修复：替换旧参数为官方原版写法
+        await CardPileCmd.AddGeneratedCardToCombat(syncCard, PileType.Hand, Owner, CardPilePosition.Random);
     }
 
     protected override void OnUpgrade()

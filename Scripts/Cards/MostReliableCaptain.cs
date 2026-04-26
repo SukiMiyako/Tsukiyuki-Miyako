@@ -28,7 +28,8 @@ public sealed class MostReliableCaptain : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<MostReliableCaptainPower>(Owner.Creature, DynamicVars["MostReliableCaptainPower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方必填参数
+        await PowerCmd.Apply<MostReliableCaptainPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["MostReliableCaptainPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

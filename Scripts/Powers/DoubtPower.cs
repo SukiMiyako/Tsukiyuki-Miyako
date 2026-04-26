@@ -17,7 +17,7 @@ public sealed class DoubtPower : CustomPowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
 
     // 下回合开始触发（对标 ReassuringTouchPower）
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side == base.Owner.Side)
         {

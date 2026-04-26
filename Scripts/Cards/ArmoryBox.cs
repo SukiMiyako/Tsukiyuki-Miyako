@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
-// 引入你的自定义关键词
 using TsukiyukiMiyako.Scripts;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
@@ -21,7 +20,7 @@ public sealed class ArmoryBox : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new CardsVar(2) // 基础生成2张，升级+1
+        new CardsVar(2)
     };
 
     public ArmoryBox()
@@ -33,24 +32,22 @@ public sealed class ArmoryBox : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 核心修改：筛选 带有【配备】关键词 的卡牌（替换原0费筛选）
         IEnumerable<CardModel> forCombat = CardFactory.GetForCombat
         (base.Owner,
          base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)
-         .Where(c => c.CanonicalKeywords.Contains(MyKeywords.Equipment)), // 👈 关键修改
+         .Where(c => c.CanonicalKeywords.Contains(MyKeywords.Equipment)),
          base.DynamicVars.Cards.IntValue,
          base.Owner.RunState.Rng.CombatCardGeneration);
 
         foreach (CardModel item in forCombat)
         {
-            // 原版逻辑：升级后卡牌自动升级
             if (base.IsUpgraded)
             {
                 CardCmd.Upgrade(item);
             }
-            // 新增：本回合免费打出（声东击西官方逻辑）
             item.SetToFreeThisTurn();
-            await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Hand, addedByPlayer: true);
+            // 🔥 核心修复：1:1 照搬官方Reave写法，删除旧参数
+            await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Hand, base.Owner, CardPilePosition.Random);
         }
     }
 

@@ -22,7 +22,6 @@ public sealed class WeAreRabbits : CustomCardModel
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
-    // 0费 能力卡
     public WeAreRabbits()
         : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
@@ -31,10 +30,10 @@ public sealed class WeAreRabbits : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<WeAreRabbitsPower>(Owner.Creature, DynamicVars["WeAreRabbitsPower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方必填参数
+        await PowerCmd.Apply<WeAreRabbitsPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["WeAreRabbitsPower"].BaseValue, Owner.Creature, this);
     }
 
-    // 升级：添加固有（按你的需求）
     protected override void OnUpgrade()
     {
         AddKeyword(CardKeyword.Innate);

@@ -37,7 +37,8 @@ public sealed class SenseiEntrust : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<SenseiPower>(Owner.Creature, DynamicVars["SenseiPower"].BaseValue, Owner.Creature, this);
+        // 仅修复：补全官方必填参数
+        await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["SenseiPower"].BaseValue, Owner.Creature, this);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
 

@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using TsukiyukiMiyako.Scripts;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -24,13 +23,19 @@ public sealed class StarryMiraclePower : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    // 打出能力牌 → 获得1层师生羁绊
+    // 打出能力牌 → 获得1层师生羁绊（逻辑完全不变）
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner == base.Owner.Player && cardPlay.Card.Type == CardType.Power)
         {
             Flash();
-            await PowerCmd.Apply<SenseiPower>(base.Owner, 1m, base.Owner, null);
+            // 🔥 唯一修复：补全官方强制的 PlayerChoiceContext 参数
+            await PowerCmd.Apply<SenseiPower>(
+                new BlockingPlayerChoiceContext(),
+                base.Owner,
+                1m,
+                base.Owner,
+                null);
         }
     }
 }

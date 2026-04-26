@@ -31,7 +31,8 @@ public sealed class ShiningRabbit : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<ShiningRabbitPower>(Owner.Creature, DynamicVars["ShiningRabbitPower"].BaseValue, Owner.Creature, this);
+        // 仅修复：补全官方必填参数
+        await PowerCmd.Apply<ShiningRabbitPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["ShiningRabbitPower"].BaseValue, Owner.Creature, this);
     }
 
     // =====================

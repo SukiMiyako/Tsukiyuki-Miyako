@@ -9,8 +9,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
-
-// 引入你制作的【劳累】状态牌
 using TsukiyukiMiyako.Scripts.Cards;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
@@ -18,14 +16,12 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class PartTime : CustomCardModel
 {
-    // 基础配置：0费 技能牌 蓝卡 目标自身
     private const int energyCost = 0;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Uncommon;
     private const TargetType targetType = TargetType.Self;
     private const bool shouldShowInCardLibrary = true;
 
-    // 能量变量：基础3点
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(3)
@@ -37,21 +33,17 @@ public sealed class PartTime : CustomCardModel
     {
     }
 
-    // 核心效果：获得能量 + 将劳累加入手牌（参考内核加速源码）
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-
-        // 获得能量
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-        // 创建【劳累】状态牌 并加入抽牌堆（复刻内核加速动画逻辑）
         CardModel fatigueCard = CombatState!.CreateCard<Fatigue>(Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(fatigueCard, PileType.Draw, addedByPlayer: true));
+        // 修复：替换为官方原版写法
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(fatigueCard, PileType.Draw, Owner, CardPilePosition.Random));
         await Cmd.Wait(0.5f);
     }
 
-    // 升级：3能量 → 4能量
     protected override void OnUpgrade()
     {
         base.DynamicVars.Energy.UpgradeValueBy(1m);

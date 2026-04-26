@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using TsukiyukiMiyako.Scripts.Cards;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -29,8 +29,8 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
 
     protected override object InitInternalData() => new Data();
 
-    // ===================== 虚空形态·免费卡牌逻辑（完全不变） =====================
-    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
+    // ===================== 免费卡牌逻辑（原版虚空形态写法） =====================
+    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
         if (ShouldSkip(card)) return false;
@@ -46,7 +46,7 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         return true;
     }
 
-    public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature == base.Owner && !cardPlay.IsAutoPlay && cardPlay.IsLastInSeries)
         {
@@ -55,9 +55,10 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
-        if (side == base.Owner.Side) GetInternalData<Data>().CardsPlayedThisTurn = 0;
+        if (side == base.Owner.Side)
+            GetInternalData<Data>().CardsPlayedThisTurn = 0;
         return Task.CompletedTask;
     }
 
@@ -68,9 +69,8 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         return GetInternalData<Data>().CardsPlayedThisTurn >= base.Amount;
     }
 
-    // ===================== 开心小花·三回合计数 =====================
-    // ===================== 【仅这里：1:1抄灾祸的卡牌生成方式】 =====================
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    // ===================== 1:1 抄灾祸的卡牌生成写法（完美适配） =====================
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != base.Owner.Side) return;
 
@@ -82,17 +82,22 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
             data.TurnsCounter = 0;
             Flash();
 
-            // ↓↓↓ 纯抄灾祸 CalamityPower 生成卡牌代码，仅修改为生成【动摇】↓↓↓
-            List<CardModel> doubtCards = CardFactory.GetForCombat(base.Owner.Player!,
-                from c in base.Owner.Player!.Character.CardPool.GetUnlockedCards(base.Owner.Player.UnlockState, base.Owner.Player.RunState.CardMultiplayerConstraint)
-                where c is Doubt // 筛选指定卡牌：动摇
+            // 完全照搬灾祸的 GetForCombat + AddGeneratedCardToCombat 写法
+            List<CardModel> doubtCards = CardFactory.GetForCombat(
+                base.Owner.Player!,
+                from c in base.Owner.Player!.Character.CardPool.GetUnlockedCards(
+                    base.Owner.Player.UnlockState,
+                    base.Owner.Player.RunState.CardMultiplayerConstraint)
+                where c is Doubt
                 select c,
-                1, // 生成1张
-                base.Owner.Player.RunState.Rng.CombatCardGeneration).ToList();
+                1,
+                base.Owner.Player.RunState.Rng.CombatCardGeneration
+            ).ToList();
 
             foreach (CardModel item in doubtCards)
             {
-                await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Draw, addedByPlayer: true);
+                // 灾祸原版写法：参数是 卡牌, 牌堆, 玩家
+                await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Draw, base.Owner.Player);
             }
         }
     }

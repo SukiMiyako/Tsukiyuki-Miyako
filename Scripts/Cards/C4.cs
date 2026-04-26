@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -21,10 +20,11 @@ public class C4 : CustomCardModel
     private const CardType type = CardType.Skill;
     // 卡牌稀有度
     private const CardRarity rarity = CardRarity.Common;
-    // 目标类型（AnyEnemy表示任意敌人）
+    // 目标类型
     private const TargetType targetType = TargetType.Self;
     // 是否在卡牌图鉴中显示
     private const bool shouldShowInCardLibrary = true;
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
         CardKeyword.Exhaust,
@@ -46,8 +46,8 @@ public class C4 : CustomCardModel
             CardCmd.Upgrade(Expoluted);
         }
 
-        // 【仅添加内核加速同款动画，无其他修改】
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Expoluted, PileType.Draw, true));
+        // 🔥 唯一修复：1:1 复刻官方Reave写法，删除过时bool参数
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Expoluted, PileType.Draw, Owner, CardPilePosition.Random));
         await Cmd.Wait(0.5f);
     }
 

@@ -1,6 +1,4 @@
 {
-  "TSUKIYUKIMIYAKO-TEST_CARD.title": "测试卡牌",
-  "TSUKIYUKIMIYAKO-TEST_CARD.description": "造成{Damage:diff()}点伤害。",
   "TSUKIYUKIMIYAKO-DEFEND.title": "防御",
   "TSUKIYUKIMIYAKO-DEFEND.description": "获得{Block:diff()}点格挡",
   "TSUKIYUKIMIYAKO-FLASH_BANG.title": "闪光弹",

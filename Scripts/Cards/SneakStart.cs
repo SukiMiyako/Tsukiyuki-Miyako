@@ -13,12 +13,12 @@ using MegaCrit.Sts2.Core.Models;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
 
-
 namespace TsukiyukiMiyako.Scripts;
+
 [Pool(typeof(MiyakoCardPool))]
 public sealed class SneakStart : CustomCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> { 
+    protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> {
         new CardsVar(2),
         new DynamicVar("SenseiPower", 1)
         };
@@ -39,7 +39,8 @@ public sealed class SneakStart : CustomCardModel
         {
             await CardCmd.Exhaust(choiceContext, cardModel);
         }
-        await PowerCmd.Apply<SenseiPower>(base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
+        // 仅修复：补全官方必填参数
+        await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
     }
 
     protected override void OnUpgrade()

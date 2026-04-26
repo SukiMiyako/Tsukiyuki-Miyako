@@ -16,26 +16,34 @@ namespace TsukiyukiMiyako.Scripts.Powers;
 public sealed class ReadyOrNotPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
-
     public override PowerStackType StackType => PowerStackType.Counter;
+
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    // 修复：ICombatState 对齐新版签名
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != base.Owner.Player)
         {
             return;
         }
+
         for (int i = 0; i < base.Amount; i++)
         {
-            CardModel cardModel = CardFactory.GetDistinctForCombat(player, from c in player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-                                                                           where c.CanonicalKeywords.Contains(MyKeywords.Equipment)
-                                                                           select c, 1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault()!;
+            CardModel cardModel = CardFactory.GetDistinctForCombat(
+                player,
+                from c in player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
+                where c.CanonicalKeywords.Contains(MyKeywords.Equipment)
+                select c,
+                1,
+                player.RunState.Rng.CombatCardGeneration).FirstOrDefault()!;
+
             if (cardModel != null)
             {
                 cardModel.SetToFreeThisTurn();
-                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
+                // 修复：照搬灾祸官方重载
+                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, player);
             }
         }
     }

@@ -24,7 +24,8 @@ public sealed class Economize : CustomCardModel
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<EconomizePower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
+        // 仅修复：补全官方参数
+        await PowerCmd.Apply<EconomizePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

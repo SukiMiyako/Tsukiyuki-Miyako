@@ -30,7 +30,13 @@ public sealed class BrokenRainFaith : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<BrokenRainFaithPower>(Owner.Creature, DynamicVars["BrokenRainFaithPower"].BaseValue, Owner.Creature, this);
+        // 🔥 唯一修复：补全官方标准 PlayerChoiceContext 参数
+        await PowerCmd.Apply<BrokenRainFaithPower>(
+            new BlockingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars["BrokenRainFaithPower"].BaseValue,
+            Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()

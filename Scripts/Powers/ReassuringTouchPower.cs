@@ -27,8 +27,8 @@ public sealed class ReassuringTouchPower : CustomPowerModel
         base.DynamicVars.Block.BaseValue = block;
     }
 
-    // 核心修正：下回合开始触发（你要的效果）
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    // 🔥 唯一修复：CombatState → ICombatState（对齐官方所有范例）
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side == base.Owner.Side)
         {

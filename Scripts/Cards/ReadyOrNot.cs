@@ -30,12 +30,12 @@ public sealed class ReadyOrNot : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<ReadyOrNotPower>(Owner.Creature, DynamicVars["ReadyOrNotPower"].BaseValue, Owner.Creature, this);
+        // 仅修复：补全官方必填参数
+        await PowerCmd.Apply<ReadyOrNotPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["ReadyOrNotPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        // 升级效果：费用-1
         base.EnergyCost.UpgradeBy(-1);
     }
 }

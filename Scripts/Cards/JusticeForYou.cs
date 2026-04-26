@@ -29,7 +29,8 @@ public sealed class JusticeForYou : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<JusticeForYouPower>(Owner.Creature, DynamicVars["JusticeForYouPower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方必填参数
+        await PowerCmd.Apply<JusticeForYouPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["JusticeForYouPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

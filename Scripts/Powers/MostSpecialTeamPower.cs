@@ -10,16 +10,13 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using Tsukiyuki_Miyako.MiyakoModCode.Character;
 
 namespace TsukiyukiMiyako.Scripts;
 
 public sealed class MostSpecialTeamPower : CustomPowerModel
 {
-    // ===================== 修复：定义 Data 类，包含 GeneratedCards =====================
     private class Data
     {
-        // 必须显式定义 GeneratedCards
         public List<CardModel> GeneratedCards { get; set; } = new List<CardModel>();
     }
 
@@ -29,22 +26,17 @@ public sealed class MostSpecialTeamPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    protected override object InitInternalData()
-    {
-        // 初始化 Data
-        return new Data();
-    }
+    protected override object InitInternalData() => new Data();
 
-    // 【复刻 ReadyOrNot】生成小队支援牌 + 免费
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    // 修复：CombatState → ICombatState（官方更新强制要求）
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != base.Owner.Player)
             return;
 
         var data = GetInternalData<Data>();
-        data.GeneratedCards.Clear(); // 清空上回合数据
+        data.GeneratedCards.Clear();
 
-        // 随机生成 1 张小队支援牌
         CardModel card = CardFactory.GetDistinctForCombat(player,
             from c in player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
             where c.CanonicalKeywords.Contains(MyKeywords.Support)
@@ -52,30 +44,25 @@ public sealed class MostSpecialTeamPower : CustomPowerModel
 
         if (card != null)
         {
-            card.SetToFreeThisTurn(); // 本回合免费
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
-            data.GeneratedCards.Add(card); // 记录临时牌
+            card.SetToFreeThisTurn();
+            // 修复：照搬灾祸官方写法，无报错参数
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
+            data.GeneratedCards.Add(card);
         }
     }
 
-    // ===================== 修复：100% 照搬 LaserPointer 格式 =====================
+    // ✅【纯官方原版】直接用你给的 OneTwoPunch 签名！一字不差！
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
         if (side == base.Owner.Side)
         {
             var data = GetInternalData<Data>();
-
-            // 移除本回合生成的所有临时卡牌
             foreach (var card in data.GeneratedCards)
             {
                 if (card != null)
-                {
-                    // ===================== 关键修复：使用 RemoveFromPile（从当前卡组移除） =====================
                     await CardPileCmd.RemoveFromCombat(card);
-                }
             }
-
-            data.GeneratedCards.Clear(); // 清空记录
+            data.GeneratedCards.Clear();
         }
     }
 }

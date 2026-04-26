@@ -21,9 +21,6 @@ public class IrresistibleOffer : CustomCardModel
     private const TargetType targetType = TargetType.Self;
     private const bool shouldShowInCardLibrary = true;
 
-    // 星级（无则删除此行）
-    // public override int CanonicalStarCost => 0;
-
     // 抽2张牌
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
@@ -47,7 +44,8 @@ public class IrresistibleOffer : CustomCardModel
 
         // 生成1张【动摇】加入弃牌堆
         CustomCardModel Doubt = CombatState!.CreateCard<Doubt>(Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Doubt, PileType.Discard, addedByPlayer: true));
+        // 修复：替换为官方原版写法
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Doubt, PileType.Discard, Owner, CardPilePosition.Random));
         await Cmd.Wait(0.5f);
     }
 

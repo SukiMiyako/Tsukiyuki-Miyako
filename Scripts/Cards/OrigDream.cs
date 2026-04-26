@@ -11,25 +11,19 @@ using Tsukiyuki_Miyako.MiyakoModCode.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Commands;
 
-
-
 namespace TsukiyukiMiyako.Scripts.Relics;
 
 [Pool(typeof(MiyakoRelicPool))]
 public class OrigDream : CustomRelicModel
 {
-    // 稀有度
     public override RelicRarity Rarity => RelicRarity.Common;
 
-    // 遗物的数值。替换本地化中的{Cards}。
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new CardsVar(1),
         new StarsVar(1),
         new DynamicVar("SenseiPower", 1)
     };
-
-
 
     public override decimal ModifyHandDraw(Player player, decimal count)
     {
@@ -39,21 +33,19 @@ public class OrigDream : CustomRelicModel
         }
         return count + base.DynamicVars.Cards.BaseValue;
     }
+
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
         if (room is CombatRoom)
         {
             Flash();
-            await PowerCmd.Apply<SenseiPower>(base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
+            // 修复：补全官方必填参数
+            await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
             await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
         }
     }
 
-
-    // 小图标
     public override string PackedIconPath => "res://Tsukiyuki Miyako/images/relics/orig_dream.png";
-    // 轮廓图标
     protected override string PackedIconOutlinePath => "res://Tsukiyuki Miyako/images/relics/orig_dream.png";
-    // 大图标
-    protected override string BigIconPath => "res://Tsukiyuki Miyako/images/relics/orid_dream.png";
+    protected override string BigIconPath => "res://Tsukiyuki Miyako/images/relics/orig_dream.png";
 }

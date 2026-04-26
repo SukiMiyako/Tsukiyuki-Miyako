@@ -21,7 +21,6 @@ public sealed class GentleDependence : CustomCardModel
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
-    // 1费 蓝色能力卡
     public GentleDependence()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
@@ -30,10 +29,10 @@ public sealed class GentleDependence : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<GentleDependencePower>(Owner.Creature, DynamicVars["GentleDependencePower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方参数
+        await PowerCmd.Apply<GentleDependencePower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["GentleDependencePower"].BaseValue, Owner.Creature, this);
     }
 
-    // 升级：1费 → 0费
     protected override void OnUpgrade()
     {
         base.EnergyCost.UpgradeBy(-1);

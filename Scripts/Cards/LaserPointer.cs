@@ -37,7 +37,8 @@ public sealed class LaserPointer : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<LaserPointerPower>(Owner.Creature, DynamicVars["LaserPointerPower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方必填参数
+        await PowerCmd.Apply<LaserPointerPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["LaserPointerPower"].BaseValue, Owner.Creature, this);
     }
 
     // 升级修改：层数+1，下一张→下两张

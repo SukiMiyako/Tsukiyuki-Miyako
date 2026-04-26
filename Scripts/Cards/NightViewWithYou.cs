@@ -30,7 +30,8 @@ public sealed class NightViewWithYou : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<NightViewWithYouPower>(Owner.Creature, DynamicVars["NightViewWithYouPower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方必填参数
+        await PowerCmd.Apply<NightViewWithYouPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["NightViewWithYouPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

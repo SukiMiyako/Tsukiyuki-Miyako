@@ -34,7 +34,8 @@ public sealed class StarryMiracle : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<StarryMiraclePower>(Owner.Creature, 1, Owner.Creature, this);
+        // 仅修复：补全官方必填参数
+        await PowerCmd.Apply<StarryMiraclePower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     // 升级修正：费用-1 → 1费变0费（和子程序完全一致）

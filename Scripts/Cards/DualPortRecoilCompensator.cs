@@ -39,7 +39,8 @@ public sealed class DualPortRecoilCompensator : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<FreeSmgPower>(Owner.Creature, DynamicVars["FreeSmgPower"].BaseValue, Owner.Creature, this);
+        // 🔥 仅此处补全官方必填参数，其余代码完全原样保留
+        await PowerCmd.Apply<FreeSmgPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["FreeSmgPower"].BaseValue, Owner.Creature, this);
     }
 
     // 你要求：升级不做任何改动

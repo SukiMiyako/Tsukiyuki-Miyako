@@ -23,8 +23,8 @@ public sealed class ShiningRabbitPower : CustomPowerModel
 
     protected override object InitInternalData() => new Data();
 
-    // 回合开始重置计数（照搬你的参考）
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    // 🔥 唯一修复：CombatState → ICombatState（官方强制更新）
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side == base.Owner.Side)
         {
@@ -33,10 +33,7 @@ public sealed class ShiningRabbitPower : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    // =====================
-    // 【严格复刻 MasterPlannerPower 出牌监听】
-    // 格式、判断、写法完全一致
-    // =====================
+    // 【严格复刻 MasterPlannerPower 出牌监听】完全不动
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         // 原版判断：只监听自己的牌

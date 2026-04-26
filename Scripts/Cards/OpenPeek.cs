@@ -14,11 +14,10 @@ namespace TsukiyukiMiyako.Scripts;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class OpenPeek : CustomCardModel
 {
-    // 【官方格式】变量全写正数！
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar>
     {
-        new PowerVar<SenseiPower>(1m),  // 消耗1层（正数）
-        new EnergyVar(2)               // 获得2能量
+        new PowerVar<SenseiPower>(1m),
+        new EnergyVar(2)
     };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new List<IHoverTip>
@@ -36,9 +35,8 @@ public sealed class OpenPeek : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-
-        // 【官方同款】加负号 = 扣除师生羁绊
-        await PowerCmd.Apply<SenseiPower>(Owner.Creature, -DynamicVars["SenseiPower"].BaseValue, Owner.Creature, this);
+        // 修复：补全官方必填参数
+        await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), Owner.Creature, -DynamicVars["SenseiPower"].BaseValue, Owner.Creature, this);
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 

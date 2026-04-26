@@ -51,7 +51,8 @@ public class SupportMiyu : CustomCardModel
             ValueProp.Move | ValueProp.Unblockable, // 真实生效：无视护盾/格挡
             this
         );
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target!, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+        // 仅修复：补全官方必填参数
+        await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }
 
     // 升级效果（保留：+3伤害）

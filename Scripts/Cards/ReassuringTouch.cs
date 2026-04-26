@@ -33,8 +33,10 @@ public sealed class ReassuringTouch : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         decimal blockAmount = await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await PowerCmd.Apply<SenseiPower>(Owner.Creature, 1, Owner.Creature, this);
-        var power = await PowerCmd.Apply<ReassuringTouchPower>(Owner.Creature, 1, Owner.Creature, this);
+        // 修复1：补全官方必填参数
+        await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
+        // 修复2：补全官方必填参数
+        var power = await PowerCmd.Apply<ReassuringTouchPower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
         power?.SetBlock(blockAmount);
     }
 

@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-// 严格对齐你提供的命名空间
 namespace TsukiyukiMiyako.Scripts.Powers;
 
 public sealed class GentleDependencePower : CustomPowerModel
@@ -15,21 +14,19 @@ public sealed class GentleDependencePower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // 模组标准图标路径
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // =====================
-    // 【100%复刻监听方法】获得师生羁绊时触发
-    // =====================
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    // 🔥【纯官方原版】直接复制你发我的虚空形态的方法签名！一字未改！
+    public override Task BeforePowerAmountChanged(PowerModel power, decimal amount, Creature target, Creature? applier, CardModel? cardSource)
     {
-        // 原版判断逻辑：数值增加 + 施加者是自己 + 是师生羁绊
-        if (!(amount <= 0m) && applier == base.Owner && power is SenseiPower)
+        // 官方原版逻辑：只有给自己加【师生羁绊】时，触发能量
+        if (target == base.Owner && power is SenseiPower && applier == base.Owner && amount > 0)
         {
             Flash();
-            // 核心效果：获得1点能量（对标AirDrop官方写法）
-            await PlayerCmd.GainEnergy(1, base.Owner.Player!);
+            PlayerCmd.GainEnergy(1, base.Owner.Player!).Wait();
         }
+
+        return Task.CompletedTask;
     }
 }
