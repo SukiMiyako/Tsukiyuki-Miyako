@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://o61gqj6k0spt"
-path="res://.godot/imported/tsukiyukimiyako-starry_mirecle_power.png-f91214ba04a33cf9313ff4f96880eedf.ctex"
+path="res://.godot/imported/tsukiyukimiyako-starry_miracle_power.png-b02b42f4c4dcf6d4b5b0ea6e776b9acd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tsukiyuki Miyako/images/powers/big/tsukiyukimiyako-starry_mirecle_power.png"
-dest_files=["res://.godot/imported/tsukiyukimiyako-starry_mirecle_power.png-f91214ba04a33cf9313ff4f96880eedf.ctex"]
+source_file="res://Tsukiyuki Miyako/images/powers/big/tsukiyukimiyako-starry_miracle_power.png"
+dest_files=["res://.godot/imported/tsukiyukimiyako-starry_miracle_power.png-b02b42f4c4dcf6d4b5b0ea6e776b9acd.ctex"]
 
 [params]
 

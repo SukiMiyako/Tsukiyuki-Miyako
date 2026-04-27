@@ -1,7 +1,8 @@
-[gd_scene load_steps=1041 format=3 uid="uid://k27lmmj0wsd6"]
+[gd_scene load_steps=1042 format=3 uid="uid://nfl80mc0f662"]
 
-[ext_resource type="Script" uid="uid://cxfyv5unt7f8u" path="res://src/Core/Nodes/RestSite/NRestSiteCharacter.cs" id="1_ntg5b"]
+[ext_resource type="Script" uid="uid://cxfyv5unt7f8u" path="res://src/Core/Nodes/RestSite/NRestSiteCharacter.cs" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://brmfq202qkfmh" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0000.png" id="2_3p5y2"]
+[ext_resource type="PackedScene" uid="uid://ccy7i7u4j7rxy" path="res://Tsukiyuki Miyako/scenes/ui/selection_reticle.tscn" id="2_reticle"]
 [ext_resource type="Texture2D" uid="uid://dreepana82kcg" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0001.png" id="3_mihy7"]
 [ext_resource type="Texture2D" uid="uid://dyj0sfrhyjiog" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0002.png" id="4_imwtc"]
 [ext_resource type="Texture2D" uid="uid://c1w3ggrgkm0dn" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0003.png" id="5_tiki2"]
@@ -191,7 +192,6 @@
 [ext_resource type="Texture2D" uid="uid://dx0o2n21705au" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0187.png" id="189_5s6cu"]
 [ext_resource type="Texture2D" uid="uid://yutnris644a8" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0188.png" id="190_1lo54"]
 [ext_resource type="Texture2D" uid="uid://b6m5nl26wuqj0" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0189.png" id="191_1dsxr"]
-[ext_resource type="PackedScene" uid="uid://ccy7i7u4j7rxy" path="res://Tsukiyuki Miyako/scenes/ui/selection_reticle.tscn" id="191_03wao"]
 [ext_resource type="Texture2D" uid="uid://yb2vs2ymf0lf" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0190.png" id="192_hkv7m"]
 [ext_resource type="Texture2D" uid="uid://qqq01kapn7an" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0191.png" id="193_72poy"]
 [ext_resource type="Texture2D" uid="uid://c6l2nyww5k2m7" path="res://Tsukiyuki Miyako/image/rest_site/rest_site0192.png" id="194_eyg65"]
@@ -1039,8 +1039,9 @@
 [ext_resource type="Texture2D" uid="uid://dyvinu31yptxd" path="res://Tsukiyuki Miyako/image/rest_site/rest_site1034.png" id="1036_opeds"]
 [ext_resource type="Texture2D" uid="uid://ckrmk66w6vnm6" path="res://Tsukiyuki Miyako/image/rest_site/rest_site1035.png" id="1037_eu8e0"]
 [ext_resource type="Texture2D" uid="uid://bwey8lugny7c3" path="res://Tsukiyuki Miyako/image/rest_site/rest_site1036.png" id="1038_qt1ll"]
+[ext_resource type="Script" uid="uid://d3rqw1m151sde" path="res://src/Core/Nodes/Combat/NSelectionReticle.cs" id="1040_mihy7"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_default"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_miyako"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -4156,7 +4157,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"glory_loop",
-"speed": 60.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7272,7 +7273,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hive_loop",
-"speed": 60.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -10391,17 +10392,17 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="TsukiyukiMiyakoRestSiteTemplate" type="Node2D"]
+[node name="TestCharacterRestSite" type="Node2D"]
 position = Vector2(-2, 42)
 scale = Vector2(0.76, 0.76)
-script = ExtResource("1_ntg5b")
+script = ExtResource("1_script")
 
 [node name="Visuals" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-22, -39)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_default")
-animation = &"glory_loop"
+sprite_frames = SubResource("SpriteFrames_miyako")
+animation = &"overgrowth_loop"
 autoplay = "overgrowth_loop"
 
 [node name="ControlRoot" type="Control" parent="."]
@@ -10412,13 +10413,14 @@ offset_top = -100.0
 offset_right = 30.0
 offset_bottom = -100.0
 
-[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("191_03wao")]
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("2_reticle")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -337.0
 offset_top = -289.0
 offset_right = 341.0
 offset_bottom = 409.0
+script = ExtResource("1040_mihy7")
 
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true

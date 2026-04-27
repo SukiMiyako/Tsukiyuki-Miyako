@@ -31,6 +31,7 @@ public class EnergyGal : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 修复：补全官方参数
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<EnergyGalPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, DynamicVars[_energyPerTurnKey].BaseValue, base.Owner.Creature, this);
     }
 

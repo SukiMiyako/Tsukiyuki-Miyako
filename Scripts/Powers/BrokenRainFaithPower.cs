@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
@@ -7,10 +5,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
+using TsukiyukiMiyako.Scripts.Cards;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -29,23 +26,22 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
 
     protected override object InitInternalData() => new Data();
 
-    // ===================== 免费卡牌逻辑（原版虚空形态写法） =====================
-    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
+    // ✅ 唯一费用修改：仅前N张牌 耗能=0（无叠加、无无限免费）
+    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
-        if (ShouldSkip(card)) return false;
+        // 严格遵循限制：超出数量不免费
+        if (ShouldSkip(card))
+            return false;
+
         modifiedCost = 0m;
         return true;
     }
 
-    public override bool TryModifyStarCost(CardModel card, decimal originalCost, out decimal modifiedCost)
-    {
-        modifiedCost = originalCost;
-        if (ShouldSkip(card)) return false;
-        modifiedCost = 0m;
-        return true;
-    }
+    // ✅ 删除所有冲突的费用修改（杜绝叠加免费）
+    // 移除：TryModifyEnergyCostInCombatLate / TryModifyStarCost
 
+    // ✅ 原版计数逻辑（完整保留，控制前N张免费）
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature == base.Owner && !cardPlay.IsAutoPlay && cardPlay.IsLastInSeries)
@@ -55,6 +51,7 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         return Task.CompletedTask;
     }
 
+    // ✅ 原版回合重置（完整保留）
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side == base.Owner.Side)
@@ -62,6 +59,7 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         return Task.CompletedTask;
     }
 
+    // ✅ 原版限制逻辑（完整保留，核心！）
     private bool ShouldSkip(CardModel card)
     {
         if (card.Owner.Creature != base.Owner) return true;
@@ -69,10 +67,11 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         return GetInternalData<Data>().CardsPlayedThisTurn >= base.Amount;
     }
 
-    // ===================== 1:1 抄灾祸的卡牌生成写法（完美适配） =====================
+    // ✅ 原版抽动摇逻辑（完整保留）
     public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
-        if (side != base.Owner.Side) return;
+        if (side != base.Owner.Side || base.Owner.Player == null || combatState == null)
+            return;
 
         var data = GetInternalData<Data>();
         data.TurnsCounter++;
@@ -81,24 +80,8 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
         {
             data.TurnsCounter = 0;
             Flash();
-
-            // 完全照搬灾祸的 GetForCombat + AddGeneratedCardToCombat 写法
-            List<CardModel> doubtCards = CardFactory.GetForCombat(
-                base.Owner.Player!,
-                from c in base.Owner.Player!.Character.CardPool.GetUnlockedCards(
-                    base.Owner.Player.UnlockState,
-                    base.Owner.Player.RunState.CardMultiplayerConstraint)
-                where c is Doubt
-                select c,
-                1,
-                base.Owner.Player.RunState.Rng.CombatCardGeneration
-            ).ToList();
-
-            foreach (CardModel item in doubtCards)
-            {
-                // 灾祸原版写法：参数是 卡牌, 牌堆, 玩家
-                await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Draw, base.Owner.Player);
-            }
+            CardModel doubtCard = combatState.CreateCard<Doubt>(base.Owner.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(doubtCard, PileType.Draw, base.Owner.Player, CardPilePosition.Random);
         }
     }
 }

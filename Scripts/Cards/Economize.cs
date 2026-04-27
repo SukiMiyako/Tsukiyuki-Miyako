@@ -25,6 +25,7 @@ public sealed class Economize : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 仅修复：补全官方参数
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<EconomizePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
