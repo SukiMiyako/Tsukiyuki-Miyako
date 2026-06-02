@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+.SpineGodotExtension4.5.1/
+.vscode/
+.github/
