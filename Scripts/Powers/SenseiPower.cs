@@ -44,9 +44,9 @@ public sealed class SenseiPower : CustomPowerModel
         return base.Amount;
     }
 
-    public override decimal ModifyOrbValue(Player player, decimal value)
+    public override decimal ModifyOrbValue(OrbModel orb, decimal value)
     {
-        if (base.Owner.Player != player)
+        if (base.Owner.Player != orb.Owner)
             return value;
 
         return Math.Max(value + (decimal)base.Amount, 0m);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
@@ -40,9 +41,9 @@ public sealed class PleaseStayLongerPower : CustomPowerModel
     }
 
     // 回合结束自动移除
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (side == Owner.Side)
+        if (participants.Contains(Owner))
         {
             await PowerCmd.Remove(this);
         }

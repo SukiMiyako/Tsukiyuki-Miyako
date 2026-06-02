@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -17,9 +19,9 @@ public sealed class DoubtPower : CustomPowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
 
     // 下回合开始触发（对标 ReassuringTouchPower）
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side == base.Owner.Side)
+        if (participants.Contains(base.Owner))
         {
             Flash();
             // 失去能量（对标 Void 官方方法）

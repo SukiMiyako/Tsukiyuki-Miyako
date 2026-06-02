@@ -33,7 +33,7 @@ public sealed class Doubt : CustomCardModel
     }
 
     // 回合结束留在手牌触发
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         await Cmd.Wait(0.25f);
         // 🔥 唯一修复：补全官方标准 PlayerChoiceContext 参数

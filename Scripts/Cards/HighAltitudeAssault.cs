@@ -46,7 +46,7 @@ public sealed class HighAltitudeAssault : CustomCardModel
             .Execute(choiceContext);
 
         // 核心：若击杀任意敌人 → 获得3点能量
-        if (attackResult.Results.Any(r => r.WasTargetKilled))
+        if (attackResult.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, base.Owner);
         }

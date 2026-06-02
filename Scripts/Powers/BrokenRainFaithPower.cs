@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
@@ -52,7 +53,7 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
     }
 
     // ✅ 原版回合重置（完整保留）
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side == base.Owner.Side)
             GetInternalData<Data>().CardsPlayedThisTurn = 0;
@@ -68,7 +69,7 @@ public sealed class BrokenRainFaithPower : CustomPowerModel
     }
 
     // ✅ 原版抽动摇逻辑（完整保留）
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side || base.Owner.Player == null || combatState == null)
             return;

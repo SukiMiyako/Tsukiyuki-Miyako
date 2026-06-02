@@ -29,7 +29,6 @@ public sealed class AmmoSurplusPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    public override bool IsInstanced => true;
     // 动态变量：获得1辉星
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new StarsVar(1) };
 

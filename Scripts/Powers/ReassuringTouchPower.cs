@@ -18,7 +18,6 @@ public sealed class ReassuringTouchPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new List<IHoverTip>() { HoverTipFactory.Static(StaticHoverTip.Block) };
-    public override bool IsInstanced => true;
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar>() { new BlockVar(0m, ValueProp.Unpowered) };
 
     public void SetBlock(decimal block)
@@ -28,9 +27,9 @@ public sealed class ReassuringTouchPower : CustomPowerModel
     }
 
     // 🔥 唯一修复：CombatState → ICombatState（对齐官方所有范例）
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side == base.Owner.Side)
+        if (participants.Contains(base.Owner))
         {
             Flash();
             await CreatureCmd.GainBlock(base.Owner, base.DynamicVars.Block, null);

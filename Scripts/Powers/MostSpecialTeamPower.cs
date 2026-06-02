@@ -5,6 +5,7 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Factories;
@@ -51,10 +52,9 @@ public sealed class MostSpecialTeamPower : CustomPowerModel
         }
     }
 
-    // ✅【纯官方原版】直接用你给的 OneTwoPunch 签名！一字不差！
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (side == base.Owner.Side)
+        if (participants.Contains(base.Owner))
         {
             var data = GetInternalData<Data>();
             foreach (var card in data.GeneratedCards)
