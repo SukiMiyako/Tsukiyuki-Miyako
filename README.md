@@ -61,6 +61,7 @@
 
 - [Slay the Spire 2](https://store.steampowered.com/app/2864780/Slay_the_Spire_2/)
 - [BaseLib](https://github.com/Alchyr/BaseLib-StS2) —— 社区 Mod 框架
+- [sts2_custom_character_sprite_kit_bdd](https://wwarj.lanzout.com/i7lYE3l5w4hi)
 
 ### 步骤
 
