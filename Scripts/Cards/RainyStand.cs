@@ -30,7 +30,7 @@ public sealed class RainyStand : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        // 仅修复：补全官方必填参数
+        // 仅修复：
         await PowerCmd.Apply<RainyStandPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["RainyStandPower"].BaseValue, Owner.Creature, this);
     }
 

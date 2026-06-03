@@ -45,7 +45,6 @@ public sealed class FragileBullet : CustomCardModel
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!)
             .Execute(choiceContext);
 
-        // 修复：补全官方参数
         await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, DynamicVars["VulnerablePower"].BaseValue, Owner.Creature, this);
     }
 

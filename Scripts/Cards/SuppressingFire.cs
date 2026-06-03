@@ -58,7 +58,7 @@ public class SuppressingFire : CustomCardModel
         int amount = base.DynamicVars["Power"].IntValue;
         foreach (Creature enemy in base.CombatState!.HittableEnemies)
         {
-            // 仅修复：补全官方必填参数
+            // 仅修复：
             await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), enemy, amount, base.Owner.Creature, this);
         }
     }

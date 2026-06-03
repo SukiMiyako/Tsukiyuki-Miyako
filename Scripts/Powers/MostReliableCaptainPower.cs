@@ -25,13 +25,13 @@ public sealed class MostReliableCaptainPower : CustomPowerModel
         return new Data();
     }
 
-    // 出牌监听（照搬你的模板）
+    // 出牌监听（）
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != base.Owner.Player)
             return;
 
-        // 判断【配备】标签（照搬你的模板）
+        // 判断标签（）
         if (cardPlay.Card.CanonicalKeywords.Contains(MyKeywords.Equipment))
         {
             var data = GetInternalData<Data>();
@@ -42,9 +42,7 @@ public sealed class MostReliableCaptainPower : CustomPowerModel
                 data.EquipmentCardCount = 0;
                 Flash();
 
-                // =====================
-                // 【严格对标 GainStar 写法】获得弹夹
-                // =====================
+                // 获得弹夹
                 await PlayerCmd.GainStars(1, base.Owner.Player);
             }
         }

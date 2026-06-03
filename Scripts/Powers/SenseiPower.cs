@@ -12,9 +12,8 @@ using System;
 namespace TsukiyukiMiyako.Scripts;
 
 /// <summary>
-/// 专注护盾 - 二合一核心BUFF
-/// 效果：每层 = 常驻格挡加成 + 充能球集中效果 | 可消耗资源
-/// 基于 UnmovablePower 原版逻辑修改，无报错、无乱码
+/// Dual-purpose buff: each stack adds flat Block to card/monster-move block actions
+/// and acts as Focus for powered orbs. Based on UnmovablePower.
 /// </summary>
 public sealed class SenseiPower : CustomPowerModel
 {

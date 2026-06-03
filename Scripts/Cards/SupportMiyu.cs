@@ -51,7 +51,7 @@ public class SupportMiyu : CustomCardModel
             ValueProp.Move | ValueProp.Unblockable, // 真实生效：无视护盾/格挡
             this
         );
-        // 仅修复：补全官方必填参数
+        // 仅修复：
         await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }
 

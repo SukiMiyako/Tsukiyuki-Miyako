@@ -16,14 +16,13 @@ public sealed class RainyStandPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // 监听抽牌事件（完全复刻 IterationPower）
+    // 监听抽牌事件（ IterationPower）
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         // 判定：自己抽到状态牌
         if (card.Owner.Creature == base.Owner && card.Type == CardType.Status)
         {
             Flash();
-            // 【严格使用你提供的官方原版格挡代码】
             await CreatureCmd.GainBlock(base.Owner, base.Amount, ValueProp.Unpowered, null);
         }
     }

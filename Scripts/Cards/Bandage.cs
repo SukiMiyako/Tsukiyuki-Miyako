@@ -21,7 +21,7 @@ public sealed class Bandage : CustomCardModel
     private const TargetType targetType = TargetType.Self;
     private const bool shouldShowInCardLibrary = false;
 
-    // 回血2点（对标你的回血变量）
+    // 回血2点（你的回血变量）
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HealVar(4m),

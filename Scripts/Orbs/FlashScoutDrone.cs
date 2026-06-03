@@ -39,15 +39,15 @@ public class FlashScoutDrone : CustomOrbModel
         await Passive(choiceContext, null);
     }
 
-    // ==============================
-    // 【完整保留】原被动：随机伤害+格挡
-    // 【额外添加】黑暗球成长机制
-    // ==============================
+    // =========
+    // 原被动：随机伤害+格挡
+    // 黑暗球成长机制
+    // =========
     public override async Task Passive(PlayerChoiceContext choiceContext, Creature? target)
     {
         Trigger();
 
-        // 1. 【原功能保留】随机单体伤害
+        // 1. 随机单体伤害
         List<Creature> enemies = CombatState.HittableEnemies.Where(e => e.IsHittable).ToList();
         if (enemies.Any())
         {
@@ -55,18 +55,18 @@ public class FlashScoutDrone : CustomOrbModel
             await CreatureCmd.Damage(choiceContext, new[] { randomTarget }, PassiveVal, ValueProp.Unpowered, Owner.Creature);
         }
 
-        // 2. 【原功能保留】格挡
+        // 2. 格挡
         await CreatureCmd.GainBlock(Owner.Creature, BlockVal, ValueProp.Unpowered, null);
 
-        // 3. 【新增】黑暗球被动：成长激发伤害（每次+3）
+        // 3. 黑暗球被动：成长激发伤害（每次+3）
         _evokeVal += 3;
         NCombatRoom.Instance?.GetCreatureNode(Owner.Creature)?.OrbManager?.UpdateVisuals(OrbEvokeType.None);
     }
 
-    // ==============================
-    // 【替换】激发：黑暗球逻辑（打最低血量敌人）
+    // =========
+    // 激发：黑暗球逻辑（打最低血量敌人）
     // 删掉了原全体伤害，仅改目标
-    // ==============================
+    // =========
     public override async Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext choiceContext)
     {
         IReadOnlyList<Creature> enemies = CombatState.HittableEnemies;

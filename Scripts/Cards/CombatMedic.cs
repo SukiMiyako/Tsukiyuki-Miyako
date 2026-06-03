@@ -36,13 +36,12 @@ public sealed class CombatMedic : CustomCardModel
 
     public CombatMedic() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }
 
-    // 核心：完全复刻Compact的转化逻辑
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 施法动画
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        // 获取手牌中**所有可转化的状态牌**（和Compact逻辑一致）
+        // Collect all transformable status cards from hand.
         List<CardModel> statusCards = PileType.Hand.GetPile(Owner).Cards
             .Where(c => c != null && c.IsTransformable && c.Type == CardType.Status)
             .ToList();
@@ -61,7 +60,7 @@ public sealed class CombatMedic : CustomCardModel
         }
     }
 
-    // 升级：费用 2→1（对标Dualcast升级逻辑）
+    // Upgrade: adds Innate keyword.
     protected override void OnUpgrade()
     {
         AddKeyword(CardKeyword.Innate);

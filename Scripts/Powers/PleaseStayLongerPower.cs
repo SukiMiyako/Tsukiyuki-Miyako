@@ -19,7 +19,7 @@ public sealed class PleaseStayLongerPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // 核心：修改【技能牌】播放次数（照搬连环拳逻辑）
+    // 核心：修改播放次数（连环拳逻辑）
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         if (card.Owner.Creature != Owner)

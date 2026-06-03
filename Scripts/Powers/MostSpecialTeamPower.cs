@@ -29,7 +29,7 @@ public sealed class MostSpecialTeamPower : CustomPowerModel
 
     protected override object InitInternalData() => new Data();
 
-    // 修复：CombatState → ICombatState（官方更新强制要求）
+    // （）
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != base.Owner.Player)
@@ -46,7 +46,6 @@ public sealed class MostSpecialTeamPower : CustomPowerModel
         if (card != null)
         {
             card.SetToFreeThisTurn();
-            // 修复：照搬灾祸官方写法，无报错参数
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
             data.GeneratedCards.Add(card);
         }

@@ -39,7 +39,7 @@ public class OrigDream : CustomRelicModel
         if (room is CombatRoom)
         {
             Flash();
-            // 修复：补全官方必填参数
+            // 修复：
             await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
             await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
         }

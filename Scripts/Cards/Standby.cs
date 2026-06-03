@@ -37,9 +37,9 @@ public class Standby : CustomCardModel
     {
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        // 修复1：补全官方必填参数
+        // 修复1：
         await PowerCmd.Apply<EnergyNextTurnPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars.Energy.BaseValue, base.Owner.Creature, this);
-        // 修复2：补全官方必填参数
+        // 修复2：
         await PowerCmd.Apply<StarNextTurnPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars.Stars.BaseValue, base.Owner.Creature, this);
     }
 

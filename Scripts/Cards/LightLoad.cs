@@ -21,7 +21,7 @@ public sealed class LightLoad : CustomCardModel
     // 清除乱码，标准格式变量：1点能量
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> { new EnergyVar(1) };
 
-    // 悬浮提示（照抄原版）
+    // 悬浮提示（原版）
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new List<IHoverTip> { base.EnergyHoverTip };
 
     // 图片路径（统一格式）
@@ -33,7 +33,7 @@ public sealed class LightLoad : CustomCardModel
     {
     }
 
-    // 核心效果（1:1照抄星位序列）
+    // 核心效果（1:1星位序列）
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

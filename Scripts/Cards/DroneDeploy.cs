@@ -15,7 +15,7 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public class DroneDeploy : CustomCardModel
 {
-    // 核心修改：2费 → 1费
+    // 2费 → 1费
     private const int energyCost = 1;
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Rare;
@@ -42,16 +42,14 @@ public class DroneDeploy : CustomCardModel
         // 获得闪光无人机（保留）
         await OrbCmd.Channel<FlashScoutDrone>(choiceContext, Owner);
 
-        // 生成【无人机突袭】（同步升级）
+        // 生成（同步升级）
         var assaultCard = CombatState!.CreateCard<DroneAssault>(Owner);
         if (IsUpgraded) CardCmd.Upgrade(assaultCard);
-        // 🔥 仅修复：替换旧参数为官方原版写法
         await CardPileCmd.AddGeneratedCardToCombat(assaultCard, PileType.Hand, Owner, CardPilePosition.Random);
 
-        // 新增：生成【无人机同频】（同步升级）到手牌
+        // 新增：生成（同步升级）到手牌
         var syncCard = CombatState!.CreateCard<DroneSync>(Owner);
         if (IsUpgraded) CardCmd.Upgrade(syncCard);
-        // 🔥 仅修复：替换旧参数为官方原版写法
         await CardPileCmd.AddGeneratedCardToCombat(syncCard, PileType.Hand, Owner, CardPilePosition.Random);
     }
 

@@ -29,7 +29,6 @@ public sealed class AirDrop : CustomCardModel
     {
     }
 
-    // 🔥 100% 照搬官方 Reave 卡牌的写法！一字不差！
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);

@@ -18,13 +18,13 @@ public sealed class DoubtPower : CustomPowerModel
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // 下回合开始触发（对标 ReassuringTouchPower）
+    // 下回合开始触发（ ReassuringTouchPower）
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (participants.Contains(base.Owner))
         {
             Flash();
-            // 失去能量（对标 Void 官方方法）
+            // 失去能量（ Void 官方方法）
             await PlayerCmd.LoseEnergy(2, base.Owner.Player!);
             // 触发后移除
             await PowerCmd.Remove(this);

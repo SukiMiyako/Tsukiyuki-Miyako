@@ -26,7 +26,7 @@ public sealed class DroneSyncPower : CustomPowerModel
         if (cardPlay.Card.Type != CardType.Attack)
             return;
 
-        // 完全照搬你给的 LoopPower 写法
+        // 你给的 LoopPower 写法
         if (Owner.Player!.PlayerCombatState!.OrbQueue.Orbs.Count != 0)
         {
             await OrbCmd.Passive(context, Owner.Player.PlayerCombatState.OrbQueue.Orbs[0], null);

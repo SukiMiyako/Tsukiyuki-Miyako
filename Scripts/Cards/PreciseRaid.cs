@@ -47,7 +47,7 @@ public class PreciseRaid : CustomCardModel
         int amount = base.DynamicVars["Power"].IntValue;
         foreach (Creature enemy in base.CombatState!.HittableEnemies)
         {
-            // 修复：补全官方必填参数
+            // 修复：
             await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), enemy, amount, base.Owner.Creature, this);
         }
     }

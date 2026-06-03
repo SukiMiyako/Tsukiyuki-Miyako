@@ -14,14 +14,11 @@ public sealed class JusticeForYouPower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    // 你的标准图标路径（完全不动）
+    // 图标路径
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // =====================
-    // 【完全照搬 IterationPower】抽牌后触发
-    // 方法名、参数、结构 100% 一致
-    // =====================
+    // 抽牌后触发
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         // 原版判断：自己的牌 + 状态牌
@@ -33,7 +30,7 @@ public sealed class JusticeForYouPower : CustomPowerModel
                 return;
 
             Flash();
-            // 直接转换为 SRT的正义（无升级，无报错）
+            // 直接转换为 SRT的正义（无升级，）
             await CardCmd.TransformTo<SrtJustice>(card);
         }
     }

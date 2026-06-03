@@ -39,7 +39,7 @@ public sealed class SneakStart : CustomCardModel
         {
             await CardCmd.Exhaust(choiceContext, cardModel);
         }
-        // 仅修复：补全官方必填参数
+        // 仅修复：
         await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
     }
 

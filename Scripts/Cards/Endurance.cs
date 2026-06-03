@@ -31,7 +31,6 @@ public class Endurance : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 仅修复：补全官方参数
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<EndurancePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, DynamicVars[_starsPerTurnKey].BaseValue, base.Owner.Creature, this);
     }

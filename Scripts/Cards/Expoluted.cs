@@ -46,7 +46,6 @@ public class Expoluted : CustomCardModel
             Expoluted.Add(combatState.CreateCard<C4>(owner));
         }
 
-        // 修复：替换为官方参数
         await CardPileCmd.AddGeneratedCardsToCombat(Expoluted, PileType.Draw, owner, CardPilePosition.Random);
         return Expoluted;
     }

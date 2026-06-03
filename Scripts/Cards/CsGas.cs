@@ -53,7 +53,7 @@ public class CsGas : CustomCardModel
         int amount = base.DynamicVars["Power"].IntValue;
         foreach (Creature enemy in base.CombatState!.HittableEnemies)
         {
-            // 🔥 唯一修复：补全官方标准 PlayerChoiceContext 参数（全模组统一规范）
+            // （全模组统一规范）
             await PowerCmd.Apply<VulnerablePower>(
                 new BlockingPlayerChoiceContext(),
                 enemy,

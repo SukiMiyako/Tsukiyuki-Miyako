@@ -26,7 +26,7 @@ public sealed class ReassuringTouchPower : CustomPowerModel
         base.DynamicVars.Block.BaseValue = block;
     }
 
-    // 🔥 唯一修复：CombatState → ICombatState（对齐官方所有范例）
+    // （对齐）
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (participants.Contains(base.Owner))

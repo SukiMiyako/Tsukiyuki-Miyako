@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 
-// 你的标准模组命名空间
+// 模组命名空间
 namespace TsukiyukiMiyako.Scripts;
 
 public sealed class WeAreRabbitsPower : CustomPowerModel
@@ -12,13 +12,11 @@ public sealed class WeAreRabbitsPower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // 你的模组图标路径
+    // 图标路径
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // =====================
-    // 【完全复刻官方减费逻辑】仅能力牌费用-1
-    // =====================
+    // 仅能力牌费用-1
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
@@ -27,7 +25,7 @@ public sealed class WeAreRabbitsPower : CustomPowerModel
         if (card.Owner.Creature != base.Owner)
             return false;
 
-        // 只对【能力牌 Power】生效
+        // 只对生效
         if (card.Type != CardType.Power)
             return false;
 

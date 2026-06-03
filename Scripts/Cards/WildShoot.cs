@@ -46,7 +46,7 @@ public class WildShoot : CustomCardModel
             .Execute(choiceContext);
 
         CardModel woundCard = base.CombatState!.CreateCard<Wound>(base.Owner);
-        // 修复：替换为官方标准参数
+        // 修复：替换为参数
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(woundCard, PileType.Discard, Owner, CardPilePosition.Random));
     }
 

@@ -22,7 +22,7 @@ public sealed class HighAltitudeAssault : CustomCardModel
     private const TargetType targetType = TargetType.AllEnemies;
     private const bool shouldShowInCardLibrary = true;
 
-    // 核心变量：21点群体伤害 + 击杀获得3能量（对标Sunder）
+    // 核心变量：21点群体伤害 + 击杀获得3能量（Sunder）
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(21m, ValueProp.Move),
@@ -36,7 +36,7 @@ public sealed class HighAltitudeAssault : CustomCardModel
     {
     }
 
-    // 打出逻辑：群体伤害 + 击杀回费（完全复刻Sunder判定）
+    // 打出逻辑：群体伤害 + 击杀回费（Sunder判定）
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 群体攻击（无特效，沿用你之前的群攻写法）

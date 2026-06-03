@@ -49,7 +49,7 @@ public sealed class RabbitSquadAssemble : CustomCardModel
                 CardCmd.Upgrade(item);
             }
             item.SetToFreeThisTurn();
-            // 🔥 仅修复此处：替换为官方标准参数
+            // 仅修复此处：替换为参数
             await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Hand, Owner, CardPilePosition.Random);
         }
     }

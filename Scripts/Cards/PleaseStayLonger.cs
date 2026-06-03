@@ -31,7 +31,7 @@ public sealed class PleaseStayLonger : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 修复：补全官方必填参数
+        // 修复：
         await PowerCmd.Apply<PleaseStayLongerPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["SkillPlays"].BaseValue, Owner.Creature, this);
     }
 

@@ -12,7 +12,7 @@ namespace TsukiyukiMiyako.Scripts;
 
 public sealed class ShiningRabbitPower : CustomPowerModel
 {
-    // 出牌计数（照搬你的参考代码）
+    // 出牌计数（）
     private class Data
     {
         public int CardsPlayedThisTurn;
@@ -25,7 +25,7 @@ public sealed class ShiningRabbitPower : CustomPowerModel
 
     protected override object InitInternalData() => new Data();
 
-    // 🔥 唯一修复：CombatState → ICombatState（官方强制更新）
+    // （）
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side == base.Owner.Side)
@@ -35,7 +35,7 @@ public sealed class ShiningRabbitPower : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    // 【严格复刻 MasterPlannerPower 出牌监听】完全不动
+    // 完全不动
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         // 原版判断：只监听自己的牌
@@ -49,7 +49,7 @@ public sealed class ShiningRabbitPower : CustomPowerModel
         if (data.CardsPlayedThisTurn < base.Amount)
         {
             Flash();
-            // 官方升级卡牌（照搬Armaments）
+            // 官方升级卡牌（Armaments）
             CardCmd.Upgrade(cardPlay.Card);
         }
 

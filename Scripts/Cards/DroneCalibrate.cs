@@ -24,7 +24,7 @@ public sealed class DroneCalibrate : CustomCardModel
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInCardLibrary = true;
 
-    // 球体提示：显示闪光无人机（对标特斯拉线圈）
+    // 球体提示：显示闪光无人机（特斯拉线圈）
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromOrb<FlashScoutDrone>()];
 
@@ -33,26 +33,26 @@ public sealed class DroneCalibrate : CustomCardModel
 
     public DroneCalibrate() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }
 
-    // 核心：模仿特斯拉线圈 → 触发无人机被动3次
+    // 核心：特斯拉线圈 → 触发无人机被动3次
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 空目标判定（对标特斯拉线圈）
+        // 空目标判定（特斯拉线圈）
         ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
 
         // 施法动画（沿用无人机突袭的动画）
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        // 获取所有【闪光无人机】（对标特斯拉线圈获取闪电球）
+        // 获取所有（特斯拉线圈获取闪电球）
         List<FlashScoutDrone> drones = Owner.PlayerCombatState!.OrbQueue.Orbs
             .OfType<FlashScoutDrone>()
             .ToList();
 
-        // 核心逻辑：对目标触发【3次】无人机被动
+        // 核心逻辑：对目标触发无人机被动
         for (int i = 0; i < 3; i++)
         {
             foreach (FlashScoutDrone drone in drones)
             {
-                // 完全照搬特斯拉线圈：触发球体被动 Passive
+                // 特斯拉线圈：触发球体被动 Passive
                 await OrbCmd.Passive(choiceContext, drone, cardPlay.Target);
             }
         }

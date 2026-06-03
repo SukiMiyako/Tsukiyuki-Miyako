@@ -39,7 +39,7 @@ public class TargetSelect : CustomCardModel
     // 打出时的效果逻辑
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 仅修复：补全官方必填参数
+        // 仅修复：
         await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }
 

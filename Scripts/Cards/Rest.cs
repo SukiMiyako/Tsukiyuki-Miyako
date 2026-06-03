@@ -36,7 +36,7 @@ public class Rest : CustomCardModel
 
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
 
-        // 仅修复：补全官方必填参数
+        // 仅修复：
         await PowerCmd.Apply<RestPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, 2, base.Owner.Creature, this);
 
         PlayerCmd.EndTurn(base.Owner, canBackOut: false);

@@ -59,7 +59,6 @@ public sealed class ClaymoreMine : CustomCardModel
             damage *= 2;
         }
 
-        // 无任何特效、无音效、无HitFx
         await DamageCmd.Attack(damage)
             .FromCard(this)
             .Targeting(cardPlay.Target)

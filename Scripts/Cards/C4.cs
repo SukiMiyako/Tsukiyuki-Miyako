@@ -46,7 +46,6 @@ public class C4 : CustomCardModel
             CardCmd.Upgrade(Expoluted);
         }
 
-        // 🔥 唯一修复：1:1 复刻官方Reave写法，删除过时bool参数
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Expoluted, PileType.Draw, Owner, CardPilePosition.Random));
         await Cmd.Wait(0.5f);
     }

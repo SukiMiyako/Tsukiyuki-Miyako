@@ -36,7 +36,6 @@ public sealed class Doubt : CustomCardModel
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         await Cmd.Wait(0.25f);
-        // 🔥 唯一修复：补全官方标准 PlayerChoiceContext 参数
         await PowerCmd.Apply<DoubtPower>(
             new BlockingPlayerChoiceContext(),
             base.Owner.Creature,

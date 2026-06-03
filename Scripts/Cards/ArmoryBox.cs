@@ -46,7 +46,7 @@ public sealed class ArmoryBox : CustomCardModel
                 CardCmd.Upgrade(item);
             }
             item.SetToFreeThisTurn();
-            // 🔥 核心修复：1:1 照搬官方Reave写法，删除旧参数
+            // 核心修复：1:1 官方Reave写法，删除
             await CardPileCmd.AddGeneratedCardToCombat(item, PileType.Hand, base.Owner, CardPilePosition.Random);
         }
     }

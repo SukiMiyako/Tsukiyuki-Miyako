@@ -46,7 +46,6 @@ public class FlashBang : CustomCardModel
         int amount = base.DynamicVars["Power"].IntValue;
         foreach (Creature enemy in base.CombatState!.HittableEnemies)
         {
-            // 修复：补全官方参数
             await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), enemy, amount, base.Owner.Creature, this);
         }
     }

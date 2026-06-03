@@ -21,7 +21,6 @@ public sealed class ReadyOrNotPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // 修复：ICombatState 对齐新版签名
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != base.Owner.Player)
@@ -42,7 +41,6 @@ public sealed class ReadyOrNotPower : CustomPowerModel
             if (cardModel != null)
             {
                 cardModel.SetToFreeThisTurn();
-                // 修复：照搬灾祸官方重载
                 await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, player);
             }
         }

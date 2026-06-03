@@ -43,7 +43,7 @@ public class PointBlankShot : CustomCardModel
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
 
-        // 修复：补全官方必填参数
+        // 修复：
         await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, 1, Owner.Creature, this);
     }
 

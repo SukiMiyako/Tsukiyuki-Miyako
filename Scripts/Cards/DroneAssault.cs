@@ -30,7 +30,7 @@ public sealed class DroneAssault : CustomCardModel
 
     public DroneAssault() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }
 
-    // 核心：完全仿照双重释放 → 激发两次无人机
+    // 核心： → 激发两次无人机
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 检查是否有无人机

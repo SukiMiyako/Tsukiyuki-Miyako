@@ -23,7 +23,7 @@ public sealed class FreeSmgPower : CustomPowerModel
         {
             return false;
         }
-        // 【唯一修改】攻击牌 → SMG关键词卡牌
+        // 攻击牌 → SMG关键词卡牌
         if (!card.CanonicalKeywords.Contains(MyKeywords.Smg))
         {
             return false;
@@ -49,7 +49,7 @@ public sealed class FreeSmgPower : CustomPowerModel
 
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        // 【唯一修改】攻击牌 → SMG关键词卡牌
+        // 攻击牌 → SMG关键词卡牌
         if (cardPlay.Card.Owner.Creature == base.Owner && cardPlay.Card.CanonicalKeywords.Contains(MyKeywords.Smg))
         {
             bool flag;

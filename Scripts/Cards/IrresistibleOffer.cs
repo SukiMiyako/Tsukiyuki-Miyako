@@ -27,7 +27,7 @@ public class IrresistibleOffer : CustomCardModel
         new CardsVar(2)
     };
 
-    // 你的标准图标路径
+    // 图标路径
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public IrresistibleOffer() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
@@ -42,7 +42,7 @@ public class IrresistibleOffer : CustomCardModel
         // 抽2张牌
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
-        // 生成1张【动摇】加入弃牌堆
+        // 生成1张加入弃牌堆
         CustomCardModel Doubt = CombatState!.CreateCard<Doubt>(Owner);
         // 修复：替换为官方原版写法
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(Doubt, PileType.Discard, Owner, CardPilePosition.Random));

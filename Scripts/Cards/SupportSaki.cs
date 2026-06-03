@@ -61,7 +61,7 @@ public class SupportSaki : CustomCardModel
         int amount = base.DynamicVars["StrengthLoss"].IntValue;
         foreach (Creature enemy in base.CombatState!.HittableEnemies)
         {
-            // 仅修复：补全官方必填参数
+            // 仅修复：
             await PowerCmd.Apply<SakiPower>(new BlockingPlayerChoiceContext(), enemy, amount, base.Owner.Creature, this);
         }
     }

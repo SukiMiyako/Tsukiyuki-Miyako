@@ -23,13 +23,12 @@ public sealed class StarryMiraclePower : CustomPowerModel
         return Task.CompletedTask;
     }
 
-    // 打出能力牌 → 获得1层师生羁绊（逻辑完全不变）
+    // 打出能力牌 → 获得1层师生羁绊（逻辑）
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner == base.Owner.Player && cardPlay.Card.Type == CardType.Power)
         {
             Flash();
-            // 🔥 唯一修复：补全官方强制的 PlayerChoiceContext 参数
             await PowerCmd.Apply<SenseiPower>(
                 new BlockingPlayerChoiceContext(),
                 base.Owner,

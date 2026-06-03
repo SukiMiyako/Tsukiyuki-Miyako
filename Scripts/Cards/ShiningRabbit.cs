@@ -31,14 +31,12 @@ public sealed class ShiningRabbit : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        // 仅修复：补全官方必填参数
+        // 仅修复：
         await PowerCmd.Apply<ShiningRabbitPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["ShiningRabbitPower"].BaseValue, Owner.Creature, this);
     }
 
-    // =====================
     // 升级参考 Armaments 规范
     // 升级后：前2张牌免费（Power层数+1）
-    // =====================
     protected override void OnUpgrade()
     {
         DynamicVars["ShiningRabbitPower"].UpgradeValueBy(1m);

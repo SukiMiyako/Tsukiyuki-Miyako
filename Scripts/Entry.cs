@@ -5,18 +5,20 @@ using MegaCrit.Sts2.Core.Modding;
 
 namespace TsukiyukiMiyako.Scripts;
 
-// 必须要加的属性，用于注册Mod。字符串和初始化函数命名一致。
+/// <summary>
+/// Mod entry point. The initializer name must match the string passed to ModInitializer.
+/// </summary>
 [ModInitializer("Init")]
 public class Entry
 {
-    // 初始化函数
     public static void Init()
     {
-        // 打patch（即修改游戏代码的功能）用
-        // 传入参数随意，只要不和其他人撞车即可
+        // Apply Harmony patches for game logic modifications
+        // Use a unique Harmony ID to avoid conflicts with other mods
         var harmony = new Harmony("sts2.sh1ro.miyako");
         harmony.PatchAll();
-        // 使得tscn可以加载自定义脚本
+
+        // Register custom Godot scripts so .tscn scenes can resolve C# types
         ScriptManagerBridge.LookupScriptsInAssembly(typeof(Entry).Assembly);
         Log.Debug("Mod initialized!");
     }

@@ -18,7 +18,7 @@ public sealed class RestPower : CustomPowerModel
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
 
-    // ✅ 完全照搬 NightmarePower 核心：下回合【抽牌前】触发（官方标准下回合逻辑）
+    // NightmarePower 核心：下回合触发（下回合逻辑）
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         // 仅自己的回合触发

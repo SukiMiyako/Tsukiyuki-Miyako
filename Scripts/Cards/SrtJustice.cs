@@ -13,13 +13,13 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class SrtJustice : CustomCardModel
 {
-    // 关键词：消耗（照搬Fuel）
+    // 关键词：消耗（Fuel）
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
         CardKeyword.Exhaust
     };
 
-    // 动态变量：能量1点 / 抽牌1张（照搬Fuel）
+    // 动态变量：能量1点 / 抽牌1张（Fuel）
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar>
     {
         new EnergyVar(1),
@@ -35,14 +35,14 @@ public sealed class SrtJustice : CustomCardModel
     {
     }
 
-    // 核心效果：获得能量 + 抽牌（完全复刻Fuel）
+    // 核心效果：获得能量 + 抽牌（Fuel）
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
 
-    // 升级：抽牌数+1（照搬Fuel）
+    // 升级：抽牌数+1（Fuel）
     protected override void OnUpgrade()
     {
     }
