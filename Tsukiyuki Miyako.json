@@ -2,8 +2,8 @@
     "id": "Tsukiyuki Miyako",
     "name": "Tsukiyuki Miyako",
     "author": "羽丘第一板载人高松灯",
-    "description": "SRT的正义，永远不会动摇",
-    "version": "1.0",
+    "description": "添加新角色「月雪宫子」— SRT特殊学园Rabbit小队的队长。拥有独特的弹夹资源系统和SMG关键词体系。",
+    "version": "1.0.0",
     "has_pck": true,
     "has_dll": true,
     "dependencies": [
