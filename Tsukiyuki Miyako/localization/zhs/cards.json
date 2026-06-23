@@ -34,7 +34,7 @@
   "TSUKIYUKIMIYAKO-EXPOLUTED.title": "引爆",
   "TSUKIYUKIMIYAKO-EXPOLUTED.description": "对敌方全体造成{Damage:diff()}点伤害。",
   "TSUKIYUKIMIYAKO-AIR_DROP.title": "空投补给",
-  "TSUKIYUKIMIYAKO-AIR_DROP.description": "获得{Energy:energyIcons()}\n给予{Stars:starIcons()}\n抽{Cards:diff()}张牌",
+  "TSUKIYUKIMIYAKO-AIR_DROP.description": "获得{Energy:energyIcons()}\n给予{Stars:starIcons()}\n抽{Cards:diff()}张牌\n将一张[gold]配备箱[/gold]牌加入你的手牌。",
   "TSUKIYUKIMIYAKO-ROPE_DROP.title": "绳降",
   "TSUKIYUKIMIYAKO-ROPE_DROP.description": "获得{Block:diff()}点格挡\n抽{Cards:diff()}张牌",
   "TSUKIYUKIMIYAKO-PART_TIME.title": "兼职",
