@@ -25,7 +25,7 @@ public class WildShoot : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
+        new DamageVar(4m, ValueProp.Move),
         new RepeatVar(4)
     };
 

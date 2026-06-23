@@ -31,7 +31,7 @@ public class ShortBurst : CustomCardModel
     // 动态变量：基础2点伤害，连击3次 (2×3)
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(2m, ValueProp.Move),
+        new DamageVar(3m, ValueProp.Move),
         new RepeatVar(3)
     };
 

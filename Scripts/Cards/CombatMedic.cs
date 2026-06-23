@@ -32,6 +32,8 @@ public sealed class CombatMedic : CustomCardModel
         HoverTipFactory.Static(StaticHoverTip.Transform)
     ];
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public CombatMedic() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }

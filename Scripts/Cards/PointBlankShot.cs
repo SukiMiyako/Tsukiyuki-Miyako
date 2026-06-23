@@ -25,8 +25,8 @@ public class PointBlankShot : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
-        new RepeatVar(6)
+        new DamageVar(4m, ValueProp.Move),
+        new RepeatVar(5)
     };
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
