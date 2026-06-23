@@ -25,7 +25,7 @@ public sealed class StratTrade : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {// 基础伤害：25点
-        new CardsVar(3)                      // 生成卡牌数量：3张
+        new CardsVar(2)                      // 生成卡牌数量：2张
     };
 
     public StratTrade()

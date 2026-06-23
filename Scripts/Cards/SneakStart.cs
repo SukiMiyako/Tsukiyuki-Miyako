@@ -19,7 +19,7 @@ namespace TsukiyukiMiyako.Scripts;
 public sealed class SneakStart : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> {
-        new CardsVar(2),
+        new CardsVar(1),
         new DynamicVar("SenseiPower", 1)
         };
 

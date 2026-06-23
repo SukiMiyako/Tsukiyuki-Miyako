@@ -26,7 +26,7 @@ public sealed class JusticeForYouPower : CustomPowerModel
         {
             // 核心条件：师生羁绊 > 5
             int senseiCount = base.Owner.GetPowerAmount<SenseiPower>();
-            if (senseiCount <= 5)
+            if (senseiCount <= 8)
                 return;
 
             Flash();
