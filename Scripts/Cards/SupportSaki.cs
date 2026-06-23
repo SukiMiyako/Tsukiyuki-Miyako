@@ -11,6 +11,7 @@ using TsukiyukiMiyako.Scripts;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
+using TsukiyukiMiyako.Scripts.Powers;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
