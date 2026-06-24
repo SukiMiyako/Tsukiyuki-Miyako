@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Ancients;
 using MegaCrit.Sts2.Core.Models;
@@ -9,11 +8,9 @@ using Tsukiyuki_Miyako.MiyakoModCode.Character;
 namespace TsukiyukiMiyako.Scripts.Patches;
 
 /// <summary>
-/// Injects Miyako's character key into the Architect's dialogue set so that
-/// the attack VFX and dialogue triggers work during the Architect ancient event.
-///
-/// Without this, GetValidDialogues() returns empty for Miyako because
-/// DefineDialogues() only registers dialogues for built-in characters.
+/// Injects Miyako's character key into the Architect's CharacterDialogues dictionary.
+/// The dialogue text is already defined in ancients.json under TSUKIYUKI_MIYAKO-MIYAKO_MOD keys.
+/// This patch creates the AncientDialogue entries with proper line counts and attack triggers.
 /// </summary>
 [HarmonyPatch(typeof(TheArchitect), "DefineDialogues")]
 public static class MiyakoArchitectPatch
@@ -22,17 +19,34 @@ public static class MiyakoArchitectPatch
     {
         string miyakoKey = ModelDb.Character<MiyakoMod>().Id.Entry;
 
-        // Don't overwrite if Miyako already has an entry
         if (__result.CharacterDialogues.ContainsKey(miyakoKey))
             return;
 
-        // Copy any existing character's dialogues as the template for Miyako.
-        // The Architect's CharacterDialogues all have attack triggers (EndAttackers/StartAttackers),
-        // so copying any of them gives Miyako the full attack experience.
-        var template = __result.CharacterDialogues.FirstOrDefault().Value;
-        if (template != null)
+        // 3 repeating dialogues, 3 lines each (as defined in ancients.json).
+        // Each "" in the constructor represents one dialogue line (SFX path = no SFX).
+        // Attackers: Player attacks at line transition, Architect attacks at dialogue end.
+        var miyakoDialogues = new AncientDialogue[]
         {
-            __result.CharacterDialogues[miyakoKey] = template;
-        }
+            new AncientDialogue("", "", "")
+            {
+                VisitIndex = null, // repeating pool
+                StartAttackers = ArchitectAttackers.Player,
+                EndAttackers = ArchitectAttackers.Both,
+            },
+            new AncientDialogue("", "", "")
+            {
+                VisitIndex = null,
+                StartAttackers = ArchitectAttackers.Player,
+                EndAttackers = ArchitectAttackers.Architect,
+            },
+            new AncientDialogue("", "", "")
+            {
+                VisitIndex = null,
+                StartAttackers = ArchitectAttackers.Player,
+                EndAttackers = ArchitectAttackers.Architect,
+            },
+        };
+
+        __result.CharacterDialogues[miyakoKey] = miyakoDialogues;
     }
 }
