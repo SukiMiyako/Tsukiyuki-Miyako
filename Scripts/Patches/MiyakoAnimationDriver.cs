@@ -71,11 +71,29 @@ internal static class MiyakoAnimationDriver
     }
 
     /// <summary>
-    /// Trigger die/hurt animations on all AnimatedSprite2D creatures in a game over screen.
+    /// Trigger die animations for all players on the game over screen.
+    /// Creates fresh NCreatureVisuals for each player (bypassing _Ready Spine errors),
+    /// then plays die/hurt on any AnimatedSprite2D-driven visuals.
     /// </summary>
     public static void TriggerDieOnScreen(Node screen)
     {
         Log.Warn("[Miyako] TriggerDieOnScreen called");
+
+        // Get all players from the game over screen's run state
+        var runState = Traverse.Create(screen).Field("_runState").GetValue();
+        if (runState == null)
+        {
+            Log.Warn("[Miyako] _runState is null");
+            return;
+        }
+
+        // Access Players via Traverse since the type might be internal
+        var players = Traverse.Create(runState).Property("Players").GetValue() as System.Collections.IList;
+        if (players == null || players.Count == 0)
+        {
+            Log.Warn("[Miyako] No players found");
+            return;
+        }
 
         Control creatureContainer = Traverse.Create(screen).Field<Control>("_creatureContainer").Value;
         if (creatureContainer == null)
@@ -84,26 +102,46 @@ internal static class MiyakoAnimationDriver
             return;
         }
 
-        Log.Warn($"[Miyako] Found container with {creatureContainer.GetChildCount()} children");
-        foreach (Node child in creatureContainer.GetChildren(false))
+        Log.Warn($"[Miyako] Processing {players.Count} players for death animation");
+        foreach (var playerObj in players)
         {
-            Log.Warn($"[Miyako] Child: {child.GetType().Name} '{child.Name}'");
-            if (TryGetAnimatedSprite(child, out AnimatedSprite2D sprite) && sprite.SpriteFrames != null)
+            var creature = Traverse.Create(playerObj).Property("Creature").GetValue();
+            if (creature == null)
+            {
+                Log.Warn("[Miyako] Player has null Creature");
+                continue;
+            }
+
+            // Call CreateVisuals() — this instantiates the TSCN scene directly,
+            // bypassing _Ready() which would fail with Spine errors
+            var visuals = Traverse.Create(creature).Method("CreateVisuals").GetValue() as NCreatureVisuals;
+            if (visuals == null)
+            {
+                Log.Warn("[Miyako] CreateVisuals returned null");
+                continue;
+            }
+
+            // Add to container so it renders
+            creatureContainer.AddChildSafely(visuals);
+
+            // Check if this is AnimatedSprite2D-driven
+            if (TryGetAnimatedSprite(visuals, out AnimatedSprite2D sprite) && sprite.SpriteFrames != null)
             {
                 string animName = FindFirstAnimation(sprite, "die", "hurt", "idle_loop", "idle");
                 if (animName != null)
                 {
-                    Log.Warn($"[Miyako] Playing anim '{animName}' on {child.Name}");
+                    Log.Warn($"[Miyako] Playing '{animName}' death animation");
                     sprite.Play(animName, 1f, false);
                 }
                 else
                 {
-                    Log.Warn($"[Miyako] No die/hurt/idle animation found on {child.Name}");
+                    Log.Warn("[Miyako] No die/hurt/idle animation found on visual");
                 }
             }
             else
             {
-                Log.Warn($"[Miyako] No AnimatedSprite2D on {child.Name}");
+                Log.Warn("[Miyako] Creature visuals are not AnimatedSprite2D, freeing");
+                visuals.QueueFreeSafely();
             }
         }
     }
