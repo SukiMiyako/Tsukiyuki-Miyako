@@ -82,6 +82,21 @@ internal static class MiyakoAnimationDriver
     }
 
     /// <summary>
+    /// Play a merchant animation by name, with fallback to relaxed/idle.
+    /// </summary>
+    public static void PlayMerchantAnimation(Node node, string requestedAnimation)
+    {
+        if (!TryGetAnimatedSprite(node, out AnimatedSprite2D? sprite))
+            return;
+
+        string? animName = FindFirstAnimation(sprite, requestedAnimation, "relaxed_loop", "idle_loop", "idle");
+        if (animName != null)
+        {
+            Play(sprite, animName);
+        }
+    }
+
+    /// <summary>
     /// Play the act-appropriate loop animation for rest site scenes.
     /// </summary>
     public static void PlayRestSiteLoop(Node node, int currentActIndex)

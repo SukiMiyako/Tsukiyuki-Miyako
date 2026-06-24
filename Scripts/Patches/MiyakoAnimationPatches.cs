@@ -13,7 +13,7 @@ namespace TsukiyukiMiyako.Scripts.Patches;
 /// These are completely passive — they immediately return true for non-Miyako creatures.
 /// </summary>
 
-// Patch 1: Intercept SetAnimationTrigger → drive AnimatedSprite2D
+// Patch 1: Intercept SetAnimationTrigger → drive AnimatedSprite2D (combat)
 [HarmonyPatch(typeof(NCreature), "SetAnimationTrigger")]
 public static class MiyakoSetAnimationTriggerPatch
 {
@@ -40,23 +40,22 @@ public static class MiyakoImmediatelySetIdlePatch
     }
 }
 
-// Patch 3: Intercept Merchant _Ready → play relaxed animation
-[HarmonyPatch(typeof(NMerchantCharacter), "_Ready")]
-public static class MiyakoMerchantReadyPatch
+// Patch 3: Intercept Merchant PlayAnimation → redirect to AnimatedSprite2D
+[HarmonyPatch(typeof(NMerchantCharacter), "PlayAnimation")]
+public static class MiyakoMerchantPlayAnimationPatch
 {
-    public static bool Prefix(NMerchantCharacter __instance)
+    public static void Postfix(NMerchantCharacter __instance, string anim)
     {
-        if (!MiyakoAnimationDriver.IsSpriteDriven(__instance))
-            return true;
-
-        MiyakoAnimationDriver.PlayMerchantRelaxed(__instance);
-        return false;
+        if (MiyakoAnimationDriver.IsSpriteDriven(__instance))
+        {
+            MiyakoAnimationDriver.PlayMerchantAnimation(__instance, anim);
+        }
     }
 }
 
-// Patch 4: Intercept RestSite _Ready → play act-appropriate loop
-[HarmonyPatch(typeof(NRestSiteCharacter), "_Ready")]
-public static class MiyakoRestSiteReadyPatch
+// Patch 4: Intercept RestSite OnFocus → kickstart the act-appropriate loop
+[HarmonyPatch(typeof(NRestSiteCharacter), "OnFocus")]
+public static class MiyakoRestSiteOnFocusPatch
 {
     public static void Postfix(NRestSiteCharacter __instance)
     {
