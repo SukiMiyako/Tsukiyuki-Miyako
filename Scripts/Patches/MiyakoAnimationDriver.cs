@@ -105,19 +105,19 @@ internal static class MiyakoAnimationDriver
         Log.Warn($"[Miyako] Processing {players.Count} players for death animation");
         foreach (var playerObj in players)
         {
-            var creature = Traverse.Create(playerObj).Property("Creature").GetValue();
-            if (creature == null)
+            // Get the character model to create visuals from
+            var character = Traverse.Create(playerObj).Property("Character").GetValue();
+            if (character == null)
             {
-                Log.Warn("[Miyako] Player has null Creature");
+                Log.Warn("[Miyako] Player has null Character");
                 continue;
             }
 
-            // Call CreateVisuals() — this instantiates the TSCN scene directly,
-            // bypassing _Ready() which would fail with Spine errors
-            var visuals = Traverse.Create(creature).Method("CreateVisuals").GetValue() as NCreatureVisuals;
+            // Call CharacterModel.CreateVisuals() — instantiates TSCN directly
+            var visuals = Traverse.Create(character).Method("CreateVisuals").GetValue() as NCreatureVisuals;
             if (visuals == null)
             {
-                Log.Warn("[Miyako] CreateVisuals returned null");
+                Log.Warn("[Miyako] CharacterModel.CreateVisuals returned null");
                 continue;
             }
 
