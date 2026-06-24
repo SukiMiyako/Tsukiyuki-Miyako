@@ -91,13 +91,48 @@ internal static class MiyakoAnimationDriver
         {
             var sprites = FindAllAnimatedSprites(child);
             Log.Warn($"[Miyako] Found {sprites.Count} AnimatedSprite2D(s) in '{child.Name}'");
+
+            bool playedDie = false;
             foreach (var sprite in sprites)
             {
-                string animName = FindFirstAnimation(sprite, "die", "hurt", "idle_loop", "idle");
+                string animName = FindFirstAnimation(sprite, "die", "hurt");
                 if (animName != null)
                 {
-                    Log.Warn($"[Miyako] Playing '{animName}'");
+                    Log.Warn($"[Miyako] Playing '{animName}' from existing visuals");
                     sprite.Play(animName, 1f, false);
+                    playedDie = true;
+                }
+            }
+
+            // If the existing scene lacks die (e.g. merchant TSCN only has relaxed_loop),
+            // load the combat scene which has the full animation set including die
+            if (!playedDie)
+            {
+                Log.Warn("[Miyako] No die/hurt on existing visuals, loading combat scene");
+                string combatPath = "res://Tsukiyuki Miyako/scenes/creature_visuals/tsukiyuki_miyako.tscn";
+                if (!Godot.ResourceLoader.Exists(combatPath))
+                {
+                    Log.Warn("[Miyako] Combat scene not found");
+                    return;
+                }
+                var packed = Godot.ResourceLoader.Load<PackedScene>(combatPath);
+                if (packed == null)
+                {
+                    Log.Warn("[Miyako] Failed to load combat scene");
+                    return;
+                }
+                var combatNode = packed.Instantiate<Node2D>();
+                creatureContainer.AddChildSafely(combatNode);
+
+                var combatSprites = FindAllAnimatedSprites(combatNode);
+                foreach (var sprite in combatSprites)
+                {
+                    string animName = FindFirstAnimation(sprite, "die", "hurt");
+                    if (animName != null)
+                    {
+                        Log.Warn($"[Miyako] Playing '{animName}' from combat scene");
+                        sprite.Play(animName, 1f, false);
+                    }
                 }
             }
         }
