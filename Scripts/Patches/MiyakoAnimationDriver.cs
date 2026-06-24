@@ -75,35 +75,35 @@ internal static class MiyakoAnimationDriver
     /// </summary>
     public static void TriggerDieOnScreen(Node screen)
     {
-        Log.Debug("[Miyako] TriggerDieOnScreen called");
+        Log.Warn("[Miyako] TriggerDieOnScreen called");
 
         Control creatureContainer = Traverse.Create(screen).Field<Control>("_creatureContainer").Value;
         if (creatureContainer == null)
         {
-            Log.Debug("[Miyako] _creatureContainer is null");
+            Log.Warn("[Miyako] _creatureContainer is null");
             return;
         }
 
-        Log.Debug($"[Miyako] Found container with {creatureContainer.GetChildCount()} children");
+        Log.Warn($"[Miyako] Found container with {creatureContainer.GetChildCount()} children");
         foreach (Node child in creatureContainer.GetChildren(false))
         {
-            Log.Debug($"[Miyako] Child: {child.GetType().Name} '{child.Name}'");
+            Log.Warn($"[Miyako] Child: {child.GetType().Name} '{child.Name}'");
             if (TryGetAnimatedSprite(child, out AnimatedSprite2D sprite) && sprite.SpriteFrames != null)
             {
                 string animName = FindFirstAnimation(sprite, "die", "hurt", "idle_loop", "idle");
                 if (animName != null)
                 {
-                    Log.Debug($"[Miyako] Playing anim '{animName}' on {child.Name}");
+                    Log.Warn($"[Miyako] Playing anim '{animName}' on {child.Name}");
                     sprite.Play(animName, 1f, false);
                 }
                 else
                 {
-                    Log.Debug($"[Miyako] No die/hurt/idle animation found on {child.Name}");
+                    Log.Warn($"[Miyako] No die/hurt/idle animation found on {child.Name}");
                 }
             }
             else
             {
-                Log.Debug($"[Miyako] No AnimatedSprite2D on {child.Name}");
+                Log.Warn($"[Miyako] No AnimatedSprite2D on {child.Name}");
             }
         }
     }
