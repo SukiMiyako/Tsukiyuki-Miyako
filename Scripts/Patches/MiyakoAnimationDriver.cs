@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
@@ -47,6 +48,28 @@ internal static class MiyakoAnimationDriver
         if (animName != null)
         {
             Play(sprite, animName, !string.Equals(trigger, "Dead", System.StringComparison.Ordinal));
+        }
+    }
+
+    /// <summary>
+    /// Trigger die/hurt animations on all AnimatedSprite2D creatures in a game over screen.
+    /// </summary>
+    public static void TriggerDieOnScreen(Node screen)
+    {
+        Control creatureContainer = Traverse.Create(screen).Field<Control>("_creatureContainer").Value;
+        if (creatureContainer == null)
+            return;
+
+        foreach (Node child in creatureContainer.GetChildren(false))
+        {
+            if (TryGetAnimatedSprite(child, out AnimatedSprite2D sprite) && sprite.SpriteFrames != null)
+            {
+                string animName = FindFirstAnimation(sprite, "die", "hurt", "idle_loop", "idle");
+                if (animName != null)
+                {
+                    sprite.Play(animName, 1f, false);
+                }
+            }
         }
     }
 
