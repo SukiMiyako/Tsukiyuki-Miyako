@@ -53,6 +53,24 @@ internal static class MiyakoAnimationDriver
     }
 
     /// <summary>
+    /// Scan a room node's children for AnimatedSprite2D-driven characters and trigger a named animation.
+    /// </summary>
+    public static void TriggerOnRoomCharacters(Node room, string preferredAnimation)
+    {
+        foreach (Node child in room.GetChildren(false))
+        {
+            if (TryGetAnimatedSprite(child, out AnimatedSprite2D sprite) && sprite.SpriteFrames != null)
+            {
+                string animName = FindFirstAnimation(sprite, preferredAnimation, "idle_loop", "idle");
+                if (animName != null)
+                {
+                    sprite.Play(animName, 1f, false);
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Trigger die/hurt animations on all AnimatedSprite2D creatures in a game over screen.
     /// </summary>
     public static void TriggerDieOnScreen(Node screen)
