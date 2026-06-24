@@ -72,28 +72,10 @@ internal static class MiyakoAnimationDriver
 
     /// <summary>
     /// Trigger die animations for all players on the game over screen.
-    /// Creates fresh NCreatureVisuals for each player (bypassing _Ready Spine errors),
-    /// then plays die/hurt on any AnimatedSprite2D-driven visuals.
     /// </summary>
     public static void TriggerDieOnScreen(Node screen)
     {
         Log.Warn("[Miyako] TriggerDieOnScreen called");
-
-        // Get all players from the game over screen's run state
-        var runState = Traverse.Create(screen).Field("_runState").GetValue();
-        if (runState == null)
-        {
-            Log.Warn("[Miyako] _runState is null");
-            return;
-        }
-
-        // Access Players via Traverse since the type might be internal
-        var players = Traverse.Create(runState).Property("Players").GetValue() as System.Collections.IList;
-        if (players == null || players.Count == 0)
-        {
-            Log.Warn("[Miyako] No players found");
-            return;
-        }
 
         Control creatureContainer = Traverse.Create(screen).Field<Control>("_creatureContainer").Value;
         if (creatureContainer == null)
@@ -102,48 +84,38 @@ internal static class MiyakoAnimationDriver
             return;
         }
 
-        Log.Warn($"[Miyako] Processing {players.Count} players for death animation");
-        foreach (var playerObj in players)
+        Log.Warn($"[Miyako] Container has {creatureContainer.GetChildCount()} direct children");
+
+        // Brute-force: find ALL AnimatedSprite2D nodes anywhere in the container
+        foreach (Node child in creatureContainer.GetChildren(false))
         {
-            // Get the character model to create visuals from
-            var character = Traverse.Create(playerObj).Property("Character").GetValue();
-            if (character == null)
-            {
-                Log.Warn("[Miyako] Player has null Character");
-                continue;
-            }
-
-            // Call CharacterModel.CreateVisuals() — instantiates TSCN directly
-            var visuals = Traverse.Create(character).Method("CreateVisuals").GetValue() as NCreatureVisuals;
-            if (visuals == null)
-            {
-                Log.Warn("[Miyako] CharacterModel.CreateVisuals returned null");
-                continue;
-            }
-
-            // Add to container so it renders
-            creatureContainer.AddChildSafely(visuals);
-
-            // Check if this is AnimatedSprite2D-driven
-            if (TryGetAnimatedSprite(visuals, out AnimatedSprite2D sprite) && sprite.SpriteFrames != null)
+            var sprites = FindAllAnimatedSprites(child);
+            Log.Warn($"[Miyako] Found {sprites.Count} AnimatedSprite2D(s) in '{child.Name}'");
+            foreach (var sprite in sprites)
             {
                 string animName = FindFirstAnimation(sprite, "die", "hurt", "idle_loop", "idle");
                 if (animName != null)
                 {
-                    Log.Warn($"[Miyako] Playing '{animName}' death animation");
+                    Log.Warn($"[Miyako] Playing '{animName}'");
                     sprite.Play(animName, 1f, false);
                 }
-                else
-                {
-                    Log.Warn("[Miyako] No die/hurt/idle animation found on visual");
-                }
-            }
-            else
-            {
-                Log.Warn("[Miyako] Creature visuals are not AnimatedSprite2D, freeing");
-                visuals.QueueFreeSafely();
             }
         }
+    }
+
+    private static System.Collections.Generic.List<AnimatedSprite2D> FindAllAnimatedSprites(Node root)
+    {
+        var result = new System.Collections.Generic.List<AnimatedSprite2D>();
+        CollectSpritesRecursive(root, result);
+        return result;
+    }
+
+    private static void CollectSpritesRecursive(Node node, System.Collections.Generic.List<AnimatedSprite2D> result)
+    {
+        if (node is AnimatedSprite2D sprite)
+            result.Add(sprite);
+        foreach (Node child in node.GetChildren(false))
+            CollectSpritesRecursive(child, result);
     }
 
     /// <summary>
