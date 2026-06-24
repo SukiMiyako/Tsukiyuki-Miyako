@@ -4,6 +4,8 @@ using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
+#nullable disable
+
 namespace TsukiyukiMiyako.Scripts.Patches;
 
 /// <summary>
@@ -86,10 +88,10 @@ internal static class MiyakoAnimationDriver
     /// </summary>
     public static void PlayMerchantAnimation(Node node, string requestedAnimation)
     {
-        if (!TryGetAnimatedSprite(node, out AnimatedSprite2D? sprite))
+        if (!TryGetAnimatedSprite(node, out AnimatedSprite2D sprite))
             return;
 
-        string? animName = FindFirstAnimation(sprite, requestedAnimation, "relaxed_loop", "idle_loop", "idle");
+        string animName = FindFirstAnimation(sprite, requestedAnimation, "relaxed_loop", "idle_loop", "idle");
         if (animName != null)
         {
             Play(sprite, animName);
@@ -104,7 +106,7 @@ internal static class MiyakoAnimationDriver
         if (!TryGetAnimatedSprite(node, out AnimatedSprite2D sprite))
             return;
 
-        string? animName = currentActIndex switch
+        string animName = currentActIndex switch
         {
             0 => FindFirstAnimation(sprite, "overgrowth_loop", "idle_loop", "idle"),
             1 => FindFirstAnimation(sprite, "hive_loop", "idle_loop", "idle"),
@@ -122,7 +124,7 @@ internal static class MiyakoAnimationDriver
     /// Attempt to find an AnimatedSprite2D in the node tree.
     /// Looks for a child named "Visuals" first, then falls back to any AnimatedSprite2D descendant.
     /// </summary>
-    public static bool TryGetAnimatedSprite(Node node, out AnimatedSprite2D? sprite)
+    public static bool TryGetAnimatedSprite(Node node, out AnimatedSprite2D sprite)
     {
         sprite = null;
 
@@ -173,7 +175,7 @@ internal static class MiyakoAnimationDriver
     /// <summary>
     /// Map a game animation trigger word to the best available SpriteFrames animation.
     /// </summary>
-    private static string? ResolveCombatAnimationName(AnimatedSprite2D sprite, string trigger)
+    private static string ResolveCombatAnimationName(AnimatedSprite2D sprite, string trigger)
     {
         return trigger switch
         {
@@ -191,7 +193,7 @@ internal static class MiyakoAnimationDriver
     /// <summary>
     /// Find the first available animation from a prioritized list of names.
     /// </summary>
-    private static string? FindFirstAnimation(AnimatedSprite2D sprite, params string[] names)
+    private static string FindFirstAnimation(AnimatedSprite2D sprite, params string[] names)
     {
         SpriteFrames frames = sprite.SpriteFrames;
         if (frames == null)
