@@ -1,10 +1,8 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.RestSite;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Screens.GameOverScreen;
 using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace TsukiyukiMiyako.Scripts.Patches;
 
@@ -59,21 +57,3 @@ public static class MiyakoMerchantRoomPatch
     }
 }
 
-// Patch 5: RestSite room loaded — trigger act-appropriate loop
-[HarmonyPatch(typeof(NRestSiteRoom), "AfterRoomIsLoaded")]
-public static class MiyakoRestSiteRoomPatch
-{
-    public static void Postfix(NRestSiteRoom __instance)
-    {
-        RunState runState = Traverse.Create(__instance).Field<RunState>("_runState").Value;
-        int act = runState?.CurrentActIndex ?? 0;
-        string anim = act switch
-        {
-            0 => "overgrowth_loop",
-            1 => "hive_loop",
-            2 => "glory_loop",
-            _ => "idle_loop"
-        };
-        MiyakoAnimationDriver.TriggerOnRoomCharacters(__instance, anim);
-    }
-}
