@@ -1,121 +1,236 @@
-[gd_scene load_steps=192 format=3 uid="uid://gkvd6kvkltl1"]
+[gd_scene load_steps=307 format=3 uid="uid://gkvd6kvkltl1"]
 
-[ext_resource type="Script" uid="uid://cx7uk2rf1ou5h" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://xygi6lhxoid5" path="res://Tsukiyuki Miyako/image/defeat/defeat001.png" id="1_y8y5h"]
 [ext_resource type="Texture2D" uid="uid://bbkux4h3wxcx0" path="res://Tsukiyuki Miyako/image/shop/shop000.png" id="2_h1jl3"]
+[ext_resource type="Texture2D" uid="uid://baq2v1lbkiyi0" path="res://Tsukiyuki Miyako/image/defeat/defeat002.png" id="2_hkxis"]
+[ext_resource type="Texture2D" uid="uid://crjyylil7vhep" path="res://Tsukiyuki Miyako/image/defeat/defeat003.png" id="3_lnqa8"]
 [ext_resource type="Texture2D" uid="uid://d3o0sfku6q4dq" path="res://Tsukiyuki Miyako/image/shop/shop001.png" id="3_o5ejt"]
 [ext_resource type="Texture2D" uid="uid://d2jh8nr0ydhna" path="res://Tsukiyuki Miyako/image/shop/shop002.png" id="4_ynijy"]
+[ext_resource type="Texture2D" uid="uid://dkce1stpnrsms" path="res://Tsukiyuki Miyako/image/defeat/defeat004.png" id="4_yp7fi"]
 [ext_resource type="Texture2D" uid="uid://dgbcqt12idt6b" path="res://Tsukiyuki Miyako/image/shop/shop003.png" id="5_nabe6"]
+[ext_resource type="Texture2D" uid="uid://bsti1rocli2t1" path="res://Tsukiyuki Miyako/image/defeat/defeat005.png" id="5_w4sfa"]
+[ext_resource type="Texture2D" uid="uid://dyq3c30slmpmk" path="res://Tsukiyuki Miyako/image/defeat/defeat006.png" id="6_elupi"]
 [ext_resource type="Texture2D" uid="uid://cmpvyv80anvfy" path="res://Tsukiyuki Miyako/image/shop/shop004.png" id="6_pa1e4"]
+[ext_resource type="Texture2D" uid="uid://ogfbldbf8if7" path="res://Tsukiyuki Miyako/image/defeat/defeat007.png" id="7_1ibvg"]
 [ext_resource type="Texture2D" uid="uid://cts7flg4m5fy3" path="res://Tsukiyuki Miyako/image/shop/shop005.png" id="7_qvhkk"]
+[ext_resource type="Texture2D" uid="uid://bil84d2rxl3l1" path="res://Tsukiyuki Miyako/image/defeat/defeat008.png" id="8_62sry"]
 [ext_resource type="Texture2D" uid="uid://cras7a8uu4b2d" path="res://Tsukiyuki Miyako/image/shop/shop006.png" id="8_wd0cn"]
 [ext_resource type="Texture2D" uid="uid://cts6uupjfclbl" path="res://Tsukiyuki Miyako/image/shop/shop007.png" id="9_0scih"]
+[ext_resource type="Texture2D" uid="uid://br5mcttojpblc" path="res://Tsukiyuki Miyako/image/defeat/defeat009.png" id="9_c0a0d"]
+[ext_resource type="Texture2D" uid="uid://71jqwuwx03kg" path="res://Tsukiyuki Miyako/image/defeat/defeat010.png" id="10_ip8wa"]
 [ext_resource type="Texture2D" uid="uid://bec8jykjmekrl" path="res://Tsukiyuki Miyako/image/shop/shop008.png" id="10_ujq7k"]
 [ext_resource type="Texture2D" uid="uid://gikwmgwuqyo5" path="res://Tsukiyuki Miyako/image/shop/shop009.png" id="11_0lfsy"]
+[ext_resource type="Texture2D" uid="uid://bicpntsxkmkut" path="res://Tsukiyuki Miyako/image/defeat/defeat011.png" id="11_0saqa"]
+[ext_resource type="Texture2D" uid="uid://cs7jmcjlchho8" path="res://Tsukiyuki Miyako/image/defeat/defeat012.png" id="12_3kom6"]
 [ext_resource type="Texture2D" uid="uid://c5cxb3lu0vq8a" path="res://Tsukiyuki Miyako/image/shop/shop010.png" id="12_hp1rr"]
 [ext_resource type="Texture2D" uid="uid://biy43xo778q5h" path="res://Tsukiyuki Miyako/image/shop/shop011.png" id="13_1ohvg"]
+[ext_resource type="Texture2D" uid="uid://7mxyaw5uir37" path="res://Tsukiyuki Miyako/image/defeat/defeat013.png" id="13_34alx"]
 [ext_resource type="Texture2D" uid="uid://tokwoy6lbnji" path="res://Tsukiyuki Miyako/image/shop/shop012.png" id="14_8vw44"]
+[ext_resource type="Texture2D" uid="uid://cn8rj0ek8l71f" path="res://Tsukiyuki Miyako/image/defeat/defeat014.png" id="14_fqgwx"]
+[ext_resource type="Texture2D" uid="uid://dmoh1s2dqo4bh" path="res://Tsukiyuki Miyako/image/defeat/defeat015.png" id="15_74tpo"]
 [ext_resource type="Texture2D" uid="uid://csbuvlwtufymi" path="res://Tsukiyuki Miyako/image/shop/shop013.png" id="15_svenf"]
 [ext_resource type="Texture2D" uid="uid://b4800xqgkjyal" path="res://Tsukiyuki Miyako/image/shop/shop014.png" id="16_jxenk"]
+[ext_resource type="Texture2D" uid="uid://m2cy7ktrx5xo" path="res://Tsukiyuki Miyako/image/defeat/defeat016.png" id="16_obm4v"]
+[ext_resource type="Texture2D" uid="uid://b8ohkr2vx0y08" path="res://Tsukiyuki Miyako/image/defeat/defeat017.png" id="17_7lj07"]
 [ext_resource type="Texture2D" uid="uid://bk6j6hxdsi66" path="res://Tsukiyuki Miyako/image/shop/shop015.png" id="17_s53y5"]
 [ext_resource type="Texture2D" uid="uid://ckeh6xij2tqi6" path="res://Tsukiyuki Miyako/image/shop/shop016.png" id="18_d5pg2"]
+[ext_resource type="Texture2D" uid="uid://4upj0b7jbf5e" path="res://Tsukiyuki Miyako/image/defeat/defeat018.png" id="18_xw4k0"]
+[ext_resource type="Texture2D" uid="uid://nl3dtldatoxo" path="res://Tsukiyuki Miyako/image/defeat/defeat019.png" id="19_aaxfj"]
 [ext_resource type="Texture2D" uid="uid://djlu3isc0jus6" path="res://Tsukiyuki Miyako/image/shop/shop017.png" id="19_sdxca"]
+[ext_resource type="Texture2D" uid="uid://c1evu02cdbo7p" path="res://Tsukiyuki Miyako/image/defeat/defeat020.png" id="20_dqr0b"]
 [ext_resource type="Texture2D" uid="uid://c60c71joa38me" path="res://Tsukiyuki Miyako/image/shop/shop018.png" id="20_yam3j"]
 [ext_resource type="Texture2D" uid="uid://cqo8buxpw2dq4" path="res://Tsukiyuki Miyako/image/shop/shop019.png" id="21_do5ce"]
+[ext_resource type="Texture2D" uid="uid://cmf3g8aqueyfd" path="res://Tsukiyuki Miyako/image/defeat/defeat021.png" id="21_rvpvf"]
+[ext_resource type="Texture2D" uid="uid://bhhnaobjbcyl7" path="res://Tsukiyuki Miyako/image/defeat/defeat022.png" id="22_ovnjq"]
 [ext_resource type="Texture2D" uid="uid://you1kym6lmnt" path="res://Tsukiyuki Miyako/image/shop/shop020.png" id="22_rfk8t"]
+[ext_resource type="Texture2D" uid="uid://cbtpbyftcmbdn" path="res://Tsukiyuki Miyako/image/defeat/defeat023.png" id="23_0sqjw"]
 [ext_resource type="Texture2D" uid="uid://c1g3qrgebtn3y" path="res://Tsukiyuki Miyako/image/shop/shop021.png" id="23_ri7ni"]
 [ext_resource type="Texture2D" uid="uid://c637kcyep1vrs" path="res://Tsukiyuki Miyako/image/shop/shop022.png" id="24_4ns0d"]
+[ext_resource type="Texture2D" uid="uid://cn4s3vd2u64e" path="res://Tsukiyuki Miyako/image/defeat/defeat024.png" id="24_16aji"]
+[ext_resource type="Texture2D" uid="uid://dqiqaxum6o4ls" path="res://Tsukiyuki Miyako/image/defeat/defeat025.png" id="25_sge6l"]
 [ext_resource type="Texture2D" uid="uid://xtc74y8pfp7k" path="res://Tsukiyuki Miyako/image/shop/shop023.png" id="25_vumfr"]
+[ext_resource type="Texture2D" uid="uid://b5l307qvp38jd" path="res://Tsukiyuki Miyako/image/defeat/defeat026.png" id="26_dovl7"]
 [ext_resource type="Texture2D" uid="uid://dtm02rnf56y50" path="res://Tsukiyuki Miyako/image/shop/shop024.png" id="26_iph8a"]
+[ext_resource type="Texture2D" uid="uid://bcndh3rxarcjl" path="res://Tsukiyuki Miyako/image/defeat/defeat027.png" id="27_uwe8f"]
 [ext_resource type="Texture2D" uid="uid://b62d2a2mejyqn" path="res://Tsukiyuki Miyako/image/shop/shop025.png" id="27_xqjy8"]
 [ext_resource type="Texture2D" uid="uid://iplbp2v3x3xc" path="res://Tsukiyuki Miyako/image/shop/shop026.png" id="28_2yce5"]
+[ext_resource type="Texture2D" uid="uid://bdjycu2v7h611" path="res://Tsukiyuki Miyako/image/defeat/defeat028.png" id="28_gfr4i"]
+[ext_resource type="Texture2D" uid="uid://dsr66xk5ve3ri" path="res://Tsukiyuki Miyako/image/defeat/defeat029.png" id="29_doqq5"]
 [ext_resource type="Texture2D" uid="uid://bqtb38rq18qja" path="res://Tsukiyuki Miyako/image/shop/shop027.png" id="29_f0wbj"]
 [ext_resource type="Texture2D" uid="uid://xt1p03we072n" path="res://Tsukiyuki Miyako/image/shop/shop028.png" id="30_1foee"]
+[ext_resource type="Texture2D" uid="uid://bhaxqw7vefux6" path="res://Tsukiyuki Miyako/image/defeat/defeat030.png" id="30_rohd1"]
+[ext_resource type="Texture2D" uid="uid://bdr54kcuqsxuq" path="res://Tsukiyuki Miyako/image/defeat/defeat031.png" id="31_dx5vh"]
 [ext_resource type="Texture2D" uid="uid://bfsfm3h842jab" path="res://Tsukiyuki Miyako/image/shop/shop029.png" id="31_yv1kk"]
 [ext_resource type="Texture2D" uid="uid://cumcgan2sp0qq" path="res://Tsukiyuki Miyako/image/shop/shop030.png" id="32_jf2cm"]
+[ext_resource type="Texture2D" uid="uid://cch1w3filnl75" path="res://Tsukiyuki Miyako/image/defeat/defeat032.png" id="32_yr0oy"]
+[ext_resource type="Texture2D" uid="uid://cu6p7o4mmutfr" path="res://Tsukiyuki Miyako/image/defeat/defeat033.png" id="33_hw7nb"]
 [ext_resource type="Texture2D" uid="uid://dhf0fhhs8cb1m" path="res://Tsukiyuki Miyako/image/shop/shop031.png" id="33_j3y3r"]
+[ext_resource type="Texture2D" uid="uid://81t657vgmm7n" path="res://Tsukiyuki Miyako/image/defeat/defeat034.png" id="34_53tuy"]
 [ext_resource type="Texture2D" uid="uid://ctddavia2tm3g" path="res://Tsukiyuki Miyako/image/shop/shop032.png" id="34_kr8jh"]
 [ext_resource type="Texture2D" uid="uid://dgrea3o1kpvy2" path="res://Tsukiyuki Miyako/image/shop/shop033.png" id="35_ble5c"]
+[ext_resource type="Texture2D" uid="uid://bxlmwbn62pcao" path="res://Tsukiyuki Miyako/image/defeat/defeat035.png" id="35_ok3iu"]
+[ext_resource type="Texture2D" uid="uid://dfippkhhctwr7" path="res://Tsukiyuki Miyako/image/defeat/defeat036.png" id="36_quw8f"]
 [ext_resource type="Texture2D" uid="uid://brqca0flju38g" path="res://Tsukiyuki Miyako/image/shop/shop034.png" id="36_r4vxu"]
+[ext_resource type="Texture2D" uid="uid://ph7pp7dphyg1" path="res://Tsukiyuki Miyako/image/defeat/defeat037.png" id="37_gc7ie"]
 [ext_resource type="Texture2D" uid="uid://u5gj7r4046tt" path="res://Tsukiyuki Miyako/image/shop/shop035.png" id="37_yx5bu"]
+[ext_resource type="Texture2D" uid="uid://byhmw81wsii1a" path="res://Tsukiyuki Miyako/image/defeat/defeat038.png" id="38_l44nr"]
 [ext_resource type="Texture2D" uid="uid://bpxa5mnv2x0k0" path="res://Tsukiyuki Miyako/image/shop/shop036.png" id="38_x64mt"]
 [ext_resource type="Texture2D" uid="uid://batt4wi71s75v" path="res://Tsukiyuki Miyako/image/shop/shop037.png" id="39_4fpt5"]
+[ext_resource type="Texture2D" uid="uid://dpspe75no5hve" path="res://Tsukiyuki Miyako/image/defeat/defeat039.png" id="39_gjf1l"]
+[ext_resource type="Texture2D" uid="uid://cn521djyaw4qy" path="res://Tsukiyuki Miyako/image/defeat/defeat040.png" id="40_fyrgd"]
 [ext_resource type="Texture2D" uid="uid://bhsnc4v3100rd" path="res://Tsukiyuki Miyako/image/shop/shop038.png" id="40_rlwn4"]
+[ext_resource type="Texture2D" uid="uid://dsy3i23j5ap4r" path="res://Tsukiyuki Miyako/image/defeat/defeat041.png" id="41_btjo4"]
 [ext_resource type="Texture2D" uid="uid://bto8ri5yf65rt" path="res://Tsukiyuki Miyako/image/shop/shop039.png" id="41_p0frb"]
+[ext_resource type="Texture2D" uid="uid://bbvfla7s2ki0s" path="res://Tsukiyuki Miyako/image/defeat/defeat042.png" id="42_5fkan"]
 [ext_resource type="Texture2D" uid="uid://db7pn7q0d0fjd" path="res://Tsukiyuki Miyako/image/shop/shop040.png" id="42_adif0"]
+[ext_resource type="Texture2D" uid="uid://cg0splpjnyngd" path="res://Tsukiyuki Miyako/image/defeat/defeat043.png" id="43_jf021"]
 [ext_resource type="Texture2D" uid="uid://b6fbe7lw4shvn" path="res://Tsukiyuki Miyako/image/shop/shop041.png" id="43_jypoy"]
+[ext_resource type="Texture2D" uid="uid://bjb7epf2yg3pm" path="res://Tsukiyuki Miyako/image/defeat/defeat044.png" id="44_6bc64"]
 [ext_resource type="Texture2D" uid="uid://ru8rk5l8j5d3" path="res://Tsukiyuki Miyako/image/shop/shop042.png" id="44_i4lv6"]
 [ext_resource type="Texture2D" uid="uid://dw8mi0n4sxkap" path="res://Tsukiyuki Miyako/image/shop/shop043.png" id="45_2n8y7"]
+[ext_resource type="Texture2D" uid="uid://bldlrj0j0pehr" path="res://Tsukiyuki Miyako/image/defeat/defeat045.png" id="45_eybvl"]
+[ext_resource type="Texture2D" uid="uid://rdji8liqk8ix" path="res://Tsukiyuki Miyako/image/defeat/defeat046.png" id="46_chbvx"]
 [ext_resource type="Texture2D" uid="uid://d2vueonln278v" path="res://Tsukiyuki Miyako/image/shop/shop044.png" id="46_dls5y"]
+[ext_resource type="Texture2D" uid="uid://dmbv52xtwk3c1" path="res://Tsukiyuki Miyako/image/defeat/defeat047.png" id="47_1bxyo"]
 [ext_resource type="Texture2D" uid="uid://cv7hw1yoohanc" path="res://Tsukiyuki Miyako/image/shop/shop045.png" id="47_ilsxf"]
 [ext_resource type="Texture2D" uid="uid://b3elcr0t7x54j" path="res://Tsukiyuki Miyako/image/shop/shop046.png" id="48_gf7k0"]
+[ext_resource type="Texture2D" uid="uid://dlaclx0qvog7f" path="res://Tsukiyuki Miyako/image/defeat/defeat048.png" id="48_yb1eo"]
 [ext_resource type="Texture2D" uid="uid://cq5yplqr46vr4" path="res://Tsukiyuki Miyako/image/shop/shop047.png" id="49_bfgax"]
+[ext_resource type="Texture2D" uid="uid://bs45htuilq3cn" path="res://Tsukiyuki Miyako/image/defeat/defeat049.png" id="49_cpiig"]
+[ext_resource type="Texture2D" uid="uid://chjl00ee85h46" path="res://Tsukiyuki Miyako/image/defeat/defeat050.png" id="50_bseh5"]
 [ext_resource type="Texture2D" uid="uid://wlx7g6fdwkyf" path="res://Tsukiyuki Miyako/image/shop/shop048.png" id="50_rx54h"]
+[ext_resource type="Texture2D" uid="uid://b86etaexlw73v" path="res://Tsukiyuki Miyako/image/defeat/defeat051.png" id="51_ewq04"]
 [ext_resource type="Texture2D" uid="uid://dli5swebls7ni" path="res://Tsukiyuki Miyako/image/shop/shop049.png" id="51_l4loa"]
+[ext_resource type="Texture2D" uid="uid://bpyrdekxya5co" path="res://Tsukiyuki Miyako/image/defeat/defeat052.png" id="52_2svfd"]
 [ext_resource type="Texture2D" uid="uid://ccvv0ttytelug" path="res://Tsukiyuki Miyako/image/shop/shop050.png" id="52_oe2mr"]
 [ext_resource type="Texture2D" uid="uid://3ngaupgr1anv" path="res://Tsukiyuki Miyako/image/shop/shop051.png" id="53_baett"]
+[ext_resource type="Texture2D" uid="uid://c7n2d3p5wxeun" path="res://Tsukiyuki Miyako/image/defeat/defeat053.png" id="53_labp3"]
+[ext_resource type="Texture2D" uid="uid://wnmmv4v5fuxq" path="res://Tsukiyuki Miyako/image/defeat/defeat054.png" id="54_7u7x6"]
 [ext_resource type="Texture2D" uid="uid://b5a0r2keyx8ls" path="res://Tsukiyuki Miyako/image/shop/shop052.png" id="54_fdf0d"]
+[ext_resource type="Texture2D" uid="uid://bamyhs3fflin4" path="res://Tsukiyuki Miyako/image/defeat/defeat055.png" id="55_6k6pn"]
 [ext_resource type="Texture2D" uid="uid://bl27auvjaayf0" path="res://Tsukiyuki Miyako/image/shop/shop053.png" id="55_fr8g2"]
 [ext_resource type="Texture2D" uid="uid://sr3bxwvf7sak" path="res://Tsukiyuki Miyako/image/shop/shop054.png" id="56_3cby7"]
+[ext_resource type="Texture2D" uid="uid://btjhrhsiajiyu" path="res://Tsukiyuki Miyako/image/defeat/defeat056.png" id="56_kv6i5"]
+[ext_resource type="Texture2D" uid="uid://b6lkkybt1q3kg" path="res://Tsukiyuki Miyako/image/defeat/defeat057.png" id="57_by20c"]
 [ext_resource type="Texture2D" uid="uid://de2qrinb5540" path="res://Tsukiyuki Miyako/image/shop/shop055.png" id="57_qbbao"]
 [ext_resource type="Texture2D" uid="uid://b5rbfj5i0y7cm" path="res://Tsukiyuki Miyako/image/shop/shop056.png" id="58_ou23v"]
+[ext_resource type="Texture2D" uid="uid://dg1ciiqj6kx5u" path="res://Tsukiyuki Miyako/image/defeat/defeat058.png" id="58_tur2q"]
 [ext_resource type="Texture2D" uid="uid://bvk3hhk24ygl3" path="res://Tsukiyuki Miyako/image/shop/shop057.png" id="59_jj8i8"]
+[ext_resource type="Texture2D" uid="uid://781x17mdkiwp" path="res://Tsukiyuki Miyako/image/defeat/defeat059.png" id="59_qb7iq"]
+[ext_resource type="Texture2D" uid="uid://bx6l4m4katq5h" path="res://Tsukiyuki Miyako/image/defeat/defeat060.png" id="60_uipc2"]
 [ext_resource type="Texture2D" uid="uid://cu0tu758spktn" path="res://Tsukiyuki Miyako/image/shop/shop058.png" id="60_uohhn"]
 [ext_resource type="Texture2D" uid="uid://bco8pe25lv0em" path="res://Tsukiyuki Miyako/image/shop/shop059.png" id="61_gtobr"]
+[ext_resource type="Texture2D" uid="uid://bqneewqqr3vp7" path="res://Tsukiyuki Miyako/image/defeat/defeat061.png" id="61_sqbdw"]
+[ext_resource type="Texture2D" uid="uid://inkgjxyd5foi" path="res://Tsukiyuki Miyako/image/defeat/defeat062.png" id="62_i2p8j"]
 [ext_resource type="Texture2D" uid="uid://ce7sipaimw7vu" path="res://Tsukiyuki Miyako/image/shop/shop060.png" id="62_tbpji"]
 [ext_resource type="Texture2D" uid="uid://conup28tyfvbr" path="res://Tsukiyuki Miyako/image/shop/shop061.png" id="63_ddgoi"]
+[ext_resource type="Texture2D" uid="uid://beniel2dndcow" path="res://Tsukiyuki Miyako/image/defeat/defeat063.png" id="63_oq58i"]
+[ext_resource type="Texture2D" uid="uid://q7104ws600m2" path="res://Tsukiyuki Miyako/image/defeat/defeat064.png" id="64_4p8dy"]
 [ext_resource type="Texture2D" uid="uid://bl0bcgq7gidwn" path="res://Tsukiyuki Miyako/image/shop/shop062.png" id="64_8nu67"]
+[ext_resource type="Texture2D" uid="uid://c7p78dm3pgb38" path="res://Tsukiyuki Miyako/image/defeat/defeat065.png" id="65_1i5nl"]
 [ext_resource type="Texture2D" uid="uid://c6yo5x6vkwjm3" path="res://Tsukiyuki Miyako/image/shop/shop063.png" id="65_jjnot"]
 [ext_resource type="Texture2D" uid="uid://dp8ltbvyqq1o6" path="res://Tsukiyuki Miyako/image/shop/shop064.png" id="66_613v2"]
+[ext_resource type="Texture2D" uid="uid://bkpettx1e0vbx" path="res://Tsukiyuki Miyako/image/defeat/defeat066.png" id="66_cgchj"]
+[ext_resource type="Texture2D" uid="uid://e4rbfo7706sg" path="res://Tsukiyuki Miyako/image/defeat/defeat067.png" id="67_ipt74"]
 [ext_resource type="Texture2D" uid="uid://dtpmd1fxxbw37" path="res://Tsukiyuki Miyako/image/shop/shop065.png" id="67_u6doe"]
 [ext_resource type="Texture2D" uid="uid://j26axd2626n2" path="res://Tsukiyuki Miyako/image/shop/shop066.png" id="68_6do0a"]
+[ext_resource type="Texture2D" uid="uid://utsun0l3tkja" path="res://Tsukiyuki Miyako/image/defeat/defeat068.png" id="68_cgkyi"]
+[ext_resource type="Texture2D" uid="uid://cm1tvptjshabr" path="res://Tsukiyuki Miyako/image/defeat/defeat069.png" id="69_mux7q"]
 [ext_resource type="Texture2D" uid="uid://nne0at85a2bk" path="res://Tsukiyuki Miyako/image/shop/shop067.png" id="69_ro6sn"]
+[ext_resource type="Texture2D" uid="uid://d4e34gaewhhpg" path="res://Tsukiyuki Miyako/image/defeat/defeat070.png" id="70_g2ode"]
 [ext_resource type="Texture2D" uid="uid://deohk3kbj0xsm" path="res://Tsukiyuki Miyako/image/shop/shop068.png" id="70_ot583"]
 [ext_resource type="Texture2D" uid="uid://qy54w8l4xub0" path="res://Tsukiyuki Miyako/image/shop/shop069.png" id="71_fh5fh"]
+[ext_resource type="Texture2D" uid="uid://dfmj5d2lfjq5s" path="res://Tsukiyuki Miyako/image/defeat/defeat071.png" id="71_hq1sr"]
+[ext_resource type="Texture2D" uid="uid://do15bs3nqm3i1" path="res://Tsukiyuki Miyako/image/defeat/defeat072.png" id="72_7k6ci"]
 [ext_resource type="Texture2D" uid="uid://cn40jrikps8qd" path="res://Tsukiyuki Miyako/image/shop/shop070.png" id="72_u4xnb"]
 [ext_resource type="Texture2D" uid="uid://b5anjkkhgd13w" path="res://Tsukiyuki Miyako/image/shop/shop071.png" id="73_7r1yf"]
+[ext_resource type="Texture2D" uid="uid://dy2jwxc3lfhdl" path="res://Tsukiyuki Miyako/image/defeat/defeat073.png" id="73_hi1e3"]
+[ext_resource type="Texture2D" uid="uid://bsvd8e4kglb2e" path="res://Tsukiyuki Miyako/image/defeat/defeat074.png" id="74_73a4r"]
 [ext_resource type="Texture2D" uid="uid://d1mqxdw0oamn8" path="res://Tsukiyuki Miyako/image/shop/shop072.png" id="74_rkw2v"]
+[ext_resource type="Texture2D" uid="uid://7lmooup6ahcl" path="res://Tsukiyuki Miyako/image/defeat/defeat075.png" id="75_812oh"]
 [ext_resource type="Texture2D" uid="uid://co4xj8d0nhd64" path="res://Tsukiyuki Miyako/image/shop/shop073.png" id="75_pshct"]
+[ext_resource type="Texture2D" uid="uid://dbs2ixr6454u8" path="res://Tsukiyuki Miyako/image/defeat/defeat076.png" id="76_f1yuq"]
 [ext_resource type="Texture2D" uid="uid://dx6dy3u0vyima" path="res://Tsukiyuki Miyako/image/shop/shop074.png" id="76_vm7qo"]
 [ext_resource type="Texture2D" uid="uid://cy0m35hb62n77" path="res://Tsukiyuki Miyako/image/shop/shop075.png" id="77_qakyl"]
+[ext_resource type="Texture2D" uid="uid://r2m7r2yljg82" path="res://Tsukiyuki Miyako/image/defeat/defeat077.png" id="77_to6f7"]
+[ext_resource type="Texture2D" uid="uid://cwk4ofknt5d4" path="res://Tsukiyuki Miyako/image/defeat/defeat078.png" id="78_ew81t"]
 [ext_resource type="Texture2D" uid="uid://ls74qlbqvjsc" path="res://Tsukiyuki Miyako/image/shop/shop076.png" id="78_f38kp"]
 [ext_resource type="Texture2D" uid="uid://b5hrb7isdjynf" path="res://Tsukiyuki Miyako/image/shop/shop077.png" id="79_624fb"]
+[ext_resource type="Texture2D" uid="uid://cjn7jmcptmvlx" path="res://Tsukiyuki Miyako/image/defeat/defeat079.png" id="79_m5w0q"]
 [ext_resource type="Texture2D" uid="uid://bh4latm1orgnp" path="res://Tsukiyuki Miyako/image/shop/shop078.png" id="80_ilr5y"]
+[ext_resource type="Texture2D" uid="uid://ccf4itny4bn6f" path="res://Tsukiyuki Miyako/image/defeat/defeat080.png" id="80_tjy2k"]
 [ext_resource type="Texture2D" uid="uid://cs1ydvhoaol0x" path="res://Tsukiyuki Miyako/image/shop/shop079.png" id="81_2p0gy"]
+[ext_resource type="Texture2D" uid="uid://k4knfyhbvsg" path="res://Tsukiyuki Miyako/image/defeat/defeat081.png" id="81_4gmxt"]
+[ext_resource type="Texture2D" uid="uid://cvitv5lsw3dy2" path="res://Tsukiyuki Miyako/image/defeat/defeat082.png" id="82_6m0jq"]
 [ext_resource type="Texture2D" uid="uid://dk43mklf647aj" path="res://Tsukiyuki Miyako/image/shop/shop080.png" id="82_csosi"]
+[ext_resource type="Texture2D" uid="uid://d375f6vhg3u58" path="res://Tsukiyuki Miyako/image/defeat/defeat083.png" id="83_562i6"]
 [ext_resource type="Texture2D" uid="uid://d4m4xeyahuex7" path="res://Tsukiyuki Miyako/image/shop/shop081.png" id="83_g45my"]
+[ext_resource type="Texture2D" uid="uid://df6n2f2jgih5d" path="res://Tsukiyuki Miyako/image/defeat/defeat084.png" id="84_5m7v1"]
 [ext_resource type="Texture2D" uid="uid://b6e04jrnyqpbn" path="res://Tsukiyuki Miyako/image/shop/shop082.png" id="84_ry3dh"]
 [ext_resource type="Texture2D" uid="uid://ip7k28wvga2n" path="res://Tsukiyuki Miyako/image/shop/shop083.png" id="85_r2v6r"]
+[ext_resource type="Texture2D" uid="uid://c17nht7xxjy5k" path="res://Tsukiyuki Miyako/image/defeat/defeat085.png" id="85_sy2s1"]
 [ext_resource type="Texture2D" uid="uid://cbf7o6aml2mnd" path="res://Tsukiyuki Miyako/image/shop/shop084.png" id="86_coxhj"]
+[ext_resource type="Texture2D" uid="uid://35cnbcrbgly5" path="res://Tsukiyuki Miyako/image/defeat/defeat086.png" id="86_in58y"]
+[ext_resource type="Texture2D" uid="uid://damscnrr765d1" path="res://Tsukiyuki Miyako/image/defeat/defeat087.png" id="87_6oyye"]
 [ext_resource type="Texture2D" uid="uid://c4twgwan2x7on" path="res://Tsukiyuki Miyako/image/shop/shop085.png" id="87_ve4ho"]
 [ext_resource type="Texture2D" uid="uid://bhedxmm8lxty8" path="res://Tsukiyuki Miyako/image/shop/shop086.png" id="88_jiu5o"]
+[ext_resource type="Texture2D" uid="uid://cgjlxjibcfu4n" path="res://Tsukiyuki Miyako/image/defeat/defeat088.png" id="88_u03nf"]
 [ext_resource type="Texture2D" uid="uid://b08yr33dypcmr" path="res://Tsukiyuki Miyako/image/shop/shop087.png" id="89_bc5me"]
+[ext_resource type="Texture2D" uid="uid://d3vkcl4btyie7" path="res://Tsukiyuki Miyako/image/defeat/defeat089.png" id="89_fmedg"]
+[ext_resource type="Texture2D" uid="uid://gf2walwi2i0e" path="res://Tsukiyuki Miyako/image/defeat/defeat090.png" id="90_kfruo"]
 [ext_resource type="Texture2D" uid="uid://b7ngyho7qwfvg" path="res://Tsukiyuki Miyako/image/shop/shop088.png" id="90_y7bij"]
 [ext_resource type="Texture2D" uid="uid://cp46hmlvuveta" path="res://Tsukiyuki Miyako/image/shop/shop089.png" id="91_s7f6v"]
+[ext_resource type="Texture2D" uid="uid://bb0dn1tiphxci" path="res://Tsukiyuki Miyako/image/defeat/defeat091.png" id="91_ubhyp"]
 [ext_resource type="Texture2D" uid="uid://45ppwq77cuf7" path="res://Tsukiyuki Miyako/image/shop/shop090.png" id="92_pi0t5"]
+[ext_resource type="Texture2D" uid="uid://cempistugisvg" path="res://Tsukiyuki Miyako/image/defeat/defeat092.png" id="92_u7f24"]
+[ext_resource type="Texture2D" uid="uid://dwv2c8du3b2a" path="res://Tsukiyuki Miyako/image/defeat/defeat093.png" id="93_f86tr"]
 [ext_resource type="Texture2D" uid="uid://b5yp7vl6qq73x" path="res://Tsukiyuki Miyako/image/shop/shop091.png" id="93_oxmw2"]
+[ext_resource type="Texture2D" uid="uid://cfaani686j5wv" path="res://Tsukiyuki Miyako/image/defeat/defeat094.png" id="94_6e3bt"]
 [ext_resource type="Texture2D" uid="uid://qjy3qhqrwqt8" path="res://Tsukiyuki Miyako/image/shop/shop092.png" id="94_cyott"]
 [ext_resource type="Texture2D" uid="uid://cjivjkp5u0i7p" path="res://Tsukiyuki Miyako/image/shop/shop093.png" id="95_8xbmc"]
+[ext_resource type="Texture2D" uid="uid://1mqlu7r6dlcv" path="res://Tsukiyuki Miyako/image/defeat/defeat095.png" id="95_dhhnh"]
+[ext_resource type="Texture2D" uid="uid://d0scrryqwvh1k" path="res://Tsukiyuki Miyako/image/defeat/defeat096.png" id="96_6n555"]
 [ext_resource type="Texture2D" uid="uid://b5tqm2i58k4uv" path="res://Tsukiyuki Miyako/image/shop/shop094.png" id="96_qgkfw"]
 [ext_resource type="Texture2D" uid="uid://dmpbkdciv2ss6" path="res://Tsukiyuki Miyako/image/shop/shop095.png" id="97_ce73t"]
+[ext_resource type="Texture2D" uid="uid://bm35g80f0hmnd" path="res://Tsukiyuki Miyako/image/defeat/defeat097.png" id="97_n20we"]
 [ext_resource type="Texture2D" uid="uid://drgqyljha87j4" path="res://Tsukiyuki Miyako/image/shop/shop096.png" id="98_3mq1v"]
+[ext_resource type="Texture2D" uid="uid://4migjuna2mo8" path="res://Tsukiyuki Miyako/image/defeat/defeat098.png" id="98_xlat0"]
 [ext_resource type="Texture2D" uid="uid://d3vrpuys5ad2q" path="res://Tsukiyuki Miyako/image/shop/shop097.png" id="99_g2xa0"]
+[ext_resource type="Texture2D" uid="uid://chu2ktkh11abs" path="res://Tsukiyuki Miyako/image/defeat/defeat099.png" id="99_qy16y"]
 [ext_resource type="Texture2D" uid="uid://chb14x144562k" path="res://Tsukiyuki Miyako/image/shop/shop098.png" id="100_2lte5"]
+[ext_resource type="Texture2D" uid="uid://cvx5co8gyquto" path="res://Tsukiyuki Miyako/image/defeat/defeat100.png" id="100_sesk7"]
 [ext_resource type="Texture2D" uid="uid://cq7kil0qjnonf" path="res://Tsukiyuki Miyako/image/shop/shop099.png" id="101_baekv"]
+[ext_resource type="Texture2D" uid="uid://bn00mogsxdi80" path="res://Tsukiyuki Miyako/image/defeat/defeat101.png" id="101_fbbbm"]
 [ext_resource type="Texture2D" uid="uid://cynqjy16fhgpp" path="res://Tsukiyuki Miyako/image/shop/shop100.png" id="102_1y1vi"]
+[ext_resource type="Texture2D" uid="uid://cy78vb57bx5ri" path="res://Tsukiyuki Miyako/image/defeat/defeat102.png" id="102_n0iq4"]
 [ext_resource type="Texture2D" uid="uid://cvrny5c44e1ve" path="res://Tsukiyuki Miyako/image/shop/shop101.png" id="103_gh2f0"]
+[ext_resource type="Texture2D" uid="uid://0ylloecb7vfh" path="res://Tsukiyuki Miyako/image/defeat/defeat103.png" id="103_wqv15"]
 [ext_resource type="Texture2D" uid="uid://dljragbc6qoue" path="res://Tsukiyuki Miyako/image/shop/shop102.png" id="104_2ilgy"]
+[ext_resource type="Texture2D" uid="uid://dak38oiosii4i" path="res://Tsukiyuki Miyako/image/defeat/defeat104.png" id="104_fje13"]
 [ext_resource type="Texture2D" uid="uid://d123fmd63a4xw" path="res://Tsukiyuki Miyako/image/shop/shop103.png" id="105_8ab2p"]
+[ext_resource type="Texture2D" uid="uid://31p7s1qw0jnb" path="res://Tsukiyuki Miyako/image/defeat/defeat105.png" id="105_njsqg"]
 [ext_resource type="Texture2D" uid="uid://b6m3xtyg2nain" path="res://Tsukiyuki Miyako/image/shop/shop104.png" id="106_3qjfp"]
+[ext_resource type="Texture2D" uid="uid://nq7svfc4nqso" path="res://Tsukiyuki Miyako/image/defeat/defeat106.png" id="106_h6ljb"]
+[ext_resource type="Texture2D" uid="uid://prk7gkjsdkd8" path="res://Tsukiyuki Miyako/image/defeat/defeat107.png" id="107_bwg2o"]
 [ext_resource type="Texture2D" uid="uid://ct3g6i6ekmxvc" path="res://Tsukiyuki Miyako/image/shop/shop105.png" id="107_rmvm1"]
+[ext_resource type="Texture2D" uid="uid://br3dxg68jbm5i" path="res://Tsukiyuki Miyako/image/defeat/defeat108.png" id="108_cjadw"]
 [ext_resource type="Texture2D" uid="uid://d0kaw6wjybw55" path="res://Tsukiyuki Miyako/image/shop/shop106.png" id="108_ov4fk"]
+[ext_resource type="Texture2D" uid="uid://dj7gtu8ikwoyl" path="res://Tsukiyuki Miyako/image/defeat/defeat109.png" id="109_ooig2"]
 [ext_resource type="Texture2D" uid="uid://c4h203012527c" path="res://Tsukiyuki Miyako/image/shop/shop107.png" id="109_w40bt"]
+[ext_resource type="Texture2D" uid="uid://dtr6b4uvnsse7" path="res://Tsukiyuki Miyako/image/defeat/defeat110.png" id="110_0m6yd"]
 [ext_resource type="Texture2D" uid="uid://bf0iigy8bq4rx" path="res://Tsukiyuki Miyako/image/shop/shop108.png" id="110_myun1"]
 [ext_resource type="Texture2D" uid="uid://c50rg004ppwu7" path="res://Tsukiyuki Miyako/image/shop/shop109.png" id="111_p08t7"]
+[ext_resource type="Texture2D" uid="uid://nfbk1lnpg7wy" path="res://Tsukiyuki Miyako/image/defeat/defeat111.png" id="111_wvbik"]
+[ext_resource type="Texture2D" uid="uid://xe044vidtato" path="res://Tsukiyuki Miyako/image/defeat/defeat112.png" id="112_n7ca1"]
 [ext_resource type="Texture2D" uid="uid://dtixdeb448kf" path="res://Tsukiyuki Miyako/image/shop/shop110.png" id="112_qwysi"]
 [ext_resource type="Texture2D" uid="uid://d4fpt2e5gx1xm" path="res://Tsukiyuki Miyako/image/shop/shop111.png" id="113_6t1g4"]
+[ext_resource type="Texture2D" uid="uid://bjnlwvnqimlgg" path="res://Tsukiyuki Miyako/image/defeat/defeat113.png" id="113_mvc5e"]
+[ext_resource type="Texture2D" uid="uid://dwxuloxei7w27" path="res://Tsukiyuki Miyako/image/defeat/defeat114.png" id="114_0oux7"]
 [ext_resource type="Texture2D" uid="uid://cj7gq5vt7frwq" path="res://Tsukiyuki Miyako/image/shop/shop112.png" id="114_q8bmj"]
+[ext_resource type="Texture2D" uid="uid://cixic08tx5b67" path="res://Tsukiyuki Miyako/image/defeat/defeat115.png" id="115_i83yb"]
 [ext_resource type="Texture2D" uid="uid://blq2h54j8kvv1" path="res://Tsukiyuki Miyako/image/shop/shop113.png" id="115_x2wpy"]
 [ext_resource type="Texture2D" uid="uid://dffjcpxb1ew1t" path="res://Tsukiyuki Miyako/image/shop/shop114.png" id="116_d3fr7"]
+[ext_resource type="Texture2D" uid="uid://fjm5u2erxmu8" path="res://Tsukiyuki Miyako/image/defeat/defeat116.png" id="116_oe0re"]
 [ext_resource type="Texture2D" uid="uid://cybg5cnel7hh4" path="res://Tsukiyuki Miyako/image/shop/shop115.png" id="117_y8y5h"]
 [ext_resource type="Texture2D" uid="uid://cs5oycjpuaf7j" path="res://Tsukiyuki Miyako/image/shop/shop116.png" id="118_hkxis"]
 [ext_resource type="Texture2D" uid="uid://o8ciloip0wqb" path="res://Tsukiyuki Miyako/image/shop/shop117.png" id="119_lnqa8"]
@@ -193,6 +308,359 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_default"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y8y5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hkxis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lnqa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yp7fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w4sfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_elupi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1ibvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_62sry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c0a0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ip8wa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0saqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3kom6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_34alx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_fqgwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_74tpo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_obm4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_7lj07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xw4k0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_aaxfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dqr0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_rvpvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ovnjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_0sqjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_16aji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_sge6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_dovl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_uwe8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_gfr4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_doqq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_rohd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_dx5vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_yr0oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_hw7nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_53tuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ok3iu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_quw8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_gc7ie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_l44nr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_gjf1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_fyrgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_btjo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_5fkan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_jf021")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_6bc64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_eybvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_chbvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_1bxyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_yb1eo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_cpiig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_bseh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_ewq04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_2svfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_labp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_7u7x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_6k6pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_kv6i5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_by20c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_tur2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_qb7iq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_uipc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_sqbdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_i2p8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_oq58i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_4p8dy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_1i5nl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_cgchj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_ipt74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_cgkyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_mux7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_g2ode")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_hq1sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_7k6ci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_hi1e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_73a4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_812oh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_f1yuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_to6f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_ew81t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_m5w0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_tjy2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_4gmxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_6m0jq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_562i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_5m7v1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_sy2s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_in58y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_6oyye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_u03nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_fmedg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_kfruo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_ubhyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_u7f24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_f86tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_6e3bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_dhhnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_6n555")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_n20we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_xlat0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_qy16y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_sesk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_fbbbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_n0iq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_wqv15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_fje13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_njsqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_h6ljb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_bwg2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_cjadw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_ooig2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_0m6yd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_wvbik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_n7ca1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_mvc5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_0oux7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_i83yb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_oe0re")
+}],
+"loop": false,
+"name": &"die",
+"speed": 60.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_h1jl3")
@@ -767,12 +1235,12 @@ animations = [{
 }]
 
 [node name="DefectMerchantTemplate" type="Node2D"]
-script = ExtResource("1_script")
 
 [node name="Visuals" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, -109)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_default")
-animation = &"relaxed_loop"
+animation = &"die"
 autoplay = "relaxed_loop"
-frame_progress = 0.4828588
+frame = 115
+frame_progress = 1.0
