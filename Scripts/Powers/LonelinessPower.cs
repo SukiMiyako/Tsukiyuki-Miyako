@@ -12,24 +12,18 @@ namespace TsukiyukiMiyako.Scripts.Powers;
 
 /// <summary>
 /// Debuff applied when SenseiPower drops to 0 or below.
-/// Each stack applies -1 Strength and -1 Dexterity via internal Strength/Dexterity powers.
+/// Each stack applies -1 Strength and -1 Dexterity.
 /// Automatically removed when SenseiPower goes above 0.
+///
+/// Uses AfterPowerAmountChanged (not BeforeApplied) to manage underlying
+/// Strength/Dexterity, because BeforeApplied fires for the full amount and
+/// AfterPowerAmountChanged fires for the delta — using both would double-apply.
 /// </summary>
 public sealed class LonelinessPower : MiyakoModPower
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override bool AllowNegative => false;
-
-    public override async Task BeforeApplied(Creature target, decimal amount, Creature? applier, CardModel? cardSource)
-    {
-        // Apply negative Strength equal to the full stack count
-        await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(), target, -amount, applier, cardSource, silent: true);
-        // Apply negative Dexterity equal to the full stack count
-        await PowerCmd.Apply<DexterityPower>(
-            new ThrowingPlayerChoiceContext(), target, -amount, applier, cardSource, silent: true);
-    }
 
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext, PowerModel power, decimal amount,
@@ -38,11 +32,10 @@ public sealed class LonelinessPower : MiyakoModPower
         if (power != this)
             return;
 
-        // When loneliness changes, adjust the underlying Strength/Dexterity
+        // `amount` is the CHANGE, not the total. Apply the delta to Strength/Dexterity.
         await PowerCmd.Apply<StrengthPower>(
             choiceContext, base.Owner, -amount, applier, cardSource, silent: true);
         await PowerCmd.Apply<DexterityPower>(
             choiceContext, base.Owner, -amount, applier, cardSource, silent: true);
     }
-
 }

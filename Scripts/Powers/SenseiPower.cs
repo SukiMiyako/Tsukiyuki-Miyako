@@ -71,29 +71,24 @@ public sealed class SenseiPower : CustomPowerModel
         {
             // Loneliness stacks = 3 + abs(SenseiPower)
             int lonelinessStacks = 3 + Math.Abs(totalSensei);
-
-            // Get current loneliness on the creature
             int currentLoneliness = owner.GetPowerAmount<LonelinessPower>();
+            int delta = lonelinessStacks - currentLoneliness;
 
-            if (currentLoneliness != lonelinessStacks)
+            if (delta != 0)
             {
-                await PowerCmd.Remove<LonelinessPower>(owner);
+                // Apply delta — LonelinessPower.AfterPowerAmountChanged handles str/dex adjustment
                 await PowerCmd.Apply<LonelinessPower>(
-                    new BlockingPlayerChoiceContext(), owner, lonelinessStacks, owner, null);
+                    choiceContext, owner, delta, owner, null, silent: true);
             }
         }
         else
         {
-            // SenseiPower > 0 → remove all Loneliness and its underlying debuffs
+            // SenseiPower > 0 → bring LonelinessPower to 0 (auto-cleanup via AfterPowerAmountChanged)
             int currentLoneliness = owner.GetPowerAmount<LonelinessPower>();
             if (currentLoneliness > 0)
             {
-                // Cancel the negative Strength/Dexterity applied by LonelinessPower
-                await PowerCmd.Apply<StrengthPower>(
-                    choiceContext, owner, currentLoneliness, owner, null, silent: true);
-                await PowerCmd.Apply<DexterityPower>(
-                    choiceContext, owner, currentLoneliness, owner, null, silent: true);
-                await PowerCmd.Remove<LonelinessPower>(owner);
+                await PowerCmd.Apply<LonelinessPower>(
+                    choiceContext, owner, -currentLoneliness, owner, null, silent: true);
             }
         }
     }
