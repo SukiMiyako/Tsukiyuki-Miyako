@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Ancients;
 using MegaCrit.Sts2.Core.Models;
@@ -49,28 +48,3 @@ public static class MiyakoArchitectPatch
     }
 }
 
-/// <summary>
-/// Preloads Architect visual assets before the event room initializes.
-/// Without this, the Architect creature has no visual and attack VFX cannot render.
-/// </summary>
-[HarmonyPatch(typeof(TheArchitect), "SetInitialEventState")]
-public static class MiyakoArchitectPreloadPatch
-{
-    private static readonly string[] _preloadAssets =
-    {
-        "res://scenes/creature_visuals/architect.tscn",
-        "res://scenes/backgrounds/the_architect_event_encounter/the_architect_event_encounter_background.tscn",
-        "res://scenes/backgrounds/the_architect_event_encounter/layers/the_architect_event_encounter_bg_00_a.tscn",
-    };
-
-    public static void Prefix()
-    {
-        foreach (string path in _preloadAssets)
-        {
-            if (ResourceLoader.Exists(path))
-            {
-                ResourceLoader.Load(path);
-            }
-        }
-    }
-}
