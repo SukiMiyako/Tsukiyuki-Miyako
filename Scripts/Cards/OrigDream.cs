@@ -3,6 +3,7 @@ using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using BaseLib.Utils;
@@ -17,7 +18,9 @@ namespace TsukiyukiMiyako.Scripts.Relics;
 [Pool(typeof(MiyakoRelicPool))]
 public class OrigDream : CustomRelicModel
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
+    public override RelicRarity Rarity => RelicRarity.Starter;
+
+    public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<OrigDreamUpgraded>();
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {

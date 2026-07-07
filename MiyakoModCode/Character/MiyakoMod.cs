@@ -18,6 +18,7 @@ public class MiyakoMod : PlaceholderCharacterModel
     public static readonly Color Color = new("#73a2ff");
 
     public override Color NameColor => Color;
+    public override Color MapDrawingColor => new("#73a2ff");
     public override CharacterGender Gender => CharacterGender.Neutral;
     public override int StartingHp => 70;
     public override string CustomVisualPath => "res://Tsukiyuki Miyako/scenes/creature_visuals/tsukiyuki_miyako.tscn";
