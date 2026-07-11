@@ -42,6 +42,8 @@ public class SmgSweep : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 核心攻击：3点伤害 × 5次连击，单个敌人
+        if (Random.Shared.NextDouble() < 0.5)
+            SfxCmd.Play("res://Audio/Miyako_Battle_Shout_3.ogg");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue) // 连击次数
             .FromCard(this)

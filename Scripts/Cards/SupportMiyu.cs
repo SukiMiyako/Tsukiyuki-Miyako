@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using TsukiyukiMiyako.Scripts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 
@@ -43,6 +44,7 @@ public class SupportMiyu : CustomCardModel
     // 打出效果（完全保留你的原版逻辑）
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/Miyu_CommonSkill.ogg");
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Attack", base.Owner.Character.AttackAnimDelay);
         await CreatureCmd.Damage(
             choiceContext,

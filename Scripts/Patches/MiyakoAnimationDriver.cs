@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -44,6 +45,12 @@ internal static class MiyakoAnimationDriver
 
         if (!TryGetAnimatedSprite(creature.Visuals, out AnimatedSprite2D sprite) || sprite.SpriteFrames == null)
             return;
+
+        if (string.Equals(trigger, "Hit", System.StringComparison.Ordinal)
+            && System.Random.Shared.NextDouble() < 0.3)
+        {
+            SfxCmd.Play($"res://Audio/Miyako_Battle_Damage_{System.Random.Shared.Next(1, 4)}.ogg");
+        }
 
         string animName = ResolveCombatAnimationName(sprite, trigger);
         if (animName != null)
