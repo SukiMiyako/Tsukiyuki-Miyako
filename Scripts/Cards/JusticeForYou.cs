@@ -28,6 +28,7 @@ public sealed class JusticeForYou : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/JusticeForYou.ogg");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         // 修复：
         await PowerCmd.Apply<JusticeForYouPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["JusticeForYouPower"].BaseValue, Owner.Creature, this);

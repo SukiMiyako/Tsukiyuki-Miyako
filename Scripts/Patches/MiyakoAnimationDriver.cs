@@ -47,11 +47,10 @@ internal static class MiyakoAnimationDriver
             return;
 
         if (string.Equals(trigger, "Hit", System.StringComparison.Ordinal)
-            && System.Random.Shared.NextDouble() < 0.3)
+            && System.Random.Shared.NextDouble() < 0.8)
         {
             SfxCmd.Play($"res://Audio/Miyako_Battle_Damage_{System.Random.Shared.Next(1, 4)}.ogg");
         }
-
         string animName = ResolveCombatAnimationName(sprite, trigger);
         if (animName != null)
         {

@@ -45,6 +45,7 @@ public sealed class PeaceForKivotos : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/PeaceForKivotos.ogg");
         // 修复：
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<StrengthPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(StrengthPower)].BaseValue, Owner.Creature, this);

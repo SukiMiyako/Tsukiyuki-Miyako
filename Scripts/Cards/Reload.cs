@@ -38,6 +38,7 @@ public class Reload : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/reload.ogg");
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
     }

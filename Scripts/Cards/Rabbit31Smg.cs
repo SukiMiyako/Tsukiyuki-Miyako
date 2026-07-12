@@ -30,6 +30,7 @@ public sealed class Rabbit31Smg : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/Rabbit31Smg.ogg");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         // 修复：
         await PowerCmd.Apply<Rabbit31SmgPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["Rabbit31SmgPower"].BaseValue, Owner.Creature, this);

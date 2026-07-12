@@ -33,6 +33,7 @@ public class DroneDeploy : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/flashdrone.ogg");
         // 全体群攻伤害（保留原伤害）
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)

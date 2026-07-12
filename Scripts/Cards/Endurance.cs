@@ -31,6 +31,7 @@ public class Endurance : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        SfxCmd.Play("res://Audio/Endurance.ogg");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<EndurancePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, DynamicVars[_starsPerTurnKey].BaseValue, base.Owner.Creature, this);
     }

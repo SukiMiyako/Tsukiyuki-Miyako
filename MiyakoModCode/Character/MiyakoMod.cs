@@ -62,4 +62,7 @@ public class MiyakoMod : PlaceholderCharacterModel
         "vfx/vfx_bloody_impact",
         "vfx/vfx_rock_shatter"
     ];
+
+    // 角色选择音效
+    public override string CharacterSelectSfx => "res://Audio/Miyako_Gachaget.ogg";
 }
