@@ -2,9 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://ctomtcl752e13" path="res://Tsukiyuki Miyako/bigenergy.png" id="1_25sq3"]
 
-[node name="MiyakoEnergyCounter" type="Control"]
+[node name="TestEnergyCounter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+metadata/_edit_lock_ = true
 
 [node name="EnergyVfxBack" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -30,8 +33,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_25sq3")
@@ -48,13 +49,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_top = -29.0
-offset_right = 112.0
-offset_bottom = 157.0
+offset_right = -16.0
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.95686275, 0.8784314, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0.101960786, 0.101960786, 0.8, 1)
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 18.892157, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.1, 0.8, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 16

@@ -24,9 +24,9 @@ public sealed class JusticeForYouPower : CustomPowerModel
         // 原版判断：自己的牌 + 状态牌
         if (card.Owner.Creature == base.Owner && card.Type == CardType.Status)
         {
-            // 核心条件：师生羁绊 > 5
+            // 核心条件：师生羁绊 >= 5
             int senseiCount = base.Owner.GetPowerAmount<SenseiPower>();
-            if (senseiCount <= 8)
+            if (senseiCount < 5)
                 return;
 
             Flash();

@@ -30,8 +30,6 @@ public class TeamPrepare : CustomCardModel
     {
     }
 
-    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Defend };
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
