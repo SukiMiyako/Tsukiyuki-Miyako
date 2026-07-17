@@ -33,26 +33,28 @@ public sealed class DroneCalibrate : CustomCardModel
 
     public DroneCalibrate() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }
 
-    // 核心：特斯拉线圈 → 触发无人机被动3次
+    // 核心：通道无人机 → 触发无人机被动3次
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 空目标判定（特斯拉线圈）
+        // 空目标判定
         ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
 
-        // 施法动画（沿用无人机突袭的动画）
+        // 施法动画
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        // 获取所有（特斯拉线圈获取闪电球）
+        // 通道1个闪光无人机（确保至少有一个可触发）
+        await OrbCmd.Channel<FlashScoutDrone>(choiceContext, Owner);
+
+        // 获取所有闪光无人机
         List<FlashScoutDrone> drones = Owner.PlayerCombatState!.OrbQueue.Orbs
             .OfType<FlashScoutDrone>()
             .ToList();
 
-        // 核心逻辑：对目标触发无人机被动
+        // 核心逻辑：对目标触发无人机被动3次
         for (int i = 0; i < 3; i++)
         {
             foreach (FlashScoutDrone drone in drones)
             {
-                // 特斯拉线圈：触发球体被动 Passive
                 await OrbCmd.Passive(choiceContext, drone, cardPlay.Target);
             }
         }
