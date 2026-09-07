@@ -36,7 +36,7 @@ public class DroneDeploy : CustomCardModel
         SfxCmd.Play("res://Audio/flashdrone.ogg");
         // 全体群攻伤害（保留原伤害）
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState!)
             .Execute(choiceContext);
 

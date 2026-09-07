@@ -42,7 +42,7 @@ public sealed class FragileBullet : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target!)
             .Execute(choiceContext);
 
         await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, DynamicVars["VulnerablePower"].BaseValue, Owner.Creature, this);

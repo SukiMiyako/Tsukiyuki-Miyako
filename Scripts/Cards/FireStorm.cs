@@ -45,7 +45,7 @@ public class FireStorm : CustomCardModel
         // 核心攻击：3点伤害 × X*5次连击，随机敌人
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(ResolveStarXValue() * 2) // 连击次数
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingRandomOpponents(base.CombatState!)
             .Execute(choiceContext);
     }

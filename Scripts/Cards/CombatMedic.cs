@@ -65,6 +65,6 @@ public sealed class CombatMedic : CustomCardModel
     // Upgrade: adds Innate keyword.
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

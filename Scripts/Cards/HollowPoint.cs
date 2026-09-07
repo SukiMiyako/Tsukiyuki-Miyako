@@ -66,7 +66,7 @@ public sealed class HollowPoint : CustomCardModel
         
         // 攻击逻辑（原生攻击动画+特效）
         await DamageCmd.Attack(damage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }

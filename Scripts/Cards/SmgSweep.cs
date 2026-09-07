@@ -46,7 +46,7 @@ public class SmgSweep : CustomCardModel
             SfxCmd.Play("res://Audio/Miyako_Battle_Shout_3.ogg");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue) // 连击次数
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
     }

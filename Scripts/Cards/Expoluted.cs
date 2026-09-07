@@ -60,7 +60,7 @@ public class Expoluted : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
     }

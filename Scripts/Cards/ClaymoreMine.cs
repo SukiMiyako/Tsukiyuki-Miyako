@@ -60,7 +60,7 @@ public sealed class ClaymoreMine : CustomCardModel
         }
 
         await DamageCmd.Attack(damage)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }

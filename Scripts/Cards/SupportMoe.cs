@@ -56,7 +56,7 @@ public class SupportMoe : CustomCardModel
         SfxCmd.Play("res://Audio/Moe_ExSkill_1.ogg");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue) // 造成伤害，数值来源于卡牌的基础伤害属性
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this) // 伤害来源于这张卡牌
+            .FromCardCompatibility(this, cardPlay) // 伤害来源于这张卡牌
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
     }

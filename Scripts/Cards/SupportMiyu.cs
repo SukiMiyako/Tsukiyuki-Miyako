@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using MegaCrit.Sts2.Core.Commands;
@@ -45,13 +46,11 @@ public class SupportMiyu : CustomCardModel
     {
         SfxCmd.Play("res://Audio/Miyu_CommonSkill.ogg");
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Attack", base.Owner.Character.AttackAnimDelay);
-        await CreatureCmd.Damage(
-            choiceContext,
-            cardPlay.Target!,
-            DynamicVars.Damage.BaseValue,
-            ValueProp.Move | ValueProp.Unblockable, // 真实生效：无视护盾/格挡
-            this
-        );
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .WithValueProp(ValueProp.Move | ValueProp.Unblockable) // 真实生效：无视护盾/格挡
+            .FromCardCompatibility(this, cardPlay)
+            .Targeting(cardPlay.Target!)
+            .Execute(choiceContext);
         // 仅修复：
         await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), cardPlay.Target!, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }

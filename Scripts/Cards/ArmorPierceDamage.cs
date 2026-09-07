@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using Tsukiyuki_Miyako.MiyakoModCode.Compatibility;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -47,14 +48,14 @@ public sealed class ArmorPierceDamage : CustomCardModel
         if (cardPlay.Target == null)
             throw new ArgumentNullException(nameof(cardPlay));
 
-        await CreatureCmd.LoseBlock(cardPlay.Target, cardPlay.Target.Block);
+        await CreatureCmdCompat.LoseBlock(choiceContext, cardPlay.Target, cardPlay.Target.Block, Owner.Creature);
 
         if (cardPlay.Target.HasPower<ArtifactPower>())
         {
             await PowerCmd.Remove<ArtifactPower>(cardPlay.Target);
         }
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue) // 造成伤害，数值来源于卡牌的基础伤害属性
-            .FromCard(this) // 伤害来源于这张卡牌
+            .FromCardCompatibility(this, cardPlay) // 伤害来源于这张卡牌
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
     }

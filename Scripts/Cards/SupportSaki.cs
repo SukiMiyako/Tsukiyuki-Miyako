@@ -57,7 +57,7 @@ public class SupportSaki : CustomCardModel
         SfxCmd.Play("res://Audio/Saki_ExSkill_Level_2.ogg");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
         int amount = base.DynamicVars["StrengthLoss"].IntValue;

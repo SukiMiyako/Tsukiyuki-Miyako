@@ -52,7 +52,7 @@ public class SuppressingFire : CustomCardModel
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
         int amount = base.DynamicVars["Power"].IntValue;

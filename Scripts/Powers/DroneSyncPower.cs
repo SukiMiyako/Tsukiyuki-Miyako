@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Tsukiyuki_Miyako.MiyakoModCode.Compatibility;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -29,7 +30,7 @@ public sealed class DroneSyncPower : CustomPowerModel
         // 你给的 LoopPower 写法
         if (Owner.Player!.PlayerCombatState!.OrbQueue.Orbs.Count != 0)
         {
-            await OrbCmd.Passive(context, Owner.Player.PlayerCombatState.OrbQueue.Orbs[0], null);
+            await OrbCmdCompat.Passive(context, Owner.Player.PlayerCombatState.OrbQueue.Orbs[0], null);
         }
     }
 }

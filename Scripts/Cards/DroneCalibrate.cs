@@ -1,6 +1,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using Tsukiyuki_Miyako.MiyakoModCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -55,7 +56,7 @@ public sealed class DroneCalibrate : CustomCardModel
         {
             foreach (FlashScoutDrone drone in drones)
             {
-                await OrbCmd.Passive(choiceContext, drone, cardPlay.Target);
+                await OrbCmdCompat.Passive(choiceContext, drone, cardPlay.Target);
             }
         }
     }

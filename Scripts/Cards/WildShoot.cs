@@ -41,7 +41,7 @@ public class WildShoot : CustomCardModel
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
 

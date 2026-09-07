@@ -42,7 +42,7 @@ public class PreciseRaid : CustomCardModel
     {
         SfxCmd.Play("res://Audio/PreciseRaid.ogg");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
         int amount = base.DynamicVars["Power"].IntValue;

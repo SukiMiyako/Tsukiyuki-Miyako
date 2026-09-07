@@ -6,10 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace TsukiyukiMiyako.Scripts;
@@ -33,6 +35,12 @@ public class FlashScoutDrone : CustomOrbModel
         return PreloadManager.Cache.GetScene("res://Tsukiyuki Miyako/scenes/orb.tscn").Instantiate<Node2D>();
     }
 
+    // 主分支仍有 Trigger()，beta 分支已移除；用反射调用以避免分支相关编译/运行错误。
+    private void TriggerCompatible()
+    {
+        typeof(OrbModel).GetMethod("Trigger", BindingFlags.Instance | BindingFlags.Public)?.Invoke(this, null);
+    }
+
     //回合结束触发（官方统一格式）
     public override async Task BeforeTurnEndOrbTrigger(PlayerChoiceContext choiceContext)
     {
@@ -45,7 +53,7 @@ public class FlashScoutDrone : CustomOrbModel
     // =========
     public override async Task Passive(PlayerChoiceContext choiceContext, Creature? target)
     {
-        Trigger();
+        TriggerCompatible();
 
         // 1. 随机单体伤害
         List<Creature> enemies = CombatState.HittableEnemies.Where(e => e.IsHittable).ToList();

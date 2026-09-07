@@ -41,7 +41,7 @@ public sealed class HighAltitudeAssault : CustomCardModel
     {
         // 群体攻击（无特效，沿用你之前的群攻写法）
         var attackResult = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(base.CombatState!)
             .Execute(choiceContext);
 

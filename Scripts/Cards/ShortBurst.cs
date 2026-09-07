@@ -46,7 +46,7 @@ public class ShortBurst : CustomCardModel
         // 单体连击伤害（完全参照模板）
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
     }
