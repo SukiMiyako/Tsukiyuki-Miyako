@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using Tsukiyuki_Miyako.MiyakoModCode.Character;
 
 #nullable disable
 
@@ -19,20 +20,29 @@ namespace TsukiyukiMiyako.Scripts.Patches;
 internal static class MiyakoAnimationDriver
 {
     /// <summary>
-    /// Check whether a creature's visuals are driven by AnimatedSprite2D (not Spine2D).
+    /// Check whether this creature node actually belongs to this mod's character (Miyako).
+    /// Other mods' custom characters are also AnimatedSprite2D-driven (BaseLib builds every
+    /// PlaceholderCharacterModel from custom visuals), so a purely structural check would
+    /// hijack their animations and play Miyako's voice lines for them.
     /// </summary>
-    public static bool IsSpriteDriven(NCreature creature)
+    public static bool IsMiyakoCharacter(NCreature creature)
     {
-        return GodotObject.IsInstanceValid(creature.Visuals)
-            && TryGetAnimatedSprite(creature.Visuals, out _);
+        if (creature == null || !GodotObject.IsInstanceValid(creature))
+            return false;
+
+        return creature.Entity?.Player?.Character is MiyakoMod;
     }
 
     /// <summary>
-    /// Check whether a node tree contains an AnimatedSprite2D.
+    /// Check whether this creature is Miyako AND her visuals are driven by AnimatedSprite2D
+    /// (instead of Spine2D). The identity check matters: other mods' custom characters are
+    /// AnimatedSprite2D-driven too (BaseLib builds them from PlaceholderCharacterModel).
     /// </summary>
-    public static bool IsSpriteDriven(Node node)
+    public static bool IsSpriteDriven(NCreature creature)
     {
-        return TryGetAnimatedSprite(node, out _);
+        return IsMiyakoCharacter(creature)
+            && GodotObject.IsInstanceValid(creature.Visuals)
+            && TryGetAnimatedSprite(creature.Visuals, out _);
     }
 
     /// <summary>
@@ -46,7 +56,10 @@ internal static class MiyakoAnimationDriver
         if (!TryGetAnimatedSprite(creature.Visuals, out AnimatedSprite2D sprite) || sprite.SpriteFrames == null)
             return;
 
-        if (string.Equals(trigger, "Hit", System.StringComparison.Ordinal)
+        // Miyako's hurt voice is a character-specific side effect: never let it fire for
+        // any other AnimatedSprite2D creature (other mods' characters included).
+        if (IsMiyakoCharacter(creature)
+            && string.Equals(trigger, "Hit", System.StringComparison.Ordinal)
             && System.Random.Shared.NextDouble() < 0.8)
         {
             SfxCmd.Play($"res://Audio/Miyako_Battle_Damage_{System.Random.Shared.Next(1, 4)}.ogg");

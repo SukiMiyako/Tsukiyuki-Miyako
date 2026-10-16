@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b64slui3604h2"
+path="res://.godot/imported/javalin fire.mp3-93473c0a39f2f7ccbd58d449198154ae.mp3str"
+
+[deps]
+
+source_file="res://Audio/javalin fire.mp3"
+dest_files=["res://.godot/imported/javalin fire.mp3-93473c0a39f2f7ccbd58d449198154ae.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

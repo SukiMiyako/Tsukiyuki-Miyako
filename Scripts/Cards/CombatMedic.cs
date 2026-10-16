@@ -14,7 +14,8 @@ using MegaCrit.Sts2.Core.Models;
 namespace TsukiyukiMiyako.Scripts.Cards;
 
 /// <summary>
-/// 战地医疗处理：2费，消耗所有状态牌，转化为绷带
+/// 战地医疗处理：1费 / 技能 / 普通 / 自身 / 消耗。
+/// 把手牌中所有状态牌转化为绷带；升级后转化出的绷带同步升级，费用 1 → 0。
 /// </summary>
 [Pool(typeof(MiyakoCardPool))]
 public sealed class CombatMedic : CustomCardModel
@@ -62,7 +63,6 @@ public sealed class CombatMedic : CustomCardModel
         }
     }
 
-    // Upgrade: adds Innate keyword.
     protected override void OnUpgrade()
     {
         base.EnergyCost.UpgradeBy(-1);

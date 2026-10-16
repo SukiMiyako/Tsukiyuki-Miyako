@@ -16,7 +16,7 @@
     "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.title": "安心之触",
     "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block:diff()}点格挡。",
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.title": "星空奇迹",
-    "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.description": "你每打出1张能力牌,获得1层师生羁绊。",
+    "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.description": "你从卡牌中获得的[blue]师生羁绊[/blue]+1。",
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.title": "雨中的坚守",
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.description": "每当你抽到状态牌时,获得5点格挡。",
     "TSUKIYUKIMIYAKO-TEMPORARY_STRENGTH_UP_POWER.title": "临时力量",
@@ -32,6 +32,8 @@
     "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.title": "夜景相伴",
     "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.description": "获得[blue]师生羁绊[/blue]时,抽[blue]1[/blue]张牌。",
     "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.smartdescription": "获得[blue]师生羁绊[/blue]时,抽[blue]{Amount}[/blue]张牌。",
+    "TSUKIYUKIMIYAKO-RABBIT_FANG_POWER.title": "兔子的獠牙",
+    "TSUKIYUKIMIYAKO-RABBIT_FANG_POWER.description": "力量+{Amount}，敏捷-5。\n[blue]寂寞[/blue]结束时一并撤销（[gold]脆弱[/gold]保留）。",
     "TSUKIYUKIMIYAKO-LASER_POINTER_POWER.title": "激光镭指",
     "TSUKIYUKIMIYAKO-LASER_POINTER_POWER.description": "本回合内,下1张SMG牌额外打出一次。",
     "TSUKIYUKIMIYAKO-DOUBT_POWER.title": "动摇",
@@ -55,5 +57,13 @@
     "TSUKIYUKIMIYAKO-FREE_SMG_POWER.title": "双孔制退器",
     "TSUKIYUKIMIYAKO-FREE_SMG_POWER.description": "你的下一张SMG牌费用变为0。",
     "TSUKIYUKIMIYAKO-DREAM_NAMEPLATE_POWER.title": "梦之名札",
-    "TSUKIYUKIMIYAKO-DREAM_NAMEPLATE_POWER.description": "当师生羁绊大于5点时，获得2点力量。"
+    "TSUKIYUKIMIYAKO-DREAM_NAMEPLATE_POWER.description": "当师生羁绊大于5点时，获得2点力量。",
+    "TSUKIYUKIMIYAKO-NOT_ONE_STEP_BACK_POWER.title": "一步不退",
+    "TSUKIYUKIMIYAKO-NOT_ONE_STEP_BACK_POWER.description": "当你受到致命伤害时，防止此伤害，并使生命值降低到1点。\n触发后移除此能力。",
+    "TSUKIYUKIMIYAKO-JAVELIN_MISSILE_POWER.title": "标枪锁定",
+    "TSUKIYUKIMIYAKO-JAVELIN_MISSILE_POWER.description": "下回合开始时，被[gold]标枪飞弹[/gold]命中，受到{Damage:diff()}点伤害。",
+    "TSUKIYUKIMIYAKO-IM_FINE_POWER.title": "还撑得住",
+    "TSUKIYUKIMIYAKO-IM_FINE_POWER.description": "力量与敏捷+{Amount}。\n[blue]寂寞[/blue]结束时一并消失。",
+    "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.title": "蓄势反击",
+    "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则对所有敌人造成{Damage:diff()}点伤害。"
 }

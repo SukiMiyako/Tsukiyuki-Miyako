@@ -22,7 +22,7 @@ public sealed class JusticeForYou : CustomCardModel
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public JusticeForYou()
-        : base(0, CardType.Power, CardRarity.Rare, TargetType.Self)
+        : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 
@@ -36,6 +36,9 @@ public sealed class JusticeForYou : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        // 升级：费用 2 → 1。
+        // （不再是"获得固有"：这张牌的被动要攒状态牌才有意义，第一回合叠不起来，
+        //  固有反而只是把一张 2 费能力牌硬塞进起手，伤开局节奏。）
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

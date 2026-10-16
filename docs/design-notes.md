@@ -93,7 +93,101 @@
 - [ ] 卡图 `images/cards/tsukiyukimiyako-javelin_missile.png`
 - [ ] power 图标 `images/powers/tsukiyukimiyako-javelin_missile_power.png`
 
-## 1.8 配备牌→Token 化（已定方向）
+## 1.6 流血 DoT —— 已实装为可复用机制（供攻击牌附带）
+
+**状态**：`Scripts/Powers/BleedPower.cs` 已实装并编译通过；配套示例卡（破片飞弹）已按要求删除。**待接入到攻击牌上作为附带 DoT。**
+
+**机制（与中毒的区别）**
+| | 中毒 `PoisonPower`（原版） | 流血 `BleedPower`（本 Mod） |
+|---|---|---|
+| 伤害 | 每回合 = 当前层数（递减） | **固定 4 点** |
+| 层数含义 | 伤害值 | **剩余回合数** |
+| 叠加 | 加伤害 | **加持续回合** |
+| 结算时机 | 目标回合开始（`AfterSideTurnStart` + `participants.Contains(Owner)`） | 同左 |
+| 是否穿格挡 | 是（`Unblockable \| Unpowered`） | 是 |
+
+**接入方式（写在攻击牌 `OnPlay` 里）**
+```csharp
+// 先结算伤害，再挂流血
+await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+    .FromCardCompatibility(this, cardPlay)
+    .Targeting(cardPlay.Target!)
+    .Execute(choiceContext);
+
+await PowerCmd.Apply<BleedPower>(
+    choiceContext,
+    cardPlay.Target!,
+    DynamicVars["BleedPower"].BaseValue,   // 层数 = 持续回合数
+    Owner.Creature,
+    this);
+```
+- 变量声明：`new PowerVar<BleedPower>(4m)`（示例值）
+- `ExtraHoverTips` 加 `HoverTipFactory.FromPower<BleedPower>()`，让玩家能悬停看说明
+- 玩家侧也能挂（判定是 `participants.Contains(Owner)`，不分敌我），可做"自己也吃流血"的透支玩法
+
+**平衡注意**
+- 总伤害 = `4 × 层数`，但**目标提前死亡就吃不满** → 天然"打高血量目标强、清小怪亏"
+- 1 费档建议层数 ≤ 4（总上限 16），否则容易超过同费爆发牌
+- 固定伤害不吃力量/易伤加成（`ValueProp.Unpowered`）；要让它吃加成，去掉 `Unpowered`
+
+**遗留**
+- [ ] 图标 `images/powers/tsukiyukimiyako-bleed_power.png`（暂无，走 `power.png` 兜底，不会崩但不好看）
+- [ ] 若要做"流血不递减 / 加速结算"类支撑牌，需在 `BleedPower` 上加钩子（参考 `AccelerantPower` 对中毒的做法）
+
+## 1.8 寂寞博弈：「跟你爆了」（已定方向）
+
+**设计定性**：把「寂寞」从纯惩罚状态，变成**双向开关**。
+- 羁绊高 = 格挡厚（每层 +1 格挡 = 每层 1 点敏捷）+ 无人机被动高 = 安全
+- 羁绊掉到 0 = 寂寞 = 变弱，**但此时解锁一两张"拿命换结果"的牌**
+
+这样玩家要做一个真正的决策：**要不要停在低羁绊、顶着寂寞去打一发**。同时它和"不能虐待她"的保护设计不冲突——她不是怨恨你，是「我陪你一起」。
+
+**核心机制：代价与收益都咬在生命上**
+
+1. **门槛（硬性）**：只有寂寞状态下才能打出
+```csharp
+// 只有寂寞状态下才能打出（Fatigue.cs 里已有 ShouldPlay 的现成范式）
+public override bool ShouldPlay(CardModel card, AutoPlayType _)
+    => Owner.Creature.GetPowerAmount<LonelinessPower>() > 0;
+```
+再配 `ShouldGlowRedInternal` 做红字提示。
+
+2. **伤害倍率 = 已损生命值**（这是关键，越惨越强）
+原版 `Unleash` 提供了标准写法（`CalculatedDamageVar` + `WithMultiplier` 拉委托）：
+```csharp
+protected override IEnumerable<DynamicVar> CanonicalVars => [
+    new CalculationBaseVar(0m),
+    new ExtraDamageVar(0.5m),                     // 每 1 点已损生命 → 0.5 伤害
+    new CalculatedDamageVar(ValueProp.Move)
+        .WithMultiplier((card, _) =>
+            (card.Owner.Creature.MaxHp - card.Owner.Creature.CurrentHp) * 0.5m)
+];
+```
+> `Creature.MaxHp` / `Creature.CurrentHp` 都是公开属性，直接可用。
+
+3. **代价：失去生命**，必须用 `ValueProp.cardHpLoss`（= `Unblockable | Unpowered | Move`），**否则会被格挡和减伤影响，就不是"沉重代价"了**。
+
+4. **安全阀**：当前生命 ≤ 代价时不可打出（或代价后至少保留 1 点），避免直接自杀。原版自伤牌也是这个处理。
+
+**两张草案**
+
+| 牌 | 费 | 类型/稀有 | 效果 | 代价 |
+|---|---|---|---|---|
+| A.「和你一起」 | 3 | 攻击 / 稀有 | 造成 `已损生命 × 0.5` 伤害 | 失去 50% **当前**生命 |
+| B.「兔子的獠牙」 | 0 | 技能 / 罕见 | 获得 2 能量、抽 2 张 | 失去 10% **最大**生命 |
+
+**需要拍的设计问题**
+- [ ] 是否允许"故意不攒羁绊"来长期保持寂寞状态？
+  - 允许 → 可发展成一条**自伤爆发流派**（高风险高回报），但要注意别强过正常玩法
+  - 不允许 → 需要给寂寞加"每回合 -1 层"或"N 回合后消失"，让它只能是短暂窗口
+  - 倾向：**允许**（给了角色第二种玩法，且"寂寞"本就适合当状态而非即时惩罚）
+
+**实现要点备忘**
+- `ShouldPlay(CardModel, AutoPlayType)` 在原版 `Fatigue.cs` 里有现成 override 范式
+- 参考实现：`Spite`（按"本回合是否失去过生命"做条件）、`Unleash`（按数值算伤害）
+- 羁绊侧：`LonelinessPower` 层数 = `3 + |羁绊|`，重新获得羁绊即清除（保护设计，不动）
+
+## 1.9 配备牌→Token 化（已定方向）
 
 **问题**：消耗型配备牌出现在奖励/商店里，玩家"拿也不是不拿也不是"——它们的定价本来就是一次性消耗品的价（比非消耗便宜），却按永久卡组成员在卖。
 
@@ -121,20 +215,53 @@
 - [ ] 奖励池里**"群攻"职能会空掉**（手雷、破门、压制、催泪瓦斯、闪光弹几乎全是配备型）→ **至少补 1 张达标的 1 费群攻（8~9 伤）**
 - [ ] 补的新 Common 建议**不要带 Equipment 关键词**，去补别的轴（SMG / 弹夹 / 羁绊），否则等于把这轮清理又填回去
 
-## 2. 其他未做方向（备忘）
+## 2. 羁绊体系诊断（已定结论）
 
-- **师生羁绊兑换**：消耗固定层数换固定收益（贴现值：每层换 1~4）；`SenseiPower` 同时是格挡加值与充能球 Focus，目前只当计数用。
-- **羁绊打穿成负数 → 寂寞**：`SenseiPower.AfterPowerAmountChanged` 里已有完整惩罚（`LonelinessPower` 层数 = `3 + |羁绊|`），可做成"透支型核爆"。
+**设计前提（作者定）**：羁绊 = **越多越好**的正向资源，不能"虐待她"（掉到 0 挂寂寞就是保护伞）。
+
+**收益侧：没问题，不用动。**
+- 每层羁绊 = **每张格挡牌 +1 格挡**（本质上"每层送 1 点敏捷"）+ 无人机被动伤害 +1
+- 收益**线性、无边际递减、无封顶**，且会吃到卡组里所有格挡牌（乘法式放大）
+
+| 格挡牌 | 基础 | 羁绊5 | 羁绊10 |
+|---|---|---|---|
+| 防御 | 5 | 10 | 15 |
+| 备战 / 绳降 | 8 | 13 | 18 |
+| 小队整备 | 9 | 14 | 19 |
+| 小憩 | 13 | 18 | 23 |
+
+**结构缺口：只有一条 —— 缺"战斗内可持续增长"的来源。**
+- 现有 8 个来源**全部一次性**：遗物开局 1、主张所有权 2、信任之契 5、老师的嘱托 1、偷跑开始 1、小队整备 1、安心之触 1、星空奇迹（每能力牌 1）
+- 一局可拿约 13~15 层且不可再生 → 前 2~3 回合定型，之后是静态增益
+- 连带后果：`夜景相伴`（获羁绊抽牌）、`温柔依赖症`（获羁绊给能量）在第一张之后即成废牌
+
+**要做**
+- [ ] **一张可重复增长的羁绊引擎（能力牌）**：优先"每回合开始 +1 层"；备选"每打出攻击牌 +1 层（每回合上限 1~2）"
+- [ ] 上限控制：**一回合 +1 层就够**（1 层 = 1 敏捷，已经很强），不要给 2
+
+**不要做**
+- ❌ 任何"消耗羁绊换收益"的方向（与"越多越好"冲突）；`光明正大的偷看` / `浪间牵念` 这两张消耗牌建议后续改成别的代价（扣血、弃牌等），把羁绊变成只增不减的资源
+- ❌ 不要再给羁绊加"每层收益坡度"（收益本来就够）
+
+## 2.5 其他未做方向（备忘）
+
 - **结构缺口**：4 费完全没有卡；普通稀有度没有一张全体攻击牌。
 - **配备牺牲线**：消耗若干张配备牌换能量/抽牌（配合 `军备箱`、`最可靠的队长` 形成生成→燃烧→回收循环）。
 - **弹夹闭环**：目前产多耗少（8 产 8 耗），缺一张"抽干全部弹夹"的兑现牌。
 
-## 3. 已知文本/数值不一致（待修，不影响玩）
+## 3. 已知问题（待修）
 
-- `RABBIT31_SMG` 卡面写 +2，`RABBIT31_SMG_POWER` 写 +1（代码是 2）。
-- `JUSTICE_FOR_YOU` 卡面写"达到5点"，power 文本写"大于5点"（代码是 `>5`）。
-- `FATIGUE` 卡面写"不可打超过5张"，代码基数是 8。
-- `OPEN_PEEK` 卡面写"失去"，实际是"消耗"羁绊（`WAVES_LONGING` 用的是"消耗"）。
-- **`SUPPORT_SAKI` 措辞误导**：卡面写"所有敌人在本回合**失去**力量"，但 `SakiPower` 是**临时削减、敌方回合结束就还回去**。建议改成"本回合内[gold]力量[/gold]-3（临时）"，否则会严重误判强度（开发时就误判过一次）。
-- **`ARMOR_PIERCE_DAMAGE` 数值偏低**：1 费单体仅 3 伤，剥格挡/人工制品的附加分补不上缺口（单体基准 6）。建议提到 5~6 伤，或明确改成"纯功能性"定价（0 费）。
-- 个别描述缺结尾句号（`C4`、`SRT_JUSTICE` 等）。
+**文本/数值不一致（已逐条用"key 前缀 + 代码对照"复核）**
+- `RABBIT31_SMG_POWER`：文本写 "+1"，但代码 `PowerVar<Rabbit31SmgPower>(2m)` → **文本应改为 +2**（卡 `RABBIT31_SMG` 写 +2 是对的）
+- `JUSTICE_FOR_YOU_POWER`：文本写"大于5点"，但代码 `if (senseiCount < 5) return;` → **实际是 ≥5，文本应改为"达到5点"**（卡面文本是对的）
+- `SUPPORT_SAKI` 措辞误导：卡面写"本回合**失去**力量"，实际 `SakiPower` 是**临时削减、敌方回合结束回还**。建议改成"本回合内力量-3（临时）"
+- `OPEN_PEEK` 用词：卡面写"失去"羁绊，实际是"消耗"（与 `WAVES_LONGING` 的"消耗"不一致）
+- 个别描述缺结尾句号（`C4`、`SRT_JUSTICE` 等）
+
+**已在实测中确认的行为（不要再误判）**
+- 羁绊**不能为负**，但**能触发寂寞**：羁绊掉到 0 时 `AfterPowerAmountChanged` 先于移除执行，寂寞照挂
+- 实测羁绊可为负、且寂寞可叠到力量/敏捷 **-4**（与 `3 + |羁绊|` 的关系待查；见 `SenseiPower` 里的临时 `Log.Info` 调试日志）
+- `FATIGUE` 的"5 张"与代码一致（`MaxCardsPerTurn = 5`），**不是 bug**
+
+**待评估**
+- `ARMOR_PIERCE_DAMAGE` 数值偏低：1 费单体仅 3 伤（单体基准 6），建议提到 5~6 伤或改成 0 费纯功能牌

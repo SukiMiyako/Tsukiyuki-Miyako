@@ -25,7 +25,14 @@ public sealed class SenseiPower : CustomPowerModel
     // 基础属性（标准配置）
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    public override bool AllowNegative => false;
+
+    /// <summary>
+    /// 允许为负：羁绊到 0 时**不再被移除**，负数可以长期存在，形成"负债羁绊"状态。
+    /// 原因：`PowerModel.ApplyInternal` 对负数额度不调用 `ShouldRemoveDueToAmount()`，
+    /// 而 `ModifyAmount` 会用"先删后建"的方式让负数实例残留 —— 与其依赖那条不可预期的路径，
+    /// 不如显式允许负值，让寂寞的 `3 + |羁绊|` 有确定意义（越欠越痛）。
+    /// </summary>
+    public override bool AllowNegative => true;
     public override string? CustomPackedIconPath => $"res://Tsukiyuki Miyako/images/powers/{Id.Entry.ToLowerInvariant()}.png";
     public override string? CustomBigIconPath => $"res://Tsukiyuki Miyako/images/powers/big/{Id.Entry.ToLowerInvariant()}.png";
     public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
@@ -45,7 +52,8 @@ public sealed class SenseiPower : CustomPowerModel
         {
             return 0m;
         }
-        return base.Amount;
+        // 允许为负之后，负数羁绊会削减格挡 —— 用 0 兜底，避免把格挡加成吃成负收益
+        return Math.Max(base.Amount, 0m);
     }
 
     public override decimal ModifyOrbValue(OrbModel orb, decimal value)

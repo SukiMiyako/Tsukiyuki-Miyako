@@ -8,11 +8,24 @@ tags: []
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Working agreement — read first
+
+**分工：人类负责构建，助手只写码 + 扒机制。**
+
+- **不要自己跑 `dotnet build` / `dotnet run` / Godot 导出或导入** —— 包括"只是想确认一下能不能编译"这种情况也不要跑。构建由人类执行，编译错误会贴回来。
+- 想确认 API 是否存在、签名对不对，去读反编译源码，而不是编译：
+  `D:\slay\_miyako_decomp\sts2src`（游戏本体，命名空间 `MegaCrit.Sts2.Core.*`）。
+- 助手的改动范围：`Scripts/Cards/*.cs`、`Scripts/Powers/*.cs`、`MiyakoModCode/*`、`Tsukiyuki Miyako/localization/zhs/*.json`。
+- 往游戏 `mods\` 目录拷贝 DLL 失败（`MSB3021`）是**正常现象**，不是 bug —— 游戏运行时占用着 DLL。
+- **不要碰这台机器上另外两份 Miyako**（开发版 + Workshop 旧版）。只动本仓库。
+
 ## Project overview
 
 A **Slay the Spire 2** mod that adds a custom playable character, **Tsukiyuki Miyako** (月雪宫子, from Blue Archive). Built with Godot 4.5.1 for UI/scenes and C# / .NET 9.0 for game logic. Uses **Harmony** for patching the base game and depends on **BaseLib** as the community modding framework.
 
 ## Build & development
+
+> 构建由**人类**执行（见上方 Working agreement）——助手不要运行下面的命令。
 
 ```bash
 # Build and auto-copy to STS2 mods folder
