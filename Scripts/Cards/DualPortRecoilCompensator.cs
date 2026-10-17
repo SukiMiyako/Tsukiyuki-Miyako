@@ -31,7 +31,7 @@ public sealed class DualPortRecoilCompensator : CustomCardModel
 
     // 2费 | 技能牌 | 稀有 | 目标自身
     public DualPortRecoilCompensator()
-        : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+        : base(2, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
     }
 

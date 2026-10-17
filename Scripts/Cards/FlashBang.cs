@@ -21,7 +21,7 @@ public class FlashBang : CustomCardModel
 {
     private const int energyCost = 1;
     private const CardType type = CardType.Skill;
-    private const CardRarity rarity = CardRarity.Common;
+    private const CardRarity rarity = CardRarity.Token;
     private const TargetType targetType = TargetType.AllEnemies;
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust, MyKeywords.Equipment };
     private const bool shouldShowInCardLibrary = true;

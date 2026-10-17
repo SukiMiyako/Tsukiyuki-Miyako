@@ -22,7 +22,7 @@ public class StunGrenade : CustomCardModel
     // 卡牌类型
     private const CardType type = CardType.Skill;
     // 卡牌稀有度
-    private const CardRarity rarity = CardRarity.Rare;
+    private const CardRarity rarity = CardRarity.Token;
     // 目标类型（AnyEnemy表示任意敌人）
     private const TargetType targetType = TargetType.AnyEnemy;
     // 是否在卡牌图鉴中显示

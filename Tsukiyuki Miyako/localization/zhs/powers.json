@@ -65,5 +65,7 @@
     "TSUKIYUKIMIYAKO-IM_FINE_POWER.title": "还撑得住",
     "TSUKIYUKIMIYAKO-IM_FINE_POWER.description": "力量与敏捷+{Amount}。\n[blue]寂寞[/blue]结束时一并消失。",
     "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.title": "蓄势反击",
-    "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则对所有敌人造成{Amount}点伤害。"
+    "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则对所有敌人造成{Amount}点伤害。",
+    "TSUKIYUKIMIYAKO-STAY_AWAY_POWER.title": "离我远点",
+    "TSUKIYUKIMIYAKO-STAY_AWAY_POWER.description": "{Amount}层[gold]缓冲[/gold]仅在[blue]寂寞[/blue]期间有效，\n[blue]寂寞[/blue]结束时未消耗的部分一并失去。"
 }

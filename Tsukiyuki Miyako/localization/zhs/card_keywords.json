@@ -1,8 +1,10 @@
 {
-    "TSUKIYUKIMIYAKO-EQUIPMENT.description": "若是被军备箱生成的,则免费打出",
+    "TSUKIYUKIMIYAKO-EQUIPMENT.description": "若是由[gold]生成[/gold]获得，则本回合内免费打出",
     "TSUKIYUKIMIYAKO-EQUIPMENT.title": "配备",
     "TSUKIYUKIMIYAKO-SUPPORT.description": "若是由[gold]Rabbit小队,集结![/gold]获得的,则免费打出",
     "TSUKIYUKIMIYAKO-SUPPORT.title": "小队支援",
     "TSUKIYUKIMIYAKO-SMG.description": "可被专武增幅",
-    "TSUKIYUKIMIYAKO-SMG.title": "SMG"
+    "TSUKIYUKIMIYAKO-SMG.title": "SMG",
+    "TSUKIYUKIMIYAKO-RABBIT.description": "仅能在[blue]寂寞[/blue]状态下打出；[blue]寂寞[/blue]结束时，此牌给予的增益一并消失",
+    "TSUKIYUKIMIYAKO-RABBIT.title": "RABBIT"
 }

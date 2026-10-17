@@ -30,7 +30,7 @@ public sealed class LaserPointer : CustomCardModel
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public LaserPointer()
-        : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+        : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
     }
 

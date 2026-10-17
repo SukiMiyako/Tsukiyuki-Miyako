@@ -32,7 +32,7 @@ public sealed class RpgLauncher : CustomCardModel
     // 3费 | 攻击 | 罕见 | 单体（相邻由站位推导）
     private const int energyCost = 3;
     private const CardType type = CardType.Attack;
-    private const CardRarity rarity = CardRarity.Uncommon;
+    private const CardRarity rarity = CardRarity.Token;
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInCardLibrary = true;
 

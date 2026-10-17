@@ -49,7 +49,8 @@ public sealed class ImFine : CustomCardModel
     /// <summary>消耗 —— 项目规则：只可在[寂寞]下打出的牌一律带消耗。</summary>
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        CardKeyword.Exhaust
+        CardKeyword.Exhaust,
+        MyKeywords.Rabbit
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

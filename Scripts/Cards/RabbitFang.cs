@@ -28,6 +28,13 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 ///
 /// 状态期间不可重复打出：两次獠牙会让"该撤销多少力量/敏捷"变成一笔烂账，
 /// 所以 IsPlayable 里顺手排除了已处于獠牙状态的情况。
+///
+/// ★ 爆发窗口：打出时**立刻获得 3 点能量**。
+/// 原因是实测定下来的 —— 獠牙罚掉 −5 敏捷，寂寞本身又是 −1 敏捷/层，
+/// 合起来 −8 敏捷等于"格挡牌全部作废"，此时手里那点能量早就垫在防御牌上了，
+/// 结果进了状态反而打不出「RABBIT1，开始清扫」（3 费）。
+/// 给 3 点能量等于把这一回合的"输出机会"还回来：
+/// 獠牙(0) + 清扫(3) 能一回合走完，而不是进了寂寞却站着挨打。
 /// </summary>
 [Pool(typeof(MiyakoCardPool))]
 public sealed class RabbitFang : CustomCardModel
@@ -47,7 +54,8 @@ public sealed class RabbitFang : CustomCardModel
         new HpLossVar(10m),                        // 失去生命（不吃格挡/减伤）
         new PowerVar<StrengthPower>(10m),          // 获得力量
         new PowerVar<FrailPower>(FrailTurns),      // 脆弱
-        new DynamicVar("DexLoss", RabbitFangPower.DexterityPenalty)   // 失去敏捷
+        new DynamicVar("DexLoss", RabbitFangPower.DexterityPenalty),  // 失去敏捷
+        new EnergyVar(3)                           // 爆发窗口：立刻拿到的能量
     ];
 
     /// <summary>
@@ -56,7 +64,8 @@ public sealed class RabbitFang : CustomCardModel
     /// </summary>
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        CardKeyword.Exhaust
+        CardKeyword.Exhaust,
+        MyKeywords.Rabbit
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -122,7 +131,12 @@ public sealed class RabbitFang : CustomCardModel
             base.Owner.Creature,
             this);
 
-        // 5) 挂上「獠牙」状态图标（层数 = 这一口拿到的力量）
+        // 5) 爆发窗口：立刻拿到 3 点能量
+        //    （实测定下来的补偿：−8 敏捷之后格挡牌全废，能量早垫在防御上了，
+        //      没有这 3 点就进不了「RABBIT1，开始清扫」）
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, base.Owner);
+
+        // 6) 挂上「獠牙」状态图标（层数 = 这一口拿到的力量）
         //    寂寞结束时，由 RabbitFangPower 用它把加伤与减防一并撤销
         await PowerCmd.Apply<RabbitFangPower>(
             choiceContext,
@@ -131,7 +145,7 @@ public sealed class RabbitFang : CustomCardModel
             base.Owner.Creature,
             this);
 
-        // 6) 生成「RABBIT1，开始清扫」到手牌（随本牌的升级状态同步升级）
+        // 7) 生成「RABBIT1，开始清扫」到手牌（随本牌的升级状态同步升级）
         var sweep = base.CombatState!.CreateCard<Rabbit1Sweep>(base.Owner);
         if (base.IsUpgraded)
         {

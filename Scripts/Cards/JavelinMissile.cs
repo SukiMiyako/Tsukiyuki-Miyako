@@ -31,7 +31,7 @@ public sealed class JavelinMissile : CustomCardModel
     // 1费 | 技能 | 普通 | 单体
     private const int energyCost = 1;
     private const CardType type = CardType.Skill;
-    private const CardRarity rarity = CardRarity.Common;
+    private const CardRarity rarity = CardRarity.Token;
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInCardLibrary = true;
 
