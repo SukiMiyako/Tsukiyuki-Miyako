@@ -61,15 +61,15 @@ public sealed class FightBack : CustomCardModel
         // 1) 举盾
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
 
-        // 2) 挂状态：数值灌进 power，下回合开始结算
+        // 2) 挂状态：反击伤害直接作为 power 的 Amount（提示框才认 {Amount}）
         var power = await PowerCmd.Apply<FightBackPower>(
             choiceContext,
             base.Owner.Creature,
-            1m,
+            base.DynamicVars.Damage.BaseValue,
             base.Owner.Creature,
             this);
 
-        power?.SetDamage(base.DynamicVars.Damage.BaseValue);
+        power?.SetSource(this);
         power?.SetSource(this);
     }
 

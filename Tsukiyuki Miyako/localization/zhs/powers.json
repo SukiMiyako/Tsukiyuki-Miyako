@@ -14,7 +14,7 @@
     "TSUKIYUKIMIYAKO-REST_POWER.title": "小憩",
     "TSUKIYUKIMIYAKO-REST_POWER.description": "下回合获得2点力量。",
     "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.title": "安心之触",
-    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合获得{Block:diff()}点格挡。",
+    "TSUKIYUKIMIYAKO-REASSURING_TOUCH_POWER.description": "下回合开始时获得{Amount}点格挡。",
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.title": "星空奇迹",
     "TSUKIYUKIMIYAKO-STARRY_MIRACLE_POWER.description": "你从卡牌中获得的[blue]师生羁绊[/blue]+1。",
     "TSUKIYUKIMIYAKO-RAINY_STAND_POWER.title": "雨中的坚守",
@@ -61,9 +61,9 @@
     "TSUKIYUKIMIYAKO-NOT_ONE_STEP_BACK_POWER.title": "一步不退",
     "TSUKIYUKIMIYAKO-NOT_ONE_STEP_BACK_POWER.description": "当你受到致命伤害时，防止此伤害，并使生命值降低到1点。\n触发后移除此能力。",
     "TSUKIYUKIMIYAKO-JAVELIN_MISSILE_POWER.title": "标枪锁定",
-    "TSUKIYUKIMIYAKO-JAVELIN_MISSILE_POWER.description": "下回合开始时，被[gold]标枪飞弹[/gold]命中，受到{Damage:diff()}点伤害。",
+    "TSUKIYUKIMIYAKO-JAVELIN_MISSILE_POWER.description": "下回合开始时，被[gold]标枪飞弹[/gold]命中，受到{Amount}点伤害。",
     "TSUKIYUKIMIYAKO-IM_FINE_POWER.title": "还撑得住",
     "TSUKIYUKIMIYAKO-IM_FINE_POWER.description": "力量与敏捷+{Amount}。\n[blue]寂寞[/blue]结束时一并消失。",
     "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.title": "蓄势反击",
-    "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则对所有敌人造成{Damage:diff()}点伤害。"
+    "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则对所有敌人造成{Amount}点伤害。"
 }

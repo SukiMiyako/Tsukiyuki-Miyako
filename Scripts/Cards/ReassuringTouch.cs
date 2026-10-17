@@ -36,9 +36,8 @@ public sealed class ReassuringTouch : CustomCardModel
         decimal blockAmount = await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         // 修复1：（数量改读变量，卡面/结算同源）
         await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), Owner.Creature, DynamicVars["SenseiPower"].BaseValue, Owner.Creature, this);
-        // 修复2：
-        var power = await PowerCmd.Apply<ReassuringTouchPower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
-        power?.SetBlock(blockAmount);
+        // 修复2：延迟格挡的数值直接作为 power 的 Amount（提示框才认 {Amount}）
+        await PowerCmd.Apply<ReassuringTouchPower>(new BlockingPlayerChoiceContext(), Owner.Creature, blockAmount, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
@@ -7,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Powers;
@@ -17,46 +15,28 @@ namespace TsukiyukiMiyako.Scripts.Powers;
 /// <summary>
 /// 「标枪飞弹」的锁定标记 —— 挂在**被锁定的敌人**身上（Owner = 敌人，不是施法者）。
 ///
-/// 数据流（照原版 TheBombPower 的写法）：
-///   卡牌 OnPlay → PowerCmd.Apply&lt;本 power&gt;(目标敌人) → SetDamage(卡面数值) + SetSource(卡牌)
-///   → 下个玩家回合开始时：播发射音 → 等 0.75s（飞行时间）→ 单段结算 → 自移除
+/// 数据流：卡牌 OnPlay → Apply&lt;本 power&gt;(目标敌人, amount = 卡面伤害)
+///        → 下个玩家回合开始：播发射音 → 等 0.75s（飞行时间）→ 单段结算 → 自移除
 ///
-/// 几点说明：
-/// - `InstanceType = Instanced`：每打出一张标枪就是一个独立实例，互不覆盖（否则两张牌会互相顶掉）。
-/// - `StackType = Single`：锁定是"有/没有"的状态，图标上不该出现数字。
-/// - 用 `AfterPlayerTurnStart` 而不是回合结束：卡牌是在玩家回合打出的，
-///   所以下一个 `AfterPlayerTurnStart` 就是"下回合开始"，正好是一次引导。
-/// - 结算时把卡牌当 cardSource 传进去，且 `CreatureCmd.Damage(…, DamageVar, CardModel)` 这个重载
-///   会把 dealer 自动取成 `cardSource.Owner.Creature` —— 力量等加成口径和卡牌面板一致。
-/// - 0.75s 的等待放在**伤害之前、Remove 之前**：`PowerCmd.Remove` 内部自带 0.2~0.4s 等待，
-///   若先 Remove 再等，音效到出伤就会变成 1.0~1.15s，对不上。
-/// - 目标死亡/离场时 power 会被引擎随主人清理（默认行为），不需要额外收拾。
+/// **伤害存在 `Amount` 里**（不是自定义 DamageVar）：
+/// 能力提示框只会自动注入 `{Amount}` 这类"笨变量"；
+/// 自定义动态变量必须同时满足"有 .smartDescription key" + "战斗中实例"才会注入
+/// （见 PowerModel.cs:350-398 的 HoverTips，else 分支只调 AddDumbVariablesToDescription）。
+/// 用 Amount 的话：图标层数会直接显示"17"（看得见这一发多重），描述里写 `{Amount}` 两条分支都能解析。
+///
+/// `InstanceType = Instanced`：每张标枪一个独立实例，互不覆盖，各带各的 Amount。
 /// </summary>
 public sealed class JavelinMissilePower : MiyakoModPower
 {
     public override PowerType Type => PowerType.Debuff;
 
-    public override PowerStackType StackType => PowerStackType.Single;
+    // 层数 = 这一发标的伤害，直接显示在敌人头上
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(17m, ValueProp.Move)
-    ];
-
     /// <summary>打出这张牌的卡（结算时当 cardSource 用）。</summary>
     private CardModel? _source;
-
-    /// <summary>
-    /// 把卡面伤害写进本实例。必须走 setter —— Amount 没被占用，但照 TheBombPower 的约定，
-    /// 数值放在 DynamicVars 里、由卡牌在 Apply 之后灌进来。
-    /// </summary>
-    public void SetDamage(decimal damage)
-    {
-        AssertMutable();
-        base.DynamicVars.Damage.BaseValue = damage;
-    }
 
     /// <summary>记住来源卡牌：结算时当 cardSource，保证吃到的加成和卡牌面板一致。</summary>
     public void SetSource(CardModel source)
@@ -110,8 +90,14 @@ public sealed class JavelinMissilePower : MiyakoModPower
             return;
         }
 
-        // 命中：单段，dealer 由 cardSource 推导
-        await CreatureCmd.Damage(choiceContext, base.Owner, base.DynamicVars.Damage, _source);
+        // 命中：单段，dealer 取卡主，cardSource 取原卡（加成口径与卡面一致）
+        await CreatureCmd.Damage(
+            choiceContext,
+            base.Owner,
+            base.Amount,
+            ValueProp.Move,
+            _source.Owner.Creature,
+            _source);
 
         await PowerCmd.Remove(this);
     }
