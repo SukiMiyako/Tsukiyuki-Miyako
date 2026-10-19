@@ -37,7 +37,21 @@ public sealed class SmgRepeatVar : RepeatVar
             return false;
         }
 
-        if (card == null || !card.CanonicalKeywords.Contains(MyKeywords.Smg))
+        if (card == null)
+        {
+            return false;
+        }
+
+        // ★ 必须先判可变：`CardModel.Owner` 的 getter 自带 `AssertMutable()`
+        // （CardModel.cs:333-339），图鉴 / 奖励预览 / 变形预览渲染的都是 **canonical** 卡，
+        // 直接读 `card.Owner` 会抛 CanonicalModelException（SmgSweep 那次就是这么炸的）。
+        // canonical 卡上本来也不该有额外命中，直接返回 false。
+        if (!card.IsMutable)
+        {
+            return false;
+        }
+
+        if (!card.CanonicalKeywords.Contains(MyKeywords.Smg))
         {
             return false;
         }

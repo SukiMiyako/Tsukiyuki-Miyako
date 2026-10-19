@@ -63,6 +63,13 @@ public sealed class Rabbit31SmgPower : CustomPowerModel
             return hitCount;
         }
 
+        // `CardModel.Owner` 的 getter 自带 AssertMutable()，canonical 卡一读就抛
+        // CanonicalModelException。这里只在战斗中触发（一定是 mutable），仍兜一层。
+        if (!card.IsMutable)
+        {
+            return hitCount;
+        }
+
         // 只对"自己打出的 SMG 牌"生效
         if (card.Owner?.Creature != Owner || !card.CanonicalKeywords.Contains(MyKeywords.Smg))
         {
