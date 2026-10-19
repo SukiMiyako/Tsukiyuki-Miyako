@@ -16,9 +16,9 @@ using Tsukiyuki_Miyako.MiyakoModCode.Character;
 namespace TsukiyukiMiyako.Scripts.Cards;
 
 /// <summary>
-/// 「捡弹壳」——0 能量 / 技能 / 普通 / 自身。
+/// 「不能浪费」——0 能量 / 技能 / 普通 / 自身。
 ///
-/// **消耗 1 张手牌**，获得 1 点能量（升级 2 点）。
+/// **消耗 1 张手牌**，获得 2 点能量（升级 3 点）。
 ///
 /// 定位：前三场"回费荒"的补丁。池子里给能量的牌全是 Uncommon/Rare
 /// （空投补给、高空突袭、轻装上阵、光明正大的偷看、兼职），Common 档一张都没有，
@@ -26,15 +26,15 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 ///
 /// 和「重新整备」是同一条消耗体系的两端：
 ///   · 重新整备：整只手牌换 4 张配备（大换血）
-///   · 捡弹壳：一张牌换 1 点能量（零钱兑换）
+///   · 不能浪费：一张牌换 2 点能量（零钱兑换）
 /// 走 `CardCmd.Exhaust` 逐张消耗，所以「省着点用」这类"每有一张牌被消耗就抽 1"的钩子会正常触发。
 ///
-/// 手牌为空时按"没有可消耗的牌"处理，**不会白给能量** —— 卡面写的就是"烧一张换一点"。
+/// 手牌为空时按"没有可消耗的牌"处理，**不会白给能量** —— 卡面写的就是"烧一张换能量"。
 ///
 /// 关键词：不带消耗（它自己是一次性的工具，但没必要再标 Exhaust）。
 /// </summary>
 [Pool(typeof(MiyakoCardPool))]
-public sealed class PickUpBrass : CustomCardModel
+public sealed class CantWaste : CustomCardModel
 {
     // 0费 | 技能 | 普通 | 自身
     private const int energyCost = 0;
@@ -45,7 +45,7 @@ public sealed class PickUpBrass : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new EnergyVar(1)
+        new EnergyVar(2)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -55,7 +55,7 @@ public sealed class PickUpBrass : CustomCardModel
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
-    public PickUpBrass() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
+    public CantWaste() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
     }
 
@@ -81,7 +81,7 @@ public sealed class PickUpBrass : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        // 1 点 → 2 点能量
+        // 2 点 → 3 点能量
         DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

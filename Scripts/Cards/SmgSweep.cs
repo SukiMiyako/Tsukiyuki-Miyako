@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -29,7 +30,7 @@ public class SmgSweep : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(3m, ValueProp.Move),
-        new RepeatVar(4)
+        new SmgRepeatVar(4)
     };
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";

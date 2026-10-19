@@ -13,7 +13,7 @@ using Tsukiyuki_Miyako.MiyakoModCode.Character;
 namespace TsukiyukiMiyako.Scripts.Cards;
 
 /// <summary>
-/// 「小伤而已」——3费 / 技能 / 稀有 / 自身。
+/// 「小伤而已」——2费 / 技能 / 稀有 / 自身。
 ///
 /// 角色落点：她嘴里没有"受伤"这个词，只有"还能继续"。
 /// 拿到无实体——伤害被压到每次 1 点，表面上什么都看不出来；
@@ -30,8 +30,8 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 [Pool(typeof(MiyakoCardPool))]
 public sealed class JustAScratch : CustomCardModel
 {
-    // 3费 | 技能 | 稀有 | 自身
-    private const int energyCost = 3;
+    // 2费 | 技能 | 稀有 | 自身
+    private const int energyCost = 2;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Rare;
     private const TargetType targetType = TargetType.Self;
@@ -72,7 +72,7 @@ public sealed class JustAScratch : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        // 升级：费用 3 → 2
+        // 升级：费用 2 → 1
         base.EnergyCost.UpgradeBy(-1);
     }
 }

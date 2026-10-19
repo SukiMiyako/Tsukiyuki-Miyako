@@ -198,7 +198,7 @@ if (r.Results.SelectMany(v => v).Any(d => d.WasTargetKilled)) { ... }
 | 像你这样的大人…… `AdultsLikeYou` | 1费 | Common/攻击 | 失去1羁绊，5伤，获得5荆棘（升级荆棘5→7） |
 | 与你一起 `TogetherWithYou` | 2费 | Uncommon/攻击 | 消耗全部羁绊，伤害 = 10 + 羁绊×6（升级系数 6→8） |
 | 重新整备 `Reequip` | 2费 | Common/技能 | 消耗所有手牌 → 生成4张配备（免费打出）；升级减费 2→1 |
-| 捡弹壳 `PickUpBrass` | 0费 | Common/技能 | 消耗1张手牌 → +1能量（升级 +2） |
+| 不能浪费 `CantWaste` | 0费 | Common/技能 | 消耗1张手牌 → +2能量（升级 +3） |
 
 ### 7.3 新增 power：`StayAwayPower`
 寂寞结束时把**没被打掉的缓冲**收回（RABBIT 铁律：寂寞里的增益不带出寂寞）。
@@ -228,7 +228,7 @@ RpgLauncher / StunGrenade` → `CardRarity.Token`
 ### 7.7 下一步候选
 1. **寂寞期回费**：`LonelinessPower` 挂 `AfterEnergyReset` 每回合 +1 能量（把「纯挨打」变成「能还手」）
 2. **寂寞期固定减伤**：`ModifyDamageAdditive` 对自身伤害 −3，替代已作废的格挡（不依赖敏捷）
-3. 3 费斩杀凑不出费用 → 已由「捡弹壳」+ 獠牙 3 能量部分解决，实测再定
+3. 3 费斩杀凑不出费用 → 已由「不能浪费」+ 獠牙 3 能量部分解决，实测再定
 4. §1.9 遗留：装备池缩小后建议补 2~3 张投掷物 token 喂生成池；Common 群攻只剩「扫射」一张
 
 ### 7.8 美术缺口
@@ -244,3 +244,59 @@ RpgLauncher / StunGrenade` → `CardRarity.Token`
 
 ⚠️ 平台雷区：**「对人开火 / 敌人身影 / 残血目标 / 精准点射 / 连发火花弹壳」会被判违规**，
 改写成「校准、观察、瞄准」这类动作语即可过。
+
+---
+
+## 8. 第二批（同日续）——寂寞体系与 SMG 双轨
+
+### 8.1 新增 9 张牌
+| 卡 | 费 | 稀有 | 效果 |
+|---|---|---|---|
+| 得寸进尺 `GiveAnInch` | 1费+1弹夹 | Common/攻击/SMG | 消耗1羁绊→15伤；**寂寞中反向**给回1羁绊→12伤（先伤害后改羁绊） |
+| 离我远点！ `StayAway` | 2费 | Common/攻击 | RABBIT+消耗；15伤+1层缓冲 |
+| 像你这样的大人…… `AdultsLikeYou` | 1费 | Common/攻击 | 失去1羁绊，5伤，5荆棘 |
+| 与你一起 `TogetherWithYou` | 2费 | Uncommon/攻击 | 消耗全部羁绊，10 + 羁绊×6（升级系数→8） |
+| 重新整备 `Reequip` | 2费 | Common/技能 | 消耗所有手牌 → 4张配备（免费打出）；升级减费→1 |
+| 不能浪费 `CantWaste` | 0费 | Common/技能 | 消耗1张手牌 → +2能量（升级+3） |
+| 请你守护着我哦 `PleaseProtectMe` | 1费 | Common/技能 | 12格挡；未失血则下回合+2羁绊（升级格挡→16） |
+| 请站在我的身后 `StayBehindMe` | 1费 | Common/攻击 | 9伤 + 1羁绊（升级12伤） |
+| 致命喷嚏 `DeadlySneeze` | 0费 | Common/技能 | 失2血 → 1羁绊（升级→2），梗自水宫子记忆大厅 |
+
+### 8.2 RABBIT-31 改成双轨（段数 / 伤害）
+- **多段 SMG 牌**：额外命中 1 次（`AbstractModel.ModifyAttackHitCount`，引擎现成钩子）
+- **单段 SMG 牌**：伤害 +3（走 Harmony 补丁的平坦加成）
+- 两条互斥：靠 `Rabbit31SmgPower._multiHitCardId`（**static** + `ModelId` 值比较）标记，
+  外加「`Repeat ≥ 2` 一律按多段处理」兜底
+- **踩过的坑**：实例字段 + 引用比较会静默失效 → 多段牌同时吃到额外命中和平坦伤害
+
+### 8.3 卡面段数同步：`SmgRepeatVar`
+`RepeatVar` 子类，只重写显示入口 `UpdateCardPreview` 与 `GetBaseValueForIConvertible`
+（照 `CalculatedVar` 的路线），RABBIT-31 在场时卡面段数自动 +1。
+**不改 `BaseValue`** → 进手牌/离手/power 移除都不用复原，每次渲染重算。
+已用于：冲锋扫射/扫射/短点射/冲锋爆发/抵近射击/压制射击/狂野射击。
+`火力倾泻`（`WithHitCount(X*2)`）没有 Repeat 变量，只吃实际 +1 段。
+
+### 8.4 寂寞体系的定论（重要）
+- **寂寞不会自然结束**：`PowerStackType.Counter` 不自动衰减，只有羁绊回正才解除 → 进得去出不来
+- 因此把「RABBIT1，开始清扫」做成**奥义牌**：打出 +1 羁绊 → 主动退出寂寞；
+  并给它 **虚无**，逼玩家当回合就做抉择（不留到后面）
+- `獠牙` 打出时 **+3 能量**（否则 −8 敏捷下能量已垫在防御上，打不出 3 费的清扫）
+- `獠牙` 的 99 层脆弱**保留**：作者明确对标《33 号远征队》玛埃尔的司汤达症（高爆发+自破防御）
+- 抵消脆弱需要多少羁绊（先加法后乘法，`Hook.ModifyBlock` 顺序）：防御 5→2层、备战8→3层、小憩13→5层
+
+### 8.5 其他机制改动
+- `省着点用`：改为**每回合内每消耗 3 张抽 1 张**，计数在 `AfterPlayerTurnStart` 清零（不跨回合累积）
+- `战地医疗处理`：升级从“减费”改为**去掉消耗**
+- `配备` 关键词文案：`若是由[gold]生成[/gold]获得，则本回合内免费打出`
+- 作者自调（勿改）：`无人机校准` 触发 3 次→2 次、`小伤而已` 3费→2费
+
+### 8.6 引擎踩坑记录
+- **手牌被动与虚无互斥**：`CombatManager.DoTurnEnd` 里是 `if (HasTurnEndInHandEffect) … else if (Ethereal)`，
+  实现了手牌被动的牌**虚无永远不会触发**。虚无要配别的效果请走 `AfterCardDrawn`（原版 `Void` 就这么做）
+- 引擎**没有暴击系统**，做暴击得自己建，且 `ModifyDamageMultiplicative` 会被多次调用（预览/每段/联机），
+  掷骰会导致预览与实际不一致 → 不推荐
+
+### 8.7 仍未做
+- 寂寞期回费（`LonelinessPower` 挂 `AfterEnergyReset` +1 能量）／寂寞期固定减伤（评价：暂时不必，缓冲已覆盖）
+- 「+1 段」仍会让多段牌多吃一次力量（要根治得改伤害管线）
+- 美术：9 张新卡卡图 + `please_protect_me_power` / `stay_away_power` 等 power 图标

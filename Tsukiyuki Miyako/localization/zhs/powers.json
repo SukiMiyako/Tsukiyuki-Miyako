@@ -4,7 +4,7 @@
     "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.title": "能量凝胶",
     "TSUKIYUKIMIYAKO-ENERGY_GAL_POWER.description": "每回合开始时获得1点能量。",
     "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.title": "省着点用",
-    "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.description": "每当有一张牌被[gold]消耗[/gold]时，\n抽1张牌",
+    "TSUKIYUKIMIYAKO-ECONOMIZE_POWER.description": "每回合内每[gold]消耗[/gold]3张牌，\n抽{Amount}张牌（回合结束清零）",
     "TSUKIYUKIMIYAKO-SENSEI_POWER.title": "师生羁绊",
     "TSUKIYUKIMIYAKO-SENSEI_POWER.description": "每层[gold]师生羁绊[/gold]使从卡牌中获得的格挡+1,\n[gold]无人机被动伤害[/gold]+1",
     "TSUKIYUKIMIYAKO-LONELINESS_POWER.title": "寂寞",
@@ -26,7 +26,7 @@
     "TSUKIYUKIMIYAKO-PLEASE_STAY_LONGER_POWER.title": "陪伴",
     "TSUKIYUKIMIYAKO-PLEASE_STAY_LONGER_POWER.description": "下一张技能牌会额外触发1次。",
     "TSUKIYUKIMIYAKO-RABBIT31_SMG_POWER.title": "RABBIT-31冲锋枪",
-    "TSUKIYUKIMIYAKO-RABBIT31_SMG_POWER.description": "所有SMG卡牌造成的伤害+1。",
+    "TSUKIYUKIMIYAKO-RABBIT31_SMG_POWER.description": "单段[gold]SMG[/gold]牌造成的伤害+{Amount}。\n多段[gold]SMG[/gold]牌改为额外命中1次。",
     "TSUKIYUKIMIYAKO-READY_OR_NOT_POWER.title": "严阵以待",
     "TSUKIYUKIMIYAKO-READY_OR_NOT_POWER.description": "每回合获得一张[gold]配备[/gold]牌,该牌本回合免费打出。",
     "TSUKIYUKIMIYAKO-NIGHT_VIEW_WITH_YOU_POWER.title": "夜景相伴",
@@ -67,5 +67,7 @@
     "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.title": "蓄势反击",
     "TSUKIYUKIMIYAKO-FIGHT_BACK_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则对所有敌人造成{Amount}点伤害。",
     "TSUKIYUKIMIYAKO-STAY_AWAY_POWER.title": "离我远点",
-    "TSUKIYUKIMIYAKO-STAY_AWAY_POWER.description": "{Amount}层[gold]缓冲[/gold]仅在[blue]寂寞[/blue]期间有效，\n[blue]寂寞[/blue]结束时未消耗的部分一并失去。"
+    "TSUKIYUKIMIYAKO-STAY_AWAY_POWER.description": "{Amount}层[gold]缓冲[/gold]仅在[blue]寂寞[/blue]期间有效，\n[blue]寂寞[/blue]结束时未消耗的部分一并失去。",
+    "TSUKIYUKIMIYAKO-PLEASE_PROTECT_ME_POWER.title": "请你守护着我哦",
+    "TSUKIYUKIMIYAKO-PLEASE_PROTECT_ME_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则获得{Amount}层[blue]师生羁绊[/blue]。"
 }

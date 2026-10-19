@@ -18,7 +18,7 @@ public sealed class Rabbit31Smg : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar>(new DynamicVar[]
     {
-        new PowerVar<Rabbit31SmgPower>(2m)
+        new PowerVar<Rabbit31SmgPower>(3m)
     });
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";

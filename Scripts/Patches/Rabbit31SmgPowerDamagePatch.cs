@@ -15,6 +15,10 @@ namespace TsukiyukiMiyako.Scripts.Patches;
 /// and the public-beta branch. The game moved <c>ModifyDamageAdditive</c> between versions
 /// by adding a <see cref="CardPlay"/> parameter, so a normal override would be version-specific.
 /// Instead, intercept whichever overload exists at runtime.
+///
+/// ★ 只给**单段** SMG 牌加这份平坦伤害：多段牌在 <see cref="Rabbit31SmgPower.ModifyAttackHitCount"/>
+/// 里已经拿过"额外命中 1 次"，这里再加就两头吃。判据是 power 上的 `MultiHitCard` 标记
+/// （由命中数钩子在同一段 `AttackCommand.Execute` 里先行写入）。
 /// </summary>
 public static class Rabbit31SmgPowerDamagePatch
 {
@@ -33,6 +37,12 @@ public static class Rabbit31SmgPowerDamagePatch
         }
 
         if (!cardSource.CanonicalKeywords.Contains(MyKeywords.Smg))
+        {
+            return true;
+        }
+
+        // 多段牌已获得"额外命中 1 次"，不再叠加平坦伤害
+        if (rabbitPower.IsMultiHitAttack(cardSource))
         {
             return true;
         }

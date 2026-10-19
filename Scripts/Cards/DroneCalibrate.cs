@@ -34,7 +34,7 @@ public sealed class DroneCalibrate : CustomCardModel
 
     public DroneCalibrate() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }
 
-    // 核心：通道无人机 → 触发无人机被动3次
+    // 核心：通道无人机 → 触发无人机被动2次
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 空目标判定
@@ -51,8 +51,9 @@ public sealed class DroneCalibrate : CustomCardModel
             .OfType<FlashScoutDrone>()
             .ToList();
 
-        // 核心逻辑：对目标触发无人机被动3次
-        for (int i = 0; i < 3; i++)
+
+        // 核心逻辑：对目标触发无人机被动2次
+        for (int i = 0; i < 2; i++)
         {
             foreach (FlashScoutDrone drone in drones)
             {

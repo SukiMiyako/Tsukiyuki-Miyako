@@ -37,7 +37,7 @@ public class SuppressingFire : CustomCardModel
     // 卡牌的基础属性
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(4m, ValueProp.Move),
-        new RepeatVar(3),
+        new SmgRepeatVar(3),
         new DynamicVar("Power", 1m)
         ];
 
