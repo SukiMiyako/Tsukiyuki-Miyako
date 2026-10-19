@@ -300,3 +300,70 @@ RpgLauncher / StunGrenade` → `CardRarity.Token`
 - 寂寞期回费（`LonelinessPower` 挂 `AfterEnergyReset` +1 能量）／寂寞期固定减伤（评价：暂时不必，缓冲已覆盖）
 - 「+1 段」仍会让多段牌多吃一次力量（要根治得改伤害管线）
 - 美术：9 张新卡卡图 + `please_protect_me_power` / `stay_away_power` 等 power 图标
+
+---
+
+## 9. 弹夹资源化（重大里程碑）：星 → 自有资源 MagazineResource
+
+### 9.1 为什么不用原版星
+星是**储君（Regent）**的角色资源（`CharacterModel.ShouldAlwaysShowStarCounter` 只有 Regent 为 true），
+任何"给星"的牌/遗物/药水都会顺手喂饱她 → 等于白送弹夹。改成自有资源后完全隔离。
+
+### 9.2 实现（全走 BaseLib 现成框架，照芙莉莲 mod 的 ManaResource）
+`Scripts/Resources/MagazineResource.cs`
+```csharp
+public sealed class MagazineResource : BasicCustomResource
+{
+    public const string ResourceId = "TSUKIYUKIMIYAKO_MAGAZINE";
+    public MagazineResource() : base(ResourceId, -1) { }   // -1 = 累积型，不每回合补满、无上限
+    public override bool ShouldShowDisplay() => Owner?.Character is MiyakoMod;  // 按角色门禁！
+}
+```
+- **无上限**：`DefaultMax = -1` → `Max` 恒 0，X 费牌（火力倾泻）不会被卡住
+- **自动注册**：`PostModInitPatch` 反射扫描所有 `CustomResource` 子类并 `Register`，Entry 不用动
+- **自动 UI**：能量槽旁常驻显示（`NAdditionalResourceDisplay`，`AroundEnergy`）+ 卡面费用旁图标（`NAdditionalCostDisplay`，`AroundCost`），都是**纯代码构造，不需要 tscn**
+- **生命周期**：`SpireField<PlayerCombatState, T>`，出战斗即销毁，不涉及存档
+
+### 9.3 ★ 兼容性铁律（踩过）
+BaseLib 的资源注册是**全局**的：给每个玩家都挂资源显示节点，可见性最终由
+`ShouldShowDisplay()` 决定（`NAdditionalResourceDisplay.RefreshVisibility`：`Visible ||= _resource.ShouldShowDisplay()`）。
+芙莉莲的 `ManaResource` 直接 `return true` → 宫子界面里会冒出魔力条。
+**我们按 `Owner?.Character is MiyakoMod` 门禁，不要写成 `=> true`。**
+
+### 9.4 卡牌侧用法
+```csharp
+// 声明花费（构造函数里）
+CustomResources<MagazineResource>.SetCanonicalCost(this, N);   // 固定费
+CustomResources<MagazineResource>.SetXCost(this);              // X 费
+// 装填
+CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(N);
+// 读本张牌花了多少（X 费牌用）
+CustomResources<MagazineResource>.AmountSpent(cardPlay);
+// 花掉时做事（「弹药管够」）
+实现 IAfterSpendResource<MagazineResource>
+```
+
+### 9.5 迁移清单（已完成）
+- **12 张星费牌** → `SetCanonicalCost`（短点射/看准再打/掠夺射击/得寸进尺/轻装上阵/抵近射击/
+  冲锋爆发/冲锋扫射/扫射/压制射击/狂野射击/这可比枪好使多了），数值 1:1
+- **火力倾泻** → `SetXCost`，连击数 = `AmountSpent(cardPlay) * 2`（从 0 花起时什么都不做）
+- **7 张产星 + 1 遗物** → `ModifyAmount`；变量 `Stars` → `Magazine`（升级项也要改，否则 `DynamicVars.Stars` 会炸）
+- **备战** → 原版 `StarNextTurnPower` 是储君资源，新增自有 **`MagazineNextTurnPower`**（同样 `AfterEnergyReset` 时机）
+- **弹药管够** → `AfterStarsSpent` 失效，改 `IAfterSpendResource<MagazineResource>`，每 5 发返 1
+- **长线作战 / 最可靠的队长** → `ModifyAmount`
+- **文案**：`{Stars:starIcons()}` 全量替换为 `装填{Magazine:diff()}发[blue]弹夹[/blue]`，
+  `relics.json` 2 条 + `static_hover_tips.json` 新增 `TSUKIYUKIMIYAKO_MAGAZINE.title/.description`
+
+### 9.6 辉星为什么自己消失了
+`NStarCounter` 可见性 = `ShouldAlwaysShowStarCounter || stars > 0`，她的角色类没 override（默认 false），
+且现在没有任何东西给星 → 星恒为 0 → 计数器自动隐藏，**不需要补丁**。
+
+### 9.7 图标
+`images/charui/magazine.png`（70×70 RGBA，内容缩到画布 75%，四周留透明边）。
+⚠️ **改图必须重新导入**：`.import` 不变时游戏读的是旧的 `.godot/imported/*.ctex`；
+要么在 Godot 里打开一次，要么删掉 `.godot/imported/magazine.png-*.ctex|.md5`。
+悬停提示只用纯文本（不要写 `{resourceIcon}`，富文本不吃会把路径原样显示出来）。
+
+### 9.8 待办
+- 弹夹资源目前只有"花/装填"两个动作，未做"打空换弹"的强制节奏（可选方向）
+- `AmmoSurplus` 文案还写着"每当你花费5个弹夹,获得1个弹夹"，措辞可统一成"装填"

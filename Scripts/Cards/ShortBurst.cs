@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -26,8 +27,8 @@ public class ShortBurst : CustomCardModel
     // 图鉴显示
     private const bool shouldShowInCardLibrary = true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
-    // 1星费用
-    public override int CanonicalStarCost => 1;
+    // 弹夹费用：1 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 1;
 
     // 动态变量：基础2点伤害，连击3次 (2×3)
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
@@ -40,6 +41,8 @@ public class ShortBurst : CustomCardModel
 
     public ShortBurst() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        // 声明弹夹花费：BaseLib 接管"够不够"的判定与扣除，并在卡面费用旁画资源图标
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

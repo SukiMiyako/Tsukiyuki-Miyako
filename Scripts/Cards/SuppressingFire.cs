@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -19,7 +20,8 @@ public class SuppressingFire : CustomCardModel
 {
     // 基础耗能
     private const int energyCost = 2;
-    public override int CanonicalStarCost => 1;
+    // 弹夹费用：1 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 1;
     // 卡牌类型
     private const CardType type = CardType.Attack;
     // 卡牌稀有度
@@ -44,6 +46,7 @@ public class SuppressingFire : CustomCardModel
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
     public SuppressingFire() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
 

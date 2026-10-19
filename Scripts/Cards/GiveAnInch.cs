@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 using TsukiyukiMiyako.Scripts.Powers;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
@@ -46,8 +47,8 @@ public sealed class GiveAnInch : CustomCardModel
     private const bool shouldShowInCardLibrary = true;
 
     /// <summary>星费（弹夹）：1。项目规则 —— 花弹夹的牌统一是 SMG。</summary>
-    public override int CanonicalStarCost => 1;
-
+    // 弹夹费用：1 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 1;
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
@@ -68,6 +69,7 @@ public sealed class GiveAnInch : CustomCardModel
 
     public GiveAnInch() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

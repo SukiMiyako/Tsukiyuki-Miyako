@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using BaseLib.Utils;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts.Resources;
 using Tsukiyuki_Miyako.MiyakoModCode.Powers;
 using TsukiyukiMiyako.Scripts.Powers;
 using MegaCrit.Sts2.Core.Rooms;
@@ -23,7 +24,7 @@ public class OrigDreamUpgraded : CustomRelicModel
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new CardsVar(1),
-        new StarsVar(2),
+        new DynamicVar("Magazine", 2m),
         new DynamicVar("SenseiPower", 2)
     };
 
@@ -42,7 +43,7 @@ public class OrigDreamUpgraded : CustomRelicModel
         {
             Flash();
             await PowerCmd.Apply<SenseiPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars["SenseiPower"].BaseValue, base.Owner.Creature, null);
-            await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
+            CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(DynamicVars["Magazine"].IntValue);
             await PowerCmd.Apply<DreamNameplatePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, 1, base.Owner.Creature, null);
         }
     }

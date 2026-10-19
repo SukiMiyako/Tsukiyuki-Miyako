@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
@@ -30,7 +31,7 @@ public class SwapOverReload : CustomCardModel
     // 改伤害
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8m, ValueProp.Move),
-        new StarsVar(1)
+        new DynamicVar("Magazine", 1m)
         ];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
@@ -45,7 +46,7 @@ public class SwapOverReload : CustomCardModel
             .FromCardCompatibility(this, cardPlay) // 伤害来源于这张卡牌
             .Targeting(cardPlay.Target!) // 伤害目标是玩家选择的目标
             .Execute(choiceContext);
-        await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
+        CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(DynamicVars["Magazine"].IntValue);
     }
     //属于打击类
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Strike };

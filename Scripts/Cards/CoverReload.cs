@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -28,7 +29,7 @@ public class CoverReload : CustomCardModel
     // 动态变量：3点格挡 + 1星
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(3m, ValueProp.Move),
-        new StarsVar(1)
+        new DynamicVar("Magazine", 1m)
     ];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
@@ -44,13 +45,13 @@ public class CoverReload : CustomCardModel
         // 获得格挡
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         // 获得星数
-        await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
+        CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(DynamicVars["Magazine"].IntValue);
     }
 
     protected override void OnUpgrade()
     {
         // 升级：星数 1→2
-        base.DynamicVars.Stars.UpgradeValueBy(1m);
+        DynamicVars["Magazine"].UpgradeValueBy(1m);
     }
 
 }

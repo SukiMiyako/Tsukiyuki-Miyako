@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -26,7 +27,8 @@ public class SmgBurst : CustomCardModel
     private const TargetType targetType = TargetType.AnyEnemy;
     // 是否在卡牌图鉴中显示
     private const bool shouldShowInCardLibrary = true;
-    public override int CanonicalStarCost => 1;
+    // 弹夹费用：1 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(6m, ValueProp.Move),
@@ -37,6 +39,7 @@ public class SmgBurst : CustomCardModel
 
     public SmgBurst() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
 

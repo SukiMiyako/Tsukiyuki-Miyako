@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts.Resources;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
@@ -26,7 +27,7 @@ public class Rabbit31Drum : CustomCardModel
     // 是否在卡牌图鉴中显示
     private const bool shouldShowInCardLibrary = true;
     // 动态变量：获得5星
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new StarsVar(5)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Magazine", 5m)];
     // 消耗关键词提示
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {
@@ -45,12 +46,12 @@ public class Rabbit31Drum : CustomCardModel
     {
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         // 获得5星能
-        await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
+        CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(DynamicVars["Magazine"].IntValue);
     }
 
     // 无升级效果（可按需添加）
     protected override void OnUpgrade()
     {
-        DynamicVars.Stars.UpgradeValueBy(1m); 
+        DynamicVars["Magazine"].UpgradeValueBy(1m); 
     }
 }

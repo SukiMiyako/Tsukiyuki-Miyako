@@ -3,6 +3,7 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -20,7 +21,7 @@ public sealed class EndurancePower : CustomPowerModel
         if (player == base.Owner.Player)
         {
             Flash();
-            await PlayerCmd.GainStars(base.Amount, base.Owner.Player);
+            CustomResources<MagazineResource>.Get(base.Owner.Player.PlayerCombatState!).ModifyAmount((int)base.Amount);
         }
     }
 }

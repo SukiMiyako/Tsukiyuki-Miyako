@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -41,8 +42,8 @@ public sealed class Strafe : CustomCardModel
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { MyKeywords.Smg };
 
     /// <summary>星费（弹夹）：2。</summary>
-    public override int CanonicalStarCost => 2;
-
+    // 弹夹费用：2 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(3m, ValueProp.Move),
@@ -53,6 +54,7 @@ public sealed class Strafe : CustomCardModel
 
     public Strafe() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

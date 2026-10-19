@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts.Resources;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 
@@ -21,7 +22,7 @@ public sealed class AirDrop : CustomCardModel
     {
         new CardsVar(2),
         new EnergyVar(1),
-        new StarsVar(2),
+        new DynamicVar("Magazine", 2m),
     };
 
     public AirDrop()
@@ -33,7 +34,7 @@ public sealed class AirDrop : CustomCardModel
     {
         SfxCmd.Play("res://Audio/airdrop.ogg");
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        await PlayerCmd.GainStars(DynamicVars.Stars.BaseValue, Owner);
+        CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(DynamicVars["Magazine"].IntValue);
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
         CustomCardModel armorybox = CombatState!.CreateCard<ArmoryBox>(Owner);

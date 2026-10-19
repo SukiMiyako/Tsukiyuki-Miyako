@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using MegaCrit.Sts2.Core.Models.Powers;
+using TsukiyukiMiyako.Scripts.Powers;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -24,7 +25,7 @@ public class Standby : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(8m, ValueProp.Move),
         new EnergyVar(1),
-        new StarsVar(1)
+        new DynamicVar("Magazine", 1m)
         ];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
@@ -39,8 +40,8 @@ public class Standby : CustomCardModel
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         // 修复1：
         await PowerCmd.Apply<EnergyNextTurnPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars.Energy.BaseValue, base.Owner.Creature, this);
-        // 修复2：
-        await PowerCmd.Apply<StarNextTurnPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars.Stars.BaseValue, base.Owner.Creature, this);
+        // 修复2（弹夹版）：下回合装填弹夹（原版 StarNextTurnPower 是储君的资源，已弃用）
+        await PowerCmd.Apply<MagazineNextTurnPower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, DynamicVars["Magazine"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

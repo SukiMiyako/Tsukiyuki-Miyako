@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -16,8 +18,8 @@ namespace TsukiyukiMiyako.Scripts.Cards;
 public sealed class LightLoad : CustomCardModel
 {
     // 2星费用
-    public override int CanonicalStarCost => 2;
-
+    // 弹夹费用：2 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 2;
     // 清除乱码，标准格式变量：1点能量
     protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> { new EnergyVar(1) };
 
@@ -31,6 +33,7 @@ public sealed class LightLoad : CustomCardModel
     public LightLoad()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
     // 核心效果（1:1星位序列）

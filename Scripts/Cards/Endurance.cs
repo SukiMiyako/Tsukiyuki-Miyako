@@ -23,17 +23,17 @@ public class Endurance : CustomCardModel
     {
     }
 
-    private const string _starsPerTurnKey = "StarsPerTurn";
+    private const string _magazinePerTurnKey = "MagazinePerTurn";
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DynamicVar(_starsPerTurnKey, 1)
+        new DynamicVar(_magazinePerTurnKey, 1)
     };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         SfxCmd.Play("res://Audio/Endurance.ogg");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<EndurancePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, DynamicVars[_starsPerTurnKey].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<EndurancePower>(new BlockingPlayerChoiceContext(), base.Owner.Creature, DynamicVars[_magazinePerTurnKey].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

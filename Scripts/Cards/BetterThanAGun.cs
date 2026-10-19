@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -40,8 +41,8 @@ public sealed class BetterThanAGun : CustomCardModel
     private const bool shouldShowInCardLibrary = true;
 
     /// <summary>星费（弹夹）：3。</summary>
-    public override int CanonicalStarCost => 3;
-
+    // 弹夹费用：3 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 3;
     /// <summary>
     /// 消耗 —— 3 弹夹换 2 张免费配备，要是能反复打就变成"有弹夹就无限开箱"，
     /// 所以按你定的改成一次性。
@@ -58,6 +59,7 @@ public sealed class BetterThanAGun : CustomCardModel
 
     public BetterThanAGun() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

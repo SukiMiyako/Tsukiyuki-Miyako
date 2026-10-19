@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts;
 
@@ -43,7 +44,7 @@ public sealed class MostReliableCaptainPower : CustomPowerModel
                 Flash();
 
                 // 获得弹夹
-                await PlayerCmd.GainStars(1, base.Owner.Player);
+                CustomResources<MagazineResource>.Get(base.Owner.Player.PlayerCombatState!).ModifyAmount(1);
             }
         }
     }

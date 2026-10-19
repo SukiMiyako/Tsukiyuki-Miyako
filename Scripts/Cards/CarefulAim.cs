@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
 using TsukiyukiMiyako.Scripts;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -47,8 +48,8 @@ public sealed class CarefulAim : CustomCardModel
     private const string _maxDamageKey = "MaxDamage";
 
     /// <summary>星费（弹夹）：1。</summary>
-    public override int CanonicalStarCost => 1;
-
+    // 弹夹费用：1 发（自有资源 MagazineResource，不再用储君的星）
+    private const int magazineCost = 1;
     /// <summary>
     /// SMG（项目规则 —— 花弹夹的牌统一是 SMG）+ 消耗。
     /// 加消耗的原因：封顶 40 之后它还是"1 费 + 1 弹夹打 40"的补刀件，
@@ -88,6 +89,7 @@ public sealed class CarefulAim : CustomCardModel
 
     public CarefulAim() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
+        CustomResources<MagazineResource>.SetCanonicalCost(this, magazineCost);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

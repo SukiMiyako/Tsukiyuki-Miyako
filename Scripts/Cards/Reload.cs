@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Tsukiyuki_Miyako.MiyakoModCode.Character;
+using TsukiyukiMiyako.Scripts.Resources;
 
 namespace TsukiyukiMiyako.Scripts.Cards;
 
@@ -26,7 +27,7 @@ public class Reload : CustomCardModel
     // 是否在卡牌图鉴中显示
     private const bool shouldShowInCardLibrary = true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new StarsVar(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Magazine", 2m)];
 
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
@@ -40,12 +41,12 @@ public class Reload : CustomCardModel
     {
         SfxCmd.Play("res://Audio/reload.ogg");
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        await PlayerCmd.GainStars(base.DynamicVars.Stars.BaseValue, base.Owner);
+        CustomResources<MagazineResource>.Get(Owner.PlayerCombatState!).ModifyAmount(DynamicVars["Magazine"].IntValue);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Stars.UpgradeValueBy(1m);
+        DynamicVars["Magazine"].UpgradeValueBy(1m);
     }
 
 }
