@@ -367,3 +367,28 @@ CustomResources<MagazineResource>.AmountSpent(cardPlay);
 ### 9.8 待办
 - 弹夹资源目前只有"花/装填"两个动作，未做"打空换弹"的强制节奏（可选方向）
 - `AmmoSurplus` 文案还写着"每当你花费5个弹夹,获得1个弹夹"，措辞可统一成"装填"
+
+---
+
+## 10. 为了基沃托斯的和平 → 羁绊转力量
+
+**问题**：这张 Rare 能力原本只有一句"获得 X 点力量"，是全池唯一"纯数值、零机制"的牌，
+而她的力量来源已经很多（兔子的獠牙 / 我……我没事 / 遗物），完全重复。
+
+**改成**：每 `Amount` 层羁绊 → +1 点力量，羁绊变动时自动重新结算。
+- 未升级 **2 层 → 1 点**；升级 **1 层 → 1 点**（`PowerVar<PeaceForKivotosPower>(2m)`，升级 `UpgradeValueBy(-1m)`）
+- 新增 `Scripts/Powers/PeaceForKivotosPower.cs`：`AfterPowerAmountChanged(SenseiPower)` → `SyncStrength()`
+  只补差额（`bond / ratio - _granted`），给的是**真力量**（`PowerCmd.Apply<StrengthPower>`），
+  会正常参与伤害结算、也和獠牙的 +力量叠加
+- 图标数字 = 当前实际提供的力量（`DisplayAmount => _granted`）；tooltip 只能认 `{Amount}`，所以描述写"每 {Amount} 层"
+- 寂寞时羁绊 ≤ 0 → 力量自动归 0
+
+**设计意义**：羁绊现在有两个兑现口 —— 留着换持续力量（这张）vs 一次性打出去（「与你一起」），形成反向选择。
+
+## 11. 池子里还剩哪些"纯数值"的牌（已评估，暂不改）
+| 牌 | 判断 |
+|---|---|
+| 打击 / 防御 | 基础牌，原版同款，不动 |
+| 高爆手雷 / 引爆 | Token，生成物就该简单，不动 |
+| 冲锋爆发 / 冲锋扫射 / 扫射 / 短点射 | 牌自身没条件，但机制挂在 SMG 关键词上（弹夹费 + RABBIT-31 +1 段 + 激光镭指），**不改** |
+| 轻装上阵 | 花 2 弹夹换 2 能量，纯资源兑换；若要加机制，候选是"弹夹因此归零则抽 1 张" |
