@@ -71,5 +71,7 @@
     "TSUKIYUKIMIYAKO-PLEASE_PROTECT_ME_POWER.title": "请你守护着我哦",
     "TSUKIYUKIMIYAKO-PLEASE_PROTECT_ME_POWER.description": "若到你的下个回合开始为止未失去生命值，\n则获得{Amount}层[blue]师生羁绊[/blue]。",
     "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS_POWER.title": "为了基沃托斯的和平",
-    "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS_POWER.description": "每{Amount}层[blue]师生羁绊[/blue]，获得1点[gold]力量[/gold]。\n图标上的数字 = 当前提供的力量。"
+    "TSUKIYUKIMIYAKO-PEACE_FOR_KIVOTOS_POWER.description": "每{Amount}层[blue]师生羁绊[/blue]，获得1点[gold]力量[/gold]。\n图标上的数字 = 当前提供的力量。",
+    "TSUKIYUKIMIYAKO-MAGAZINE_NEXT_TURN_POWER.title": "下回合装填",
+    "TSUKIYUKIMIYAKO-MAGAZINE_NEXT_TURN_POWER.description": "下回合开始时，装填{Amount}发[blue]弹夹[/blue]。"
 }
