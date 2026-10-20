@@ -31,6 +31,16 @@ public sealed class Bandage : CustomCardModel
     // 消耗关键词（和Fuel一致）
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
+    /// <summary>
+    /// 不能被"随机生成"类效果抽到 —— 绷带只该由「战地医疗处理」产出。
+    ///
+    /// 它是 `CardRarity.Token` 且挂在角色池里，而 `CardFactory.FilterForCombat`
+    /// 只排除 Basic / Ancient / Event，Token 会漏过去，于是「发现」「选择悖论」
+    /// 这类不按类型过滤的生成效果能把回血 token 当成正常牌抽出来。
+    /// 战地医疗处理走的是 `CombatState.CreateCard&lt;Bandage&gt;`，不受这个开关影响。
+    /// </summary>
+    public override bool CanBeGeneratedInCombat => false;
+
     public override string PortraitPath => $"res://Tsukiyuki Miyako/images/cards/{Id.Entry.ToLowerInvariant()}.png";
 
     public Bandage() : base(energyCost, type, rarity, targetType, shouldShowInCardLibrary) { }

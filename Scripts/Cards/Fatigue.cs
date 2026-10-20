@@ -36,6 +36,19 @@ public sealed class Fatigue : CustomCardModel
     // 状态牌无升级
     public override int MaxUpgradeLevel => 0;
 
+    /// <summary>
+    /// 不能被"随机生成"类效果抽到。
+    ///
+    /// 原版的状态牌（伤口 / 灼伤 / 眩晕……）挂在 `StatusCardPool` 里，而我们在
+    /// `[Pool(typeof(MiyakoCardPool))]`——天然混在**角色的可玩牌池**里。
+    /// `CardFactory.FilterForCombat` 只排除 Basic / Ancient / Event 三档稀有度，
+    /// `CardRarity.Status` 拦不住，于是没按类型过滤的生成效果（发现 / 选择悖论 /
+    /// 疯狂科学 / 泼溅……）会把状态牌抽进三选一。
+    /// 关掉这个开关后所有走 `FilterForCombat` 的路径都会把它筛掉；
+    /// 我们自己的产牌（兼职）走的是 `CombatState.CreateCard`，不受影响。
+    /// </summary>
+    public override bool CanBeGeneratedInCombat => false;
+
     public Fatigue()
         // 状态牌标准配置：0费 | 状态牌 | 状态稀有度 | 无目标
         : base(-1, CardType.Status, CardRarity.Status, TargetType.None)
